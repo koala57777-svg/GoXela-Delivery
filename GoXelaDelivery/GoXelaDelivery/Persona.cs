@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GoXelaDelivery.Enums
 
 namespace GoXelaDelivery
 {
@@ -14,7 +15,7 @@ namespace GoXelaDelivery
 
 		private string nombreCompleto;
 
-		private int numeroTelefono;
+		private string numeroTelefono;
 
 		public Persona(string nuevoCodigoUnico, string nuevoPrefijo, string nuevoNombreCompleto, string nuevoNumeroTelefono)
 		{
@@ -66,11 +67,11 @@ namespace GoXelaDelivery
 
 		private string direccionDestino;
 
-		private string municipioDestino;
+		private Enums.Municipio municipioDestino;
 
 		private int solicitudesRealizadas;
 
-		public Cliente(string nuevoCodigoUnico, string nuevoPrefijo, string nuevoNombreCompleto, string nuevoNumeroTelefono, string nuevoCorreoElectronico, string nuevaDireccionDestino, string nuevoMunicipioDestino, int nuevasSolicitudesRealizadas) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoNombreCompleto, nuevoNumeroTelefono)
+		public Cliente(string nuevoCodigoUnico, string nuevoPrefijo, string nuevoNombreCompleto, string nuevoNumeroTelefono, string nuevoCorreoElectronico, string nuevaDireccionDestino, Enums.Municipio nuevoMunicipioDestino, int nuevasSolicitudesRealizadas) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoNombreCompleto, nuevoNumeroTelefono)
 		{
 			CorreoElectronico = nuevoCorreoElectronico;
 			DireccionDestino = nuevaDireccionDestino;
@@ -97,7 +98,7 @@ namespace GoXelaDelivery
 			set { solicitudesRealizadas = value; }
 		}
 
-		public string MunicipioDestino
+		public Enums.Municipio MunicipioDestino
 		{
 			get { return municipioDestino; }
 			set { municipioDestino = value; }
