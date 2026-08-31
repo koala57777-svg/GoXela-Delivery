@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AyudanteConsola.cs.cs" />
+    <Compile Include="AyudanteConsola.cs" />
     <Compile Include="CodigoUnico.cs" />
     <Compile Include="Delivery.cs" />
     <Compile Include="Entrega.cs" />
