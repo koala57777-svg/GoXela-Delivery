@@ -169,4 +169,12 @@ namespace GoXelaDelivery
             Console.WriteLine("Se calcula el costo operativo de la Motocicleta...");
         }
     }
+
+    internal class Carro : Vehiculo
+    {
+        protected override void CalcularCostoOperativo()
+        {
+            Console.WriteLine("Se calcula el costo operativo del Carro...");
+        }
+    }
 }
