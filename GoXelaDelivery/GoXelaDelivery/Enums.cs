@@ -10,9 +10,9 @@ namespace GoXelaDelivery
     {
         public enum EstadoRepartidor
         {
-            Disponible=1,
-            Asignado=2, 
-            FueraDeServicio=3
+            Disponible = 1,
+            Asignado = 2,
+            FueraDeServicio = 3
         }
 
         public enum TipoLicencia
@@ -84,5 +84,20 @@ namespace GoXelaDelivery
             EnRevision,
             Resuelta
         }
+
+        public enum Municipio
+        {
+            Quetzaltenango = 1,
+            Salcaja,
+            Almolonga,
+            Cantel,
+            Olintepeque
+        }
+
+        public enum EstadoPaquete
+        {
+            NoAsignado = 1,
+            Asignado
+
+        }
     }
-}
