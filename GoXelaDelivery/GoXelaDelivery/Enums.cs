@@ -100,6 +100,15 @@ namespace GoXelaDelivery
             Asignado
 
         }
+
+        public enum TipoPaquete
+        {
+            Documento = 1,
+            Estandar,
+            Fragil,
+            ProductoRefrigerado
+
+        }
     }
 
 }
