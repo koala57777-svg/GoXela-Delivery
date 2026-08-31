@@ -43,7 +43,7 @@ namespace GoXelaDelivery
 
 		private double descuento;
 
-		private List<Incidente> listaIncidentes;
+		private List<Incidente> listaIncidentes = new List<Incidente>();
 
 		private EstadoEntrega estadoEntrega;
 
@@ -60,6 +60,7 @@ namespace GoXelaDelivery
 			DistanciaEstimada = nuevaDistanciaEstimada;
 			TipoServicio = nuevoTipoServicio;
 			TarifaBase = nuevaTarifaBase;
+			listaIncidentes = new List<Incidente>();
 			Total = nuevoTotal;
 		}
 
