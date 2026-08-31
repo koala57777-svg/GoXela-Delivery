@@ -49,6 +49,53 @@ namespace PruebasCodigo
             } while (true);
             return sb.ToString();
         }
+
+        public static int ValidarNumerico(string mensajeSolicitudDeDatos, int tamanoRequerido)
+        {
+            int anchoConsola = Console.WindowWidth;
+            int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
+            if (espacios < 0) espacios = 0;
+            Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+            Console.Write($"Presione Enter para enviar. \nEl número debe ser de {tamanoRequerido} dígitos.\n\n Ingresar: ");
+            StringBuilder sb = new StringBuilder(tamanoRequerido, tamanoRequerido);
+            int numeroConvertido;
+            do
+            {
+                ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+                if (teclaInfo.Key == ConsoleKey.Enter && sb.Length == tamanoRequerido)
+                {
+                    if (int.TryParse(sb.ToString(), out numeroConvertido))
+                    {
+                        break;
+                    }
+                }
+                if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
+                {
+                    sb.Remove(sb.Length - 1, 1);
+                    Console.Write("\b \b");
+                }
+                if (sb.Length < tamanoRequerido)
+                {
+                    if (char.IsDigit(teclaInfo.KeyChar))
+                    {
+                        if (teclaInfo.KeyChar == '0')
+                        {
+                            if (sb.Length > 0)
+                            {
+                                sb.Append('0');
+                                Console.Write('0');
+                            }
+                        }
+                        else
+                        {
+                            sb.Append(teclaInfo.KeyChar);
+                            Console.Write(teclaInfo.KeyChar);
+                        }
+                    }
+                }
+            } while (true);
+            return numeroConvertido;
+        }
     }
     internal class Program
     {
@@ -56,6 +103,8 @@ namespace PruebasCodigo
         {
             string nombre = AyudanteConsola.ValidarTexto("Ingrese su nombre completo", 16);
             Console.WriteLine($"\n\n{nombre}");
+            int codigo = AyudanteConsola.ValidarNumerico("Ingrese el número de código", 3);
+            Console.WriteLine($"\n\n{codigo}");
         }
     }
 }
