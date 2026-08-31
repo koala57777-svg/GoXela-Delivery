@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static GoXelaDelivery.Enums;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace GoXelaDelivery
+namespace PruebasCodigo
 {
     public static class AyudanteConsola
     {
@@ -38,7 +36,7 @@ namespace GoXelaDelivery
                         sb.Append(teclaInfo.KeyChar);
                         Console.Write(teclaInfo.KeyChar);
                     }
-                    if (teclaInfo.Key == ConsoleKey.Spacebar && sb.Length > 0 && sb.Length + 1 != limiteCaracteres)
+                    if (teclaInfo.Key == ConsoleKey.Spacebar && sb.Length > 0 && sb.Length+1!=limiteCaracteres)
                     {
                         if (sb[sb.Length - 1] != ' ')
                         {
@@ -52,5 +50,12 @@ namespace GoXelaDelivery
             return sb.ToString();
         }
     }
-
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string nombre = AyudanteConsola.ValidarTexto("Ingrese su nombre completo", 16);
+            Console.WriteLine($"\n\n{nombre}");
+        }
+    }
 }
