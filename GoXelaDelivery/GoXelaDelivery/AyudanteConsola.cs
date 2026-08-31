@@ -155,6 +155,61 @@ namespace GoXelaDelivery
             } while (true);
             return numeroConvertido;
         }
+
+        public static string ValidarCorreo()
+        {
+            string mensajeSolicitudDeDatos = "Ingrese su correo";
+            int limiteCaracteres = 35;
+            int anchoConsola = Console.WindowWidth;
+            int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
+            if (espacios < 0) espacios = 0;
+            Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+            Console.Write("Presione Enter para enviar\n\n Ingresar: ");
+            StringBuilder sb = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
+            do
+            {
+                ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+                if (teclaInfo.Key == ConsoleKey.Enter && sb.Length > 0 && sb.Length <= limiteCaracteres && sb.ToString().Contains('@') && sb.ToString().Contains('.') && sb[sb.Length - 1] != '.' && sb[sb.Length - 1] != ' ')
+                {
+                    break;
+                }
+                if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
+                {
+                    sb.Remove(sb.Length - 1, 1);
+                    Console.Write("\b \b");
+                }
+                if (sb.Length < limiteCaracteres)
+                {
+                    if (char.IsLetterOrDigit(teclaInfo.KeyChar))
+                    {
+                        sb.Append(teclaInfo.KeyChar);
+                        Console.Write(teclaInfo.KeyChar);
+                    }
+                    if (teclaInfo.KeyChar == '.')
+                    {
+                        if (sb.ToString().Contains('@') && sb[sb.Length - 1] != '.' && sb[sb.Length - 1] != '@' && sb.Length + 1 != limiteCaracteres)
+                        {
+                            sb.Append('.');
+                            Console.Write('.');
+                        }
+                    }
+                    if (teclaInfo.KeyChar == '@')
+                    {
+                        if (!sb.ToString().Contains('@') && sb.Length > 0 && sb.Length < 15)
+                        {
+                            sb.Append('@');
+                            Console.Write('@');
+                        }
+                    }
+                    if (!sb.ToString().Contains('@') && sb.Length == 15 && teclaInfo.Key != ConsoleKey.Backspace)
+                    {
+                        sb.Append('@');
+                        Console.Write('@');
+                    }
+                }
+            } while (true);
+            return sb.ToString();
+        }
     }
 
 }
