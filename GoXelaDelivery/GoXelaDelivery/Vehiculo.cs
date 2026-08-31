@@ -156,6 +156,11 @@ namespace GoXelaDelivery
 
     internal class Bicicleta : Vehiculo
     {
+        public Bicicleta(string nuevoCodigoUnico, string nuevoPrefijo, string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevoCodigoUnico, nuevoPrefijo, nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
+        {
+
+        }
+
         protected override void CalcularCostoOperativo()
         {
             Console.WriteLine("Se calcula el costo operativo de la Bicicleta...");
@@ -164,6 +169,11 @@ namespace GoXelaDelivery
 
     internal class Motocicleta : Vehiculo
     {
+        public Motocicleta(string nuevoCodigoUnico, string nuevoPrefijo, string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevoCodigoUnico, nuevoPrefijo, nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
+        {
+
+        }
+
         protected override void CalcularCostoOperativo()
         {
             Console.WriteLine("Se calcula el costo operativo de la Motocicleta...");
@@ -172,6 +182,11 @@ namespace GoXelaDelivery
 
     internal class Carro : Vehiculo
     {
+        public Carro(string nuevoCodigoUnico, string nuevoPrefijo, string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevoCodigoUnico, nuevoPrefijo, nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
+        {
+
+        }
+
         protected override void CalcularCostoOperativo()
         {
             Console.WriteLine("Se calcula el costo operativo del Carro...");
