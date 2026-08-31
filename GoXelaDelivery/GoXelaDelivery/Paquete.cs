@@ -189,4 +189,17 @@ namespace GoXelaDelivery
             Console.WriteLine("Calcula el costo del tipo paquete PaqueteEstandar...");
         }
     }
+
+    internal class PaqueteFragil : Paquete
+    {
+        public PaqueteFragil(string nuevoCodigoUnico, string nuevoPrefijo, TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Cliente nuevaDireccionDestino, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen, Cliente nuevoMunicipioDestino) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevaDireccionDestino, nuevoEstadoPaquete, nuevoMunicipioOrigen, nuevoMunicipioDestino)
+        {
+
+        }
+
+        protected override void CalcularCostoTipo()
+        {
+            Console.WriteLine("Calcula el costo del tipo paquete PaqueteFragil...");
+        }
+    }
 }
