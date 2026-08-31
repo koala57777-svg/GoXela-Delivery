@@ -59,4 +59,61 @@ namespace GoXelaDelivery
 			set { codigoUnico = value; }
 		}
 	}
+
+	internal class Cliente : Persona
+	{
+		private string correoElectronico;
+
+		private string direccionDestino;
+
+		private string municipioDestino;
+
+		private int solicitudesRealizadas;
+
+		public Cliente(string nuevoCodigoUnico, string nuevoPrefijo, string nuevoNombreCompleto, string nuevoNumeroTelefono, string nuevoCorreoElectronico, string nuevaDireccionDestino, string nuevoMunicipioDestino, int nuevasSolicitudesRealizadas) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoNombreCompleto, nuevoNumeroTelefono)
+		{
+			CorreoElectronico = nuevoCorreoElectronico;
+			DireccionDestino = nuevaDireccionDestino;
+			MunicipioDestino = nuevoMunicipioDestino;
+			SolicitudesRealizadas = nuevasSolicitudesRealizadas;
+		}
+
+		protected override void MostrarInformacion()
+		{
+			base.MostrarInformacion();
+			Console.WriteLine();
+			Console.WriteLine("Correo Electrónico: " + CorreoElectronico);
+			Console.WriteLine();
+			Console.WriteLine("Dirección de Destino: " + DireccionDestino);
+			Console.WriteLine();
+			Console.WriteLine("Municipio de Destino: " + MunicipioDestino);
+			Console.WriteLine();
+			Console.WriteLine("Cantidad de Solicitudes Realizadas: " + SolicitudesRealizadas);
+        }
+
+		public int SolicitudesRealizadas
+		{
+			get { return solicitudesRealizadas; }
+			set { solicitudesRealizadas = value; }
+		}
+
+		public string MunicipioDestino
+		{
+			get { return municipioDestino; }
+			set { municipioDestino = value; }
+		}
+
+		public string DireccionDestino
+		{
+			get { return direccionDestino; }
+			set { direccionDestino = value; }
+		}
+
+		public string CorreoElectronico
+		{
+			get { return correoElectronico; }
+			set { correoElectronico = value; }
+		}
+
+	}
 }
