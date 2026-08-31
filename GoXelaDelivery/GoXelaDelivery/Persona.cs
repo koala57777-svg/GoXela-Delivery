@@ -67,11 +67,11 @@ namespace GoXelaDelivery
 
 		private string direccionDestino;
 
-		private Enums.Municipio municipioDestino;
+		private Municipio municipioDestino;
 
 		private int solicitudesRealizadas;
 
-		public Cliente(string nuevoCodigoUnico, string nuevoPrefijo, string nuevoNombreCompleto, string nuevoNumeroTelefono, string nuevoCorreoElectronico, string nuevaDireccionDestino, Enums.Municipio nuevoMunicipioDestino, int nuevasSolicitudesRealizadas) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoNombreCompleto, nuevoNumeroTelefono)
+		public Cliente(string nuevoCodigoUnico, string nuevoPrefijo, string nuevoNombreCompleto, string nuevoNumeroTelefono, string nuevoCorreoElectronico, string nuevaDireccionDestino, Municipio nuevoMunicipioDestino, int nuevasSolicitudesRealizadas) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoNombreCompleto, nuevoNumeroTelefono)
 		{
 			CorreoElectronico = nuevoCorreoElectronico;
 			DireccionDestino = nuevaDireccionDestino;
@@ -98,7 +98,7 @@ namespace GoXelaDelivery
 			set { solicitudesRealizadas = value; }
 		}
 
-		public Enums.Municipio MunicipioDestino
+		public Municipio MunicipioDestino
 		{
 			get { return municipioDestino; }
 			set { municipioDestino = value; }
@@ -114,6 +114,84 @@ namespace GoXelaDelivery
 		{
 			get { return correoElectronico; }
 			set { correoElectronico = value; }
+		}
+	}
+
+	internal class Repartidor : Persona
+	{
+		private int numeroLicencia;
+
+		private TipoLicencia tipoLicencia;
+
+		private EstadoRepartidor estadoDisponibilidad;
+
+		private int cantidadEntregasRealizadas;
+
+		private double calificacionTotal;
+
+		private double calificacionPromedio;
+
+		public Repartidor(string nuevoCodigoUnico, string nuevoPrefijo, string nuevoNombreCompleto, string nuevoNumeroTelefono, int nuevoNumeroLicencia, TipoLicencia nuevoTipoLicencia, EstadoRepartidor nuevoEstadoDisponibilidad, int nuevaCantidadEntregas, double nuevaCalificacionTotal, double nuevaCalificacionPromedio) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoNombreCompleto, nuevoNumeroTelefono)
+		{
+			NumeroLicencia = nuevoNumeroLicencia;
+			TipoLicencia = nuevoTipoLicencia;
+			EstadoDisponibilidad = nuevoEstadoDisponibilidad;
+			CantidadEntregasRealizadas = nuevaCantidadEntregas;
+			CalificacionTotal = nuevaCalificacionTotal;
+			CalificacionPromedio = nuevaCalificacionPromedio;
+		}
+
+        protected override void MostrarInformacion()
+        {
+            base.MostrarInformacion();
+            Console.WriteLine();
+            Console.WriteLine("Número de Licencia: " + NumeroLicencia);
+            Console.WriteLine();
+            Console.WriteLine("Tipo de Licencia: " + TipoLicencia);
+            Console.WriteLine();
+            Console.WriteLine("Estado de Disponibilidad: " + EstadoDisponibilidad);
+            Console.WriteLine();
+            Console.WriteLine("Cantidad de Entregas Realizadas: " + CantidadEntregasRealizadas);
+            Console.WriteLine();
+            Console.WriteLine("Calificación Total: " + CalificacionTotal);
+            Console.WriteLine();
+            Console.WriteLine("Calificación Promedio: " + CalificacionPromedio);
+        }
+
+        public double CalificacionPromedio
+		{
+			get { return calificacionPromedio; }
+			set { calificacionPromedio = value; }
+		}
+
+		public double CalificacionTotal
+		{
+			get { return calificacionTotal; }
+			set { calificacionTotal = value; }
+		}
+
+		public int CantidadEntregasRealizadas
+		{
+			get { return cantidadEntregasRealizadas; }
+			set { cantidadEntregasRealizadas = value; }
+		}
+
+		public EstadoRepartidor EstadoDisponibilidad
+		{
+			get { return estadoDisponibilidad; }
+			set { estadoDisponibilidad = value; }
+		}
+
+		public TipoLicencia TipoLicencia
+		{
+			get { return tipoLicencia; }
+			set { tipoLicencia = value; }
+		}
+
+		public int NumeroLicencia
+		{
+			get { return numeroLicencia; }
+			set { numeroLicencia = value; }
 		}
 
 	}
