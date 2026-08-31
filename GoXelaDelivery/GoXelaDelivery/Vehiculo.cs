@@ -8,7 +8,6 @@ using static GoXelaDelivery.Enums;
 
 namespace GoXelaDelivery
 {
-
     internal class Vehiculo
     {
         private string codigoUnico;
@@ -155,4 +154,11 @@ namespace GoXelaDelivery
         }
     }
 
+    internal class Bicicleta : Vehiculo
+    {
+        protected override void CalcularCostoOperativo()
+        {
+            Console.WriteLine("Se calcula el costo operativo de la Bicicleta...");
+        }
+    }
 }
