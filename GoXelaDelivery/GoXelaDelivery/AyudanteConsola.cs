@@ -248,7 +248,10 @@ namespace GoXelaDelivery
         {
             string mensajeSolicitudDeMunicipio = "Elija su municipio";
             int numeroMunicipioElegido;
-            List<string> listaMunicipios = new List<string> { "Quetzaltenango", "Salcajá", "Almolonga", "Cantel", "Olintepeque" };
+            List<string> listaMunicipios = Enum.GetValues(typeof(Municipio))
+                                   .Cast<Municipio>()
+                                   .Select(m => m.ObtenerDescripcion())
+                                   .ToList();
             int anchoConsola = Console.WindowWidth;
             int espacios = (anchoConsola - mensajeSolicitudDeMunicipio.Length) / 2;
             if (espacios < 0) espacios = 0;
@@ -256,16 +259,16 @@ namespace GoXelaDelivery
             Console.Write("\n\n");
             StringBuilder sbMunicipio = new StringBuilder(1, 1);
             Console.WriteLine("Ingrese el número de su municipio\n");
-            foreach(string municipio in listaMunicipios)
+            foreach (string municipio in listaMunicipios)
             {
-                Console.WriteLine($"{listaMunicipios.IndexOf(municipio)+1}. {municipio}");
+                Console.WriteLine($"{listaMunicipios.IndexOf(municipio) + 1}. {municipio}");
             }
             Console.Write("\nElección: ");
             do
             {
                 ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
                 if (teclaInfo.Key == ConsoleKey.Enter && sbMunicipio.Length == 1)
-                { 
+                {
                     numeroMunicipioElegido = int.Parse(sbMunicipio.ToString());
 
                     Console.Write($"\n\nConfirmar elección de {listaMunicipios[numeroMunicipioElegido - 1]} (Yes/No): ");
@@ -275,7 +278,7 @@ namespace GoXelaDelivery
                     {
                         Mostrar("Reiniciando", 2);
                         Console.Clear();
-                        return MenuMunicipios(); 
+                        return MenuMunicipios();
                     }
                     else if (respuesta == "yes")
                     {
@@ -309,17 +312,200 @@ namespace GoXelaDelivery
             } while (true);
             return numeroMunicipioElegido;
         }
-        internal static string ValidarDireccion(Cliente cliente)
+        internal static void ValidarDireccion(Cliente cliente)
         {
             int numeroMunicipioElegido = MenuMunicipios();
             string municipioElegido = ((Municipio)numeroMunicipioElegido).ObtenerDescripcion();
             cliente.MunicipioDestino = (Municipio)numeroMunicipioElegido;
-            return "";
+
+            int limiteCaracteres = 50;
+            string mensajeSolicitudDeDatos = "Ingrese su dirección completa";
+            int anchoConsola = Console.WindowWidth;
+            int espacios = Math.Max(0, (anchoConsola - mensajeSolicitudDeDatos.Length) / 2);
+
+            bool direccionConfirmada = false;
+            string direccionFinal = string.Empty;
+
+            while (!direccionConfirmada)
+            {
+                Console.Clear();
+                Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.Write("Presione Enter para enviar\n\n Ingresar: ");
+
+                StringBuilder sbDireccionCompleta = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
+                sbDireccionCompleta.Append($"{municipioElegido}, ");
+                int longitudMinima = sbDireccionCompleta.Length;
+                Console.Write(sbDireccionCompleta);
+
+
+                while (true)
+                {
+                    ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+
+                    if (teclaInfo.Key == ConsoleKey.Enter && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length <= limiteCaracteres)
+                    {
+                        Console.Write($"\n\nConfirmar dirección de destino en {municipioElegido} (Yes/No): ");
+                        string respuesta = Console.ReadLine().ToLower().Trim();
+
+                        if (respuesta == "yes")
+                        {
+                            direccionFinal = sbDireccionCompleta.ToString();
+                            direccionConfirmada = true;
+                            break; 
+                        }
+                        else if (respuesta == "no")
+                        {
+                            Mostrar("Reiniciando dirección", 2);
+                            break; 
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nElección inválida");
+                            Mostrar("Reiniciando dirección", 2);
+                            break; // Sale del bucle de teclas y reinicia solo la dirección
+                        }
+                    }
+
+                    if (teclaInfo.Key == ConsoleKey.Backspace && sbDireccionCompleta.Length > longitudMinima)
+                    {
+                        sbDireccionCompleta.Remove(sbDireccionCompleta.Length - 1, 1);
+                        Console.Write("\b \b");
+                    }
+
+                    if (sbDireccionCompleta.Length < limiteCaracteres)
+                    {
+                        if (char.IsLetterOrDigit(teclaInfo.KeyChar))
+                        {
+                            sbDireccionCompleta.Append(teclaInfo.KeyChar);
+                            Console.Write(teclaInfo.KeyChar);
+                        }
+                        else if (teclaInfo.Key == ConsoleKey.Spacebar && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length + 1 != limiteCaracteres)
+                        {
+                            if (sbDireccionCompleta[sbDireccionCompleta.Length - 1] != ' ')
+                            {
+                                sbDireccionCompleta.Append(' ');
+                                Console.Write(' ');
+                            }
+                        }
+                        else if (teclaInfo.KeyChar == ',' && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length + 1 != limiteCaracteres)
+                        {
+                            if (sbDireccionCompleta[sbDireccionCompleta.Length - 1] != ',')
+                            {
+                                sbDireccionCompleta.Append(',');
+                                Console.Write(',');
+                            }
+                        }
+                        else if (teclaInfo.KeyChar == '-' && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length + 1 != limiteCaracteres)
+                        {
+                            if (sbDireccionCompleta[sbDireccionCompleta.Length - 1] != '-')
+                            {
+                                sbDireccionCompleta.Append('-');
+                                Console.Write('-');
+                            }
+                        }
+                    }
+                }
+            }
+
+            cliente.DireccionDestino = direccionFinal;
         }
 
-        internal static string ValidarDireccion(Paquete paquete)
+        internal static void ValidarDireccion(Paquete paquete)
         {
-            return "";
+            int numeroMunicipioElegido = MenuMunicipios();
+            string municipioElegido = ((Municipio)numeroMunicipioElegido).ObtenerDescripcion();
+            paquete.MunicipioOrigen = (Municipio)numeroMunicipioElegido;
+
+            int limiteCaracteres = 50;
+            string mensajeSolicitudDeDatos = "Ingrese su dirección completa";
+            int anchoConsola = Console.WindowWidth;
+            int espacios = Math.Max(0, (anchoConsola - mensajeSolicitudDeDatos.Length) / 2);
+
+            bool direccionConfirmada = false;
+            string direccionOrigen = string.Empty;
+
+            while (!direccionConfirmada)
+            {
+                Console.Clear();
+                Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.Write("Presione Enter para enviar\n\n Ingresar: ");
+
+                StringBuilder sbDireccionCompleta = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
+                sbDireccionCompleta.Append($"{municipioElegido}, ");
+                int longitudMinima = sbDireccionCompleta.Length;
+                Console.Write(sbDireccionCompleta);
+
+
+                while (true)
+                {
+                    ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+
+                    if (teclaInfo.Key == ConsoleKey.Enter && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length <= limiteCaracteres)
+                    {
+                        Console.Write($"\n\nConfirmar dirección de destino en {municipioElegido} (Yes/No): ");
+                        string respuesta = Console.ReadLine().ToLower().Trim();
+
+                        if (respuesta == "yes")
+                        {
+                            direccionOrigen = sbDireccionCompleta.ToString();
+                            direccionConfirmada = true;
+                            break;
+                        }
+                        else if (respuesta == "no")
+                        {
+                            Mostrar("Reiniciando dirección", 2);
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nElección inválida");
+                            Mostrar("Reiniciando dirección", 2);
+                            break; 
+                        }
+                    }
+
+                    if (teclaInfo.Key == ConsoleKey.Backspace && sbDireccionCompleta.Length > longitudMinima)
+                    {
+                        sbDireccionCompleta.Remove(sbDireccionCompleta.Length - 1, 1);
+                        Console.Write("\b \b");
+                    }
+
+                    if (sbDireccionCompleta.Length < limiteCaracteres)
+                    {
+                        if (char.IsLetterOrDigit(teclaInfo.KeyChar))
+                        {
+                            sbDireccionCompleta.Append(teclaInfo.KeyChar);
+                            Console.Write(teclaInfo.KeyChar);
+                        }
+                        else if (teclaInfo.Key == ConsoleKey.Spacebar && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length + 1 != limiteCaracteres)
+                        {
+                            if (sbDireccionCompleta[sbDireccionCompleta.Length - 1] != ' ')
+                            {
+                                sbDireccionCompleta.Append(' ');
+                                Console.Write(' ');
+                            }
+                        }
+                        else if (teclaInfo.KeyChar == ',' && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length + 1 != limiteCaracteres)
+                        {
+                            if (sbDireccionCompleta[sbDireccionCompleta.Length - 1] != ',')
+                            {
+                                sbDireccionCompleta.Append(',');
+                                Console.Write(',');
+                            }
+                        }
+                        else if (teclaInfo.KeyChar == '-' && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length + 1 != limiteCaracteres)
+                        {
+                            if (sbDireccionCompleta[sbDireccionCompleta.Length - 1] != '-')
+                            {
+                                sbDireccionCompleta.Append('-');
+                                Console.Write('-');
+                            }
+                        }
+                    }
+                }
+            }
+
+            paquete.DireccionOrigen = direccionOrigen;
         }
     }
 

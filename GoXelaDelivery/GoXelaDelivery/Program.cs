@@ -10,9 +10,9 @@ namespace GoXelaDelivery
     {
         static void Main(string[] args)
         {
-            int numeroElegido = AyudanteConsola.MenuMunicipios();
-            Console.WriteLine($"\n\n{numeroElegido}");
-
+            Cliente cliente = new Cliente("hola", 23, "d", "di", Enums.Municipio.Olintepeque, 3);
+            AyudanteConsola.ValidarDireccion(cliente);
+            Console.WriteLine($"{cliente.MunicipioDestino}\n\n{cliente.DireccionDestino}");
             Console.ReadKey();
         }
     }
