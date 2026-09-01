@@ -247,7 +247,6 @@ namespace GoXelaDelivery
         internal static int MenuMunicipios()
         {
             string mensajeSolicitudDeMunicipio = "Elija su municipio";
-            int limiteCaracteres = 50;
             int numeroMunicipioElegido;
             List<string> listaMunicipios = new List<string> { "Quetzaltenango", "Salcajá", "Almolonga", "Cantel", "Olintepeque" };
             int anchoConsola = Console.WindowWidth;
@@ -313,6 +312,7 @@ namespace GoXelaDelivery
         internal static string ValidarDireccion(Cliente cliente)
         {
             int numeroMunicipioElegido = MenuMunicipios();
+            string municipioElegido = ((Municipio)numeroMunicipioElegido).ObtenerDescripcion();
             cliente.MunicipioDestino = (Municipio)numeroMunicipioElegido;
             return "";
         }
