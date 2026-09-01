@@ -17,10 +17,8 @@ namespace GoXelaDelivery
 
 		private int numeroTelefono;
 
-		public Persona(string nuevoCodigoUnico, string nuevoPrefijo, string nuevoNombreCompleto, int nuevoNumeroTelefono)
+		public Persona(string nuevoNombreCompleto, int nuevoNumeroTelefono)
 		{
-			CodigoUnico = nuevoCodigoUnico;
-			Prefijo = nuevoPrefijo;
 			NombreCompleto = nuevoNombreCompleto;
 			NumeroTelefono = nuevoNumeroTelefono;
 		}
@@ -71,7 +69,7 @@ namespace GoXelaDelivery
 
 		private int solicitudesRealizadas;
 
-		public Cliente(string nuevoCodigoUnico, string nuevoPrefijo, string nuevoNombreCompleto, int nuevoNumeroTelefono, string nuevoCorreoElectronico, string nuevaDireccionDestino, Municipio nuevoMunicipioDestino, int nuevasSolicitudesRealizadas) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoNombreCompleto, nuevoNumeroTelefono)
+		public Cliente(string nuevoNombreCompleto, int nuevoNumeroTelefono, string nuevoCorreoElectronico, string nuevaDireccionDestino, Municipio nuevoMunicipioDestino, int nuevasSolicitudesRealizadas) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
 		{
 			CorreoElectronico = nuevoCorreoElectronico;
 			DireccionDestino = nuevaDireccionDestino;
@@ -131,7 +129,7 @@ namespace GoXelaDelivery
 
 		private double calificacionPromedio;
 
-		public Repartidor(string nuevoCodigoUnico, string nuevoPrefijo, string nuevoNombreCompleto, int nuevoNumeroTelefono, int nuevoNumeroLicencia, TipoLicencia nuevoTipoLicencia, EstadoRepartidor nuevoEstadoDisponibilidad, int nuevaCantidadEntregas, double nuevaCalificacionTotal, double nuevaCalificacionPromedio) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoNombreCompleto, nuevoNumeroTelefono)
+		public Repartidor(string nuevoNombreCompleto, int nuevoNumeroTelefono, int nuevoNumeroLicencia, TipoLicencia nuevoTipoLicencia, EstadoRepartidor nuevoEstadoDisponibilidad, int nuevaCantidadEntregas, double nuevaCalificacionTotal, double nuevaCalificacionPromedio) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
 		{
 			NumeroLicencia = nuevoNumeroLicencia;
 			TipoLicencia = nuevoTipoLicencia;

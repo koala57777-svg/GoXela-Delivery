@@ -49,10 +49,8 @@ namespace GoXelaDelivery
 
 		private double total;
 
-		public Entrega(string nuevoCodigoUnico, string nuevoPrefijo, Paquete nuevoPaqueteEntrega, Repartidor nuevoRepartidorAsignado, Vehiculo nuevoVehiculoAsignado, TipoVehiculoGeneral nuevoVehiculoGeneral, double nuevaDistanciaEstimada, TipoServicio nuevoTipoServicio, double nuevaTarifaBase, double nuevoTotal)
+		public Entrega(Paquete nuevoPaqueteEntrega, Repartidor nuevoRepartidorAsignado, Vehiculo nuevoVehiculoAsignado, TipoVehiculoGeneral nuevoVehiculoGeneral, double nuevaDistanciaEstimada, TipoServicio nuevoTipoServicio, double nuevaTarifaBase, double nuevoTotal)
 		{
-			CodigoUnico = nuevoCodigoUnico;
-			Prefijo = nuevoPrefijo;
 			PaqueteEntrega = nuevoPaqueteEntrega;
 			RepartidorAsignado = nuevoRepartidorAsignado;
 			VehiculoAsigando = nuevoVehiculoAsignado;

@@ -33,10 +33,8 @@ namespace GoXelaDelivery
 
 		private Municipio municipioDestino;
 
-		public Paquete(string nuevoCodigoUnico, string nuevoPrefijo, TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen)
+		public Paquete(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen)
 		{
-			CodigoUnico = nuevoCodigoUnico;
-			Prefijo = nuevoPrefijo;
 			TipoPaquete = nuevoTipoPaquete;
 			Descripcion = nuevaDescripcion;
 			Peso = nuevoPeso;
@@ -164,7 +162,7 @@ namespace GoXelaDelivery
 
 	internal class Documento : Paquete
 	{
-		public Documento(string nuevoCodigoUnico, string nuevoPrefijo, TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
+		public Documento(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
 		{
 
 		}
@@ -177,7 +175,7 @@ namespace GoXelaDelivery
 
 	internal class PaqueteEstandar : Paquete
 	{
-        public PaqueteEstandar(string nuevoCodigoUnico, string nuevoPrefijo, TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
+        public PaqueteEstandar(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
         {
 
         }
@@ -190,7 +188,7 @@ namespace GoXelaDelivery
 
     internal class PaqueteFragil : Paquete
     {
-        public PaqueteFragil(string nuevoCodigoUnico, string nuevoPrefijo, TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
+        public PaqueteFragil(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
         {
 
         }
@@ -203,7 +201,7 @@ namespace GoXelaDelivery
 
 	internal class ProductoRefrigerado : Paquete
 	{
-        public ProductoRefrigerado(string nuevoCodigoUnico, string nuevoPrefijo, TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoCodigoUnico, nuevoPrefijo, nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
+        public ProductoRefrigerado(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
         {
 
         }

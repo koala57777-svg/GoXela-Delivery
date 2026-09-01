@@ -32,10 +32,8 @@ namespace GoXelaDelivery
 
         private TipoEspecializacion especializacion;
 
-        public Vehiculo(string nuevoCodigoUnico, string nuevoPrefijo, string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion)
+        public Vehiculo(string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion)
         {
-            CodigoUnico = nuevoCodigoUnico;
-            Prefijo = nuevoPrefijo;
             Placa = nuevaPlaca;
             Marca = nuevaMarca;
             Modelo = nuevoModelo;
@@ -156,7 +154,7 @@ namespace GoXelaDelivery
 
     internal class Bicicleta : Vehiculo
     {
-        public Bicicleta(string nuevoCodigoUnico, string nuevoPrefijo, string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevoCodigoUnico, nuevoPrefijo, nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
+        public Bicicleta(string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
         {
 
         }
@@ -169,7 +167,7 @@ namespace GoXelaDelivery
 
     internal class Motocicleta : Vehiculo
     {
-        public Motocicleta(string nuevoCodigoUnico, string nuevoPrefijo, string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevoCodigoUnico, nuevoPrefijo, nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
+        public Motocicleta(string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
         {
 
         }
@@ -182,7 +180,7 @@ namespace GoXelaDelivery
 
     internal class Carro : Vehiculo
     {
-        public Carro(string nuevoCodigoUnico, string nuevoPrefijo, string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevoCodigoUnico, nuevoPrefijo, nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
+        public Carro(string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
         {
 
         }

@@ -25,10 +25,8 @@ namespace GoXelaDelivery
 
 		private DateTime fechaIncidente;
 
-		public Incidente(string nuevoCodigoUnico, string nuevoPrefijo, TipoIncidencia nuevoTipoIncidente, string nuevaDescripcion, EstadoIncidencia nuevoEstadoIncidencia, Entrega nuevaEntregaRelacionada)
+		public Incidente(TipoIncidencia nuevoTipoIncidente, string nuevaDescripcion, EstadoIncidencia nuevoEstadoIncidencia, Entrega nuevaEntregaRelacionada)
 		{
-			CodigoUnico = nuevoCodigoUnico;
-            Prefijo = nuevoPrefijo;
 			TipoIncidente = nuevoTipoIncidente;
             Descripcion = nuevaDescripcion;
 			EstadoIncidente = nuevoEstadoIncidencia;
