@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GoXelaDelivery.Enums;
 
 namespace GoXelaDelivery
 {
@@ -41,24 +42,17 @@ namespace GoXelaDelivery
 			listaRepartidores = new List<Repartidor>();
 
 			listasVehiculos = new List<List<Vehiculo>>();
-			listaBicicletas = new List<Bicicleta>();
-			listaMotocicletas = new List<Motocicleta>();
-			listaCarros = new List<Carro>();
-			listasVehiculos.Add(listaBicicletas);
-			listasVehiculos.Add(listaMotocicletas);
-			listasVehiculos.Add(listaCarros);
+			listasVehiculos.Add(new List<Vehiculo>());
+            listasVehiculos.Add(new List<Vehiculo>());
+            listasVehiculos.Add(new List<Vehiculo>());
 
-			listasPaquetes = new List<List<Paquete>>();
-			listaDocumentos = new List<Documento>();
-			listaPaquetesFragiles = new List<PaqueteFragil>();
-			listaPaquetesEstandar = new List<PaqueteEstandar>();
-			listaProductosRefrigerados = new List<ProductoRefrigerado>();
-			listasPaquetes.Add(listaDocumentos);
-			listasPaquetes.Add(listaPaquetesFragiles);
-			listasPaquetes.Add(listaPaquetesEstandar);
-			listasPaquetes.Add(listaProductosRefrigerados);
+            listasPaquetes = new List<List<Paquete>>();
+			listasPaquetes.Add(new List<Paquete>());
+            listasPaquetes.Add(new List<Paquete>());
+            listasPaquetes.Add(new List<Paquete>());
+            listasPaquetes.Add(new List<Paquete>());
 
-			listaEntregas = new List<Entrega>();
+            listaEntregas = new List<Entrega>();
 		}
 
 		protected void IngresarCliente(Cliente cliente)
@@ -81,17 +75,17 @@ namespace GoXelaDelivery
 		{
 			if (vehiculo != null)
 			{
-                if (vehiculo.TipoVehiculo == 1)
+                if (vehiculo.TipoVehiculo == TipoVehiculo.Motocicleta)
                 {
-                    listaMotocicletas.Add(vehiculo);
+					listasVehiculos[0].Add(vehiculo);
                 }
-                else if (vehiculo.TipoVehiculo == 2)
+                else if (vehiculo.TipoVehiculo == TipoVehiculo.Automovil)
                 {
-                    listaCarros.Add(vehiculo);
+                    listasVehiculos[1].Add(vehiculo);
                 }
                 else
                 {
-                    listaBicicletas.Add(vehiculo);
+                    listasVehiculos[2].Add(vehiculo);
                 }
             }
 		}
@@ -100,22 +94,22 @@ namespace GoXelaDelivery
 		{
 			if (paquete != null)
 			{
-				if (paquete.TipoPaquete == 1)
+				if (paquete.TipoPaquete == TipoPaquete.Documento)
 				{
-					listaDocumentos.Add(paquete);
+					listasPaquetes[0].Add(paquete);
 				}
-				else if (paquete.TipoPaquete == 2)
+				else if (paquete.TipoPaquete == TipoPaquete.Estandar)
 				{
-					listaPaquetesEstandar.Add(paquete);
-				}
-				else if (paquete.TipoPaquete == 3)
+                    listasPaquetes[1].Add(paquete);
+                }
+				else if (paquete.TipoPaquete == TipoPaquete.Fragil)
 				{
-					listaPaquetesFragiles.Add(paquete);
-				}
+                    listasPaquetes[2].Add(paquete);
+                }
 				else
 				{
-					listaProductosRefrigerados.Add(paquete);
-				}
+                    listasPaquetes[3].Add(paquete);
+                }
 			}
 		}
 
@@ -175,48 +169,6 @@ namespace GoXelaDelivery
         protected void MostrarEntregaConMayorCosto()
         {
             Console.WriteLine("Se muestra la Entrega con Mayor Costo...");
-        }
-
-        public List<ProductoRefrigerado> ListaProductosRefrigerados
-        {
-            get { return listaProductosRefrigerados = new List<ProductoRefrigerado>(); }
-            set { listaProductosRefrigerados = new List<ProductoRefrigerado>() = value; }
-        }
-
-        public List<PaqueteFragil> ListaPaquetesFragiles
-        {
-            get { return listaPaquetesFragiles = new List<PaqueteFragil>(); }
-            set { listaPaquetesFragiles = new List<PaqueteFragil>() = value; }
-        }
-
-        public List<PaqueteEstandar> ListaPaquetesEstandar
-        {
-            get { return listaPaquetesEstandar = new List<PaqueteEstandar>(); }
-            set { listaPaquetesEstandar = new List<PaqueteEstandar>() = value; }
-        }
-
-        public List<Documento> ListaDocumentos
-        {
-            get { return listaDocumentos = new List<Documento>(); }
-            set { listaDocumentos = new List<Documento>() = value; }
-        }
-
-        public List<Carro> ListaCarros
-        {
-            get { return listaCarros = new List<Carro>(); }
-            set { listaCarros = new List<Carro>() = value; }
-        }
-
-        public List<Motocicleta> ListaMotocicletas
-        {
-            get { return listaMotocicletas = new List<Motocicleta>(); }
-            set { listaMotocicletas = new List<Motocicleta>() = value; }
-        }
-
-        public List<Bicicleta> ListaBicicletas
-        {
-            get { return listaBicicletas = new List<Bicicleta>(); }
-            set { listaBicicletas = new List<Bicicleta>() = value; }
         }
 
         public double TotalIngresos
