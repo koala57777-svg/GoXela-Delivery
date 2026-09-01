@@ -48,6 +48,7 @@
     <Compile Include="Delivery.cs" />
     <Compile Include="Entrega.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Globales.cs" />
     <Compile Include="Incidente.cs" />
     <Compile Include="Paquete.cs" />
     <Compile Include="Persona.cs" />

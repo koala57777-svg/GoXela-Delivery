@@ -168,57 +168,81 @@ namespace GoXelaDelivery
 
         internal static string ValidarCorreo()
         {
+            bool correoConfirmado = false;
             string mensajeSolicitudDeDatos = "Ingrese su correo";
             int limiteCaracteres = 35;
             int anchoConsola = Console.WindowWidth;
             int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
             if (espacios < 0) espacios = 0;
-            Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
-            Console.Write("Presione Enter para enviar\n\n Ingresar: ");
-            StringBuilder sb = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
-            do
+            string correoFinal = string.Empty;
+            while (!correoConfirmado)
             {
-                ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
-                if (teclaInfo.Key == ConsoleKey.Enter && sb.Length > 0 && sb.Length <= limiteCaracteres && sb.ToString().Contains('@') && sb.ToString().Contains('.') && sb[sb.Length - 1] != '.' && sb[sb.Length - 1] != ' ')
+                Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.Write("Presione Enter para enviar\n\n Ingresar: ");
+                StringBuilder sb = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
+                do
                 {
-                    break;
-                }
-                if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
-                {
-                    sb.Remove(sb.Length - 1, 1);
-                    Console.Write("\b \b");
-                }
-                if (sb.Length < limiteCaracteres)
-                {
-                    if (char.IsLetterOrDigit(teclaInfo.KeyChar))
+                    ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+                    if (teclaInfo.Key == ConsoleKey.Enter && sb.Length > 0 && sb.Length <= limiteCaracteres && sb.ToString().Contains('@') && sb.ToString().Contains('.') && sb[sb.Length - 1] != '.' && sb[sb.Length - 1] != ' ')
                     {
-                        sb.Append(teclaInfo.KeyChar);
-                        Console.Write(teclaInfo.KeyChar);
-                    }
-                    if (teclaInfo.KeyChar == '.')
-                    {
-                        if (sb.ToString().Contains('@') && sb[sb.Length - 1] != '.' && sb[sb.Length - 1] != '@' && sb.Length + 1 != limiteCaracteres)
+                        Console.Write($"\n\nConfirmar correo {sb.ToString()} (Yes/No): ");
+                        string respuesta = Console.ReadLine().ToLower().Trim();
+
+                        if (respuesta == "yes")
                         {
-                            sb.Append('.');
-                            Console.Write('.');
+                            correoFinal = sb.ToString();
+                            correoConfirmado = true;
+                            break;
+                        }
+                        else if (respuesta == "no")
+                        {
+                            Mostrar("Reiniciando dirección", 1);
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nElección inválida");
+                            Mostrar("Reiniciando dirección", 1);
+                            break;
                         }
                     }
-                    if (teclaInfo.KeyChar == '@')
+                    if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
                     {
-                        if (!sb.ToString().Contains('@') && sb.Length > 0 && sb.Length < 15)
+                        sb.Remove(sb.Length - 1, 1);
+                        Console.Write("\b \b");
+                    }
+                    if (sb.Length < limiteCaracteres)
+                    {
+                        if (char.IsLetterOrDigit(teclaInfo.KeyChar))
+                        {
+                            sb.Append(teclaInfo.KeyChar);
+                            Console.Write(teclaInfo.KeyChar);
+                        }
+                        if (teclaInfo.KeyChar == '.')
+                        {
+                            if (sb.ToString().Contains('@') && sb[sb.Length - 1] != '.' && sb[sb.Length - 1] != '@' && sb.Length + 1 != limiteCaracteres)
+                            {
+                                sb.Append('.');
+                                Console.Write('.');
+                            }
+                        }
+                        if (teclaInfo.KeyChar == '@')
+                        {
+                            if (!sb.ToString().Contains('@') && sb.Length > 0 && sb.Length < 15)
+                            {
+                                sb.Append('@');
+                                Console.Write('@');
+                            }
+                        }
+                        if (!sb.ToString().Contains('@') && sb.Length == 15 && teclaInfo.Key != ConsoleKey.Backspace)
                         {
                             sb.Append('@');
                             Console.Write('@');
                         }
                     }
-                    if (!sb.ToString().Contains('@') && sb.Length == 15 && teclaInfo.Key != ConsoleKey.Backspace)
-                    {
-                        sb.Append('@');
-                        Console.Write('@');
-                    }
-                }
-            } while (true);
-            return sb.ToString();
+                } while (true);
+            }
+            return correoFinal;
         }
         internal static void Mostrar(string textoMostrar, int duracionSegundos)
         {
@@ -276,7 +300,7 @@ namespace GoXelaDelivery
 
                     if (respuesta == "no")
                     {
-                        Mostrar("Reiniciando", 2);
+                        Mostrar("Reiniciando", 1);
                         Console.Clear();
                         return MenuMunicipios();
                     }
@@ -287,7 +311,7 @@ namespace GoXelaDelivery
                     else
                     {
                         Console.WriteLine("\nElección inválida");
-                        Mostrar("Reiniciando", 2);
+                        Mostrar("Reiniciando", 1);
                         Console.Clear();
                         return MenuMunicipios();
                     }
@@ -355,14 +379,14 @@ namespace GoXelaDelivery
                         }
                         else if (respuesta == "no")
                         {
-                            Mostrar("Reiniciando dirección", 2);
+                            Mostrar("Reiniciando dirección", 1);
                             break; 
                         }
                         else
                         {
                             Console.WriteLine("\nElección inválida");
-                            Mostrar("Reiniciando dirección", 2);
-                            break; // Sale del bucle de teclas y reinicia solo la dirección
+                            Mostrar("Reiniciando dirección", 1);
+                            break; 
                         }
                     }
 
@@ -453,13 +477,13 @@ namespace GoXelaDelivery
                         }
                         else if (respuesta == "no")
                         {
-                            Mostrar("Reiniciando dirección", 2);
+                            Mostrar("Reiniciando dirección", 1);
                             break;
                         }
                         else
                         {
                             Console.WriteLine("\nElección inválida");
-                            Mostrar("Reiniciando dirección", 2);
+                            Mostrar("Reiniciando dirección", 1);
                             break; 
                         }
                     }
