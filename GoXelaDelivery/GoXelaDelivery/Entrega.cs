@@ -167,7 +167,7 @@ namespace GoXelaDelivery
 
 		public TipoVehiculoGeneral VehiculoGeneral
 		{
-			get { return myVavehiculoGeneral; }
+			get { return vehiculoGeneral; }
 			set { vehiculoGeneral = value; }
 		}
 		 
@@ -183,7 +183,7 @@ namespace GoXelaDelivery
 			set { repartidorAsignado = value; }
 		}
 
-		public Paquete ClienteEntrega
+		public Cliente ClienteEntrega
 		{
 			get { return clienteEntrega; }
 			set { clienteEntrega = PaqueteEntrega.ClientePaquete; }

@@ -15,9 +15,9 @@ namespace GoXelaDelivery
 
 		private string nombreCompleto;
 
-		private string numeroTelefono;
+		private int numeroTelefono;
 
-		public Persona(string nuevoCodigoUnico, string nuevoPrefijo, string nuevoNombreCompleto, string nuevoNumeroTelefono)
+		public Persona(string nuevoCodigoUnico, string nuevoPrefijo, string nuevoNombreCompleto, int nuevoNumeroTelefono)
 		{
 			CodigoUnico = nuevoCodigoUnico;
 			Prefijo = nuevoPrefijo;
