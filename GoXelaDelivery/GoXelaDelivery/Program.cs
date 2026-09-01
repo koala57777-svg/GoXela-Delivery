@@ -10,7 +10,10 @@ namespace GoXelaDelivery
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("hoal");
+            int numeroElegido = AyudanteConsola.MenuMunicipios();
+            Console.WriteLine($"\n\n{numeroElegido}");
+
+            Console.ReadKey();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -208,6 +209,8 @@ namespace PruebasCodigo
             } while (true);
             return sb.ToString();
         }
+
+       
     }
     internal class Program
     {
@@ -216,5 +219,20 @@ namespace PruebasCodigo
             string Correo = AyudanteConsola.ValidarCorreo();
             Console.WriteLine($"\n\n{Correo}");
         }
+    }
+    public class SelectorConsola : TextWriter
+    {
+        private readonly TextWriter _salidaOriginal = Console.Out;
+        private readonly StringBuilder _colector = new StringBuilder();
+
+        public override Encoding Encoding => Encoding.UTF8;
+
+        public override void Write(char value)
+        {
+            _colector.Append(value);      // Lo guarda en memoria
+            _salidaOriginal.Write(value); // Lo muestra en la pantalla real
+        }
+
+        public string ObtenerTextoAcumulado() => _colector.ToString();
     }
 }

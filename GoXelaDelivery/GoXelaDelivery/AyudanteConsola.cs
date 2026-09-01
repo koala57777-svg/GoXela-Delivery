@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using static GoXelaDelivery.Enums;
 using static System.Net.Mime.MediaTypeNames;
+using System.Reflection;
+using System.ComponentModel;
 
 namespace GoXelaDelivery
 {
-    public static class AyudanteConsola
+    internal static class AyudanteConsola
     {
+        public static string ObtenerDescripcion(this Enum valor)
+        {
+            FieldInfo field = valor.GetType().GetField(valor.ToString());
+            DescriptionAttribute attribute = field?.GetCustomAttribute<DescriptionAttribute>();
 
-        public static string ValidarTexto(string mensajeSolicitudDeDatos, int limiteCaracteres)
+            return attribute != null ? attribute.Description : valor.ToString();
+        }
+
+        internal static string ValidarTexto(string mensajeSolicitudDeDatos, int limiteCaracteres)
         {
             int anchoConsola = Console.WindowWidth;
             int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
@@ -52,7 +62,7 @@ namespace GoXelaDelivery
             return sb.ToString();
         }
 
-        public static int ValidarNumerico(string mensajeSolicitudDeDatos, int tamanoRequerido)
+        internal static int ValidarNumerico(string mensajeSolicitudDeDatos, int tamanoRequerido)
         {
             int anchoConsola = Console.WindowWidth;
             int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
@@ -99,7 +109,7 @@ namespace GoXelaDelivery
             return numeroConvertido;
         }
 
-        public static int ValidarTelefono()
+        internal static int ValidarTelefono()
         {
             string mensajeSolicitudDeDatos = "Ingrese su número de teléfono";
             int tamanoRequerido = 8;
@@ -156,7 +166,7 @@ namespace GoXelaDelivery
             return numeroConvertido;
         }
 
-        public static string ValidarCorreo()
+        internal static string ValidarCorreo()
         {
             string mensajeSolicitudDeDatos = "Ingrese su correo";
             int limiteCaracteres = 35;
@@ -209,6 +219,107 @@ namespace GoXelaDelivery
                 }
             } while (true);
             return sb.ToString();
+        }
+        internal static void Mostrar(string textoMostrar, int duracionSegundos)
+        {
+
+            int ciclosTotales = duracionSegundos * 4;
+
+            for (int i = 0; i < ciclosTotales; i++)
+            {
+
+                int cantidadPuntos = i % 4;
+                string puntos = new string('.', cantidadPuntos);
+
+
+                string espaciosBlancos = new string(' ', 3 - cantidadPuntos);
+
+
+                Console.Write($"\r{textoMostrar}{puntos}{espaciosBlancos}");
+
+
+                Thread.Sleep(250);
+            }
+
+
+            Console.Write("\r" + new string(' ', 20) + "\r");
+        }
+        internal static int MenuMunicipios()
+        {
+            string mensajeSolicitudDeMunicipio = "Elija su municipio";
+            int limiteCaracteres = 50;
+            int numeroMunicipioElegido;
+            List<string> listaMunicipios = new List<string> { "Quetzaltenango", "Salcajá", "Almolonga", "Cantel", "Olintepeque" };
+            int anchoConsola = Console.WindowWidth;
+            int espacios = (anchoConsola - mensajeSolicitudDeMunicipio.Length) / 2;
+            if (espacios < 0) espacios = 0;
+            Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeMunicipio.ToUpper());
+            Console.Write("\n\n");
+            StringBuilder sbMunicipio = new StringBuilder(1, 1);
+            Console.WriteLine("Ingrese el número de su municipio\n");
+            foreach(string municipio in listaMunicipios)
+            {
+                Console.WriteLine($"{listaMunicipios.IndexOf(municipio)+1}. {municipio}");
+            }
+            Console.Write("\nElección: ");
+            do
+            {
+                ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+                if (teclaInfo.Key == ConsoleKey.Enter && sbMunicipio.Length == 1)
+                { 
+                    numeroMunicipioElegido = int.Parse(sbMunicipio.ToString());
+
+                    Console.Write($"\n\nConfirmar elección de {listaMunicipios[numeroMunicipioElegido - 1]} (Yes/No): ");
+                    string respuesta = Console.ReadLine().ToLower();
+
+                    if (respuesta == "no")
+                    {
+                        Mostrar("Reiniciando", 2);
+                        Console.Clear();
+                        return MenuMunicipios(); 
+                    }
+                    else if (respuesta == "yes")
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nElección inválida");
+                        Mostrar("Reiniciando", 2);
+                        Console.Clear();
+                        return MenuMunicipios();
+                    }
+                }
+                if (teclaInfo.Key == ConsoleKey.Backspace && sbMunicipio.Length > 0)
+                {
+                    sbMunicipio.Remove(sbMunicipio.Length - 1, 1);
+                    Console.Write("\b \b");
+                }
+                if (sbMunicipio.Length < 1)
+                {
+                    if (char.IsDigit(teclaInfo.KeyChar))
+                    {
+                        int numeroConvertido = int.Parse(teclaInfo.KeyChar.ToString());
+                        if (numeroConvertido >= 1 && numeroConvertido <= 5)
+                        {
+                            sbMunicipio.Append(teclaInfo.KeyChar);
+                            Console.Write(teclaInfo.KeyChar);
+                        }
+                    }
+                }
+            } while (true);
+            return numeroMunicipioElegido;
+        }
+        internal static string ValidarDireccion(Cliente cliente)
+        {
+            int numeroMunicipioElegido = MenuMunicipios();
+            cliente.MunicipioDestino = (Municipio)numeroMunicipioElegido;
+            return "";
+        }
+
+        internal static string ValidarDireccion(Paquete paquete)
+        {
+            return "";
         }
     }
 

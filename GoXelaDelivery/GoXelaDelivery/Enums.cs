@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace GoXelaDelivery
 {
@@ -88,6 +89,7 @@ namespace GoXelaDelivery
         public enum Municipio
         {
             Quetzaltenango = 1,
+            [Description("Salcajá")]
             Salcaja,
             Almolonga,
             Cantel,
