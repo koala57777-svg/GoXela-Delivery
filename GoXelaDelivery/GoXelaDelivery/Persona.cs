@@ -11,7 +11,7 @@ namespace GoXelaDelivery
     {
 		private string  codigoUnico;
 
-		private string prefijo;
+		private  string prefijo ="PER";
 
 		private string nombreCompleto;
 
@@ -71,6 +71,7 @@ namespace GoXelaDelivery
 
 		public Cliente(string nuevoNombreCompleto, int nuevoNumeroTelefono, string nuevoCorreoElectronico, string nuevaDireccionDestino, Municipio nuevoMunicipioDestino, int nuevasSolicitudesRealizadas) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
 		{
+			Prefijo = "CLI";
 			CorreoElectronico = nuevoCorreoElectronico;
 			DireccionDestino = nuevaDireccionDestino;
 			MunicipioDestino = nuevoMunicipioDestino;
@@ -131,7 +132,8 @@ namespace GoXelaDelivery
 
 		public Repartidor(string nuevoNombreCompleto, int nuevoNumeroTelefono, int nuevoNumeroLicencia, TipoLicencia nuevoTipoLicencia, EstadoRepartidor nuevoEstadoDisponibilidad, int nuevaCantidadEntregas, double nuevaCalificacionTotal, double nuevaCalificacionPromedio) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
 		{
-			NumeroLicencia = nuevoNumeroLicencia;
+            Prefijo = "REP";
+            NumeroLicencia = nuevoNumeroLicencia;
 			TipoLicencia = nuevoTipoLicencia;
 			EstadoDisponibilidad = nuevoEstadoDisponibilidad;
 			CantidadEntregasRealizadas = nuevaCantidadEntregas;

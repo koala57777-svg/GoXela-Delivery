@@ -11,7 +11,7 @@ namespace GoXelaDelivery
     {
 		private string codigoUnico;
 
-		private string prefijo;
+		private string prefijo = "PAQ";
 
 		private TipoPaquete tipoPaquete;
 
@@ -164,8 +164,8 @@ namespace GoXelaDelivery
 	{
 		public Documento(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
 		{
-
-		}
+            Prefijo = "DPQ";
+        }
 
         protected override void CalcularCostoTipo()
         {
@@ -177,7 +177,7 @@ namespace GoXelaDelivery
 	{
         public PaqueteEstandar(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
         {
-
+            Prefijo = "EPQ";
         }
 
         protected override void CalcularCostoTipo()
@@ -190,7 +190,7 @@ namespace GoXelaDelivery
     {
         public PaqueteFragil(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
         {
-
+            Prefijo = "FPQ";
         }
 
         protected override void CalcularCostoTipo()
@@ -203,7 +203,7 @@ namespace GoXelaDelivery
 	{
         public ProductoRefrigerado(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
         {
-
+            Prefijo = "RPQ";
         }
 
         protected override void CalcularCostoTipo()

@@ -11,7 +11,7 @@ namespace GoXelaDelivery
     {
 		private string codigoUnico;
 
-		private string prefijo;
+		private string prefijo = "ENT";
 
 		private Paquete paqueteEntrega;
 
@@ -84,6 +84,13 @@ namespace GoXelaDelivery
             Console.WriteLine();
             Console.WriteLine("Total de la Entrega (Pueden aplicar Recargos y Descuentos): Q" + Total);
 		}
+
+		protected void IngresarIncidente(Incidente incidente)
+		{
+			string nuevoCodigo = GoXelaDelivery.CodigoUnico.GenerarCodigoUnico(incidente.Prefijo);
+            incidente.CodigoUnico = nuevoCodigo;
+            listaIncidentes.Add(incidente);
+        }
 
         public double Total
         {

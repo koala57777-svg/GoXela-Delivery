@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace GoXelaDelivery
 {
-    internal class CodigoUnico
+    public static class CodigoUnico
     {
         
-        private HashSet<string> baseDeCodigosUnicos = new HashSet<string>();
+        private static HashSet<string> baseDeCodigosUnicos = new HashSet<string>();
 
         
-        private Dictionary<string, int> ultimosNumeros = new Dictionary<string, int>();
+        private static Dictionary<string, int> ultimosNumeros = new Dictionary<string, int>();
 
         
         private static readonly object bloqueo = new object();
 
-        public string GenerarCodigoUnico(string prefijo)
+        public static string GenerarCodigoUnico(string prefijo)
         {
             lock (bloqueo)
             {
@@ -42,7 +42,7 @@ namespace GoXelaDelivery
             }
         }
 
-        private bool ExisteEnBaseDeDatos(string codigo)
+        private static bool ExisteEnBaseDeDatos(string codigo)
         {
             return baseDeCodigosUnicos.Contains(codigo);
         }

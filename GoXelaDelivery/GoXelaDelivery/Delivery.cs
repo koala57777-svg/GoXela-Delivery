@@ -46,6 +46,8 @@ namespace GoXelaDelivery
         {
             if (cliente != null)
             {
+                string codigoUnico = CodigoUnico.GenerarCodigoUnico(cliente.Prefijo);
+                cliente.CodigoUnico = codigoUnico;
                 listaClientes.Add(cliente);
             }
         }
@@ -54,6 +56,8 @@ namespace GoXelaDelivery
         {
             if (repartidor != null)
             {
+                string codigoUnico = CodigoUnico.GenerarCodigoUnico(repartidor.Prefijo);
+                repartidor.CodigoUnico = codigoUnico;
                 listaRepartidores.Add(repartidor);
             }
         }
@@ -62,6 +66,8 @@ namespace GoXelaDelivery
         {
             if (vehiculo != null)
             {
+                string codigoUnico = CodigoUnico.GenerarCodigoUnico(vehiculo.Prefijo);
+                vehiculo.CodigoUnico = codigoUnico;
                 if (vehiculo.TipoVehiculo == TipoVehiculo.Motocicleta)
                 {
                     listasVehiculos[0].Add(vehiculo);
@@ -81,6 +87,8 @@ namespace GoXelaDelivery
         {
             if (paquete != null)
             {
+                string codigoUnico = CodigoUnico.GenerarCodigoUnico(paquete.Prefijo);
+                paquete.CodigoUnico = codigoUnico;
                 if (paquete.TipoPaquete == TipoPaquete.Documento)
                 {
                     listasPaquetes[0].Add(paquete);
@@ -104,6 +112,8 @@ namespace GoXelaDelivery
         {
             if (entrega != null)
             {
+                string codigoUnico = CodigoUnico.GenerarCodigoUnico(entrega.Prefijo);
+                entrega.CodigoUnico = codigoUnico;
                 listaEntregas.Add(entrega);
             }
         }

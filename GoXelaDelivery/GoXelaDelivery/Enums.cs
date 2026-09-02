@@ -103,16 +103,6 @@ namespace GoXelaDelivery
             Resuelta
         }
 
-        public enum Municipio
-        {
-            Quetzaltenango = 1,
-
-            [Description("Salcajá")]
-            Salcaja,
-            Almolonga,
-            Cantel,
-            Olintepeque
-        }
 
         public enum EstadoPaquete
         {
@@ -133,6 +123,16 @@ namespace GoXelaDelivery
             ProductoRefrigerado
 
         }
+    }
+    public enum Municipio
+    {
+        Quetzaltenango = 1,
+
+        [Description("Salcajá")]
+        Salcaja,
+        Almolonga,
+        Cantel,
+        Olintepeque
     }
 
 }

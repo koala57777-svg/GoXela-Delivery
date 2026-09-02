@@ -12,7 +12,7 @@ namespace GoXelaDelivery
     {
         private string codigoUnico;
 
-        private string prefijo;
+        private string prefijo = "VEH";
 
         private string placa;
 
@@ -156,7 +156,7 @@ namespace GoXelaDelivery
     {
         public Bicicleta(string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
         {
-
+            Prefijo = "BIC";
         }
 
         protected override void CalcularCostoOperativo()
@@ -169,7 +169,7 @@ namespace GoXelaDelivery
     {
         public Motocicleta(string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
         {
-
+            Prefijo = "MOT";
         }
 
         protected override void CalcularCostoOperativo()
@@ -182,7 +182,7 @@ namespace GoXelaDelivery
     {
         public Carro(string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
         {
-
+            Prefijo = "CAR";
         }
 
         protected override void CalcularCostoOperativo()

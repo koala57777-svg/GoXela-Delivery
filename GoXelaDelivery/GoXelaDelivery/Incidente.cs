@@ -11,7 +11,7 @@ namespace GoXelaDelivery
     {
 		private string codigoUnico;
 
-		private string prefijo;
+		private string prefijo = "INC";
 
 		private TipoIncidencia tipoIncidente;
 
