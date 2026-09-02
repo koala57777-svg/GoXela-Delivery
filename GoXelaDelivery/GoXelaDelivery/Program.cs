@@ -10,9 +10,9 @@ namespace GoXelaDelivery
     {
         static void Main(string[] args)
         {
-            Cliente cliente = new Cliente("hola", 23, "d", "di", Enums.Municipio.Olintepeque, 3);
-            AyudanteConsola.ValidarDireccion(cliente);
-            Console.WriteLine($"{cliente.MunicipioDestino}\n\n{cliente.DireccionDestino}");
+            //Cliente cliente = new Cliente("hola", 23, "d", "di", Enums.Municipio.Olintepeque, 3);
+            Console.WriteLine(AyudanteConsola.ValidarAlfanumerico("Ingrese su placa", 10));
+            //Console.WriteLine($"{cliente.MunicipioDestino}\n\n{cliente.DireccionDestino}");
             Console.ReadKey();
         }
     }

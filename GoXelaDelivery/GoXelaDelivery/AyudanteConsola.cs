@@ -23,147 +23,224 @@ namespace GoXelaDelivery
 
         internal static string ValidarTexto(string mensajeSolicitudDeDatos, int limiteCaracteres)
         {
+            bool textoConfirmado = false;
+            string textoFinal = string.Empty;
             int anchoConsola = Console.WindowWidth;
             int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
             if (espacios < 0) espacios = 0;
-            Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
-            Console.Write("Presione Enter para enviar\n\n Ingresar: ");
-            StringBuilder sb = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
-            do
+            while (!textoConfirmado)
             {
-                ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
-                if (teclaInfo.Key == ConsoleKey.Enter && sb.Length > 0 && sb.Length <= limiteCaracteres)
+                Console.Clear();
+                Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.Write("Presione Enter para enviar\n\n Ingresar: ");
+                StringBuilder sb = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
+                do
                 {
-                    break;
-                }
-                if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
-                {
-                    sb.Remove(sb.Length - 1, 1);
-                    Console.Write("\b \b");
-                }
-                if (sb.Length < limiteCaracteres)
-                {
-                    if (char.IsLetter(teclaInfo.KeyChar))
+                    ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+                    if (teclaInfo.Key == ConsoleKey.Enter && sb.Length > 0 && sb.Length <= limiteCaracteres)
                     {
-                        sb.Append(teclaInfo.KeyChar);
-                        Console.Write(teclaInfo.KeyChar);
-                    }
-                    if (teclaInfo.Key == ConsoleKey.Spacebar && sb.Length > 0 && sb.Length + 1 != limiteCaracteres)
-                    {
-                        if (sb[sb.Length - 1] != ' ')
+                        Console.Write($"\n\nConfirmar el texto {sb.ToString()} (Yes/No): ");
+                        string respuesta = Console.ReadLine().ToLower().Trim();
+
+                        if (respuesta == "yes")
                         {
-                            sb.Append(' ');
-                            Console.Write(' ');
+                            textoFinal = sb.ToString();
+                            textoConfirmado = true;
+                            Console.Clear();
+                            break;
                         }
-                    }
-
-                }
-            } while (true);
-            return sb.ToString();
-        }
-
-        internal static int ValidarNumerico(string mensajeSolicitudDeDatos, int tamanoRequerido)
-        {
-            int anchoConsola = Console.WindowWidth;
-            int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
-            if (espacios < 0) espacios = 0;
-            Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
-            Console.Write($"Presione Enter para enviar. \nEl número debe ser de {tamanoRequerido} dígitos.\n\n Ingresar: ");
-            StringBuilder sb = new StringBuilder(tamanoRequerido, tamanoRequerido);
-            int numeroConvertido;
-            do
-            {
-                ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
-                if (teclaInfo.Key == ConsoleKey.Enter && sb.Length == tamanoRequerido)
-                {
-                    if (int.TryParse(sb.ToString(), out numeroConvertido))
-                    {
-                        break;
-                    }
-                }
-                if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
-                {
-                    sb.Remove(sb.Length - 1, 1);
-                    Console.Write("\b \b");
-                }
-                if (sb.Length < tamanoRequerido)
-                {
-                    if (char.IsDigit(teclaInfo.KeyChar))
-                    {
-                        if (teclaInfo.KeyChar == '0')
+                        else if (respuesta == "no")
                         {
-                            if (sb.Length > 0)
-                            {
-                                sb.Append('0');
-                                Console.Write('0');
-                            }
+                            Mostrar("Reiniciando texto", 1);
+                            break;
                         }
                         else
+                        {
+                            Console.WriteLine("\nElección inválida");
+                            Mostrar("Reiniciando texto", 1);
+                            break;
+                        }
+                    }
+                    if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
+                    {
+                        sb.Remove(sb.Length - 1, 1);
+                        Console.Write("\b \b");
+                    }
+                    if (sb.Length < limiteCaracteres)
+                    {
+                        if (char.IsLetter(teclaInfo.KeyChar))
                         {
                             sb.Append(teclaInfo.KeyChar);
                             Console.Write(teclaInfo.KeyChar);
                         }
+                        if (teclaInfo.Key == ConsoleKey.Spacebar && sb.Length > 0 && sb.Length + 1 != limiteCaracteres)
+                        {
+                            if (sb[sb.Length - 1] != ' ')
+                            {
+                                sb.Append(' ');
+                                Console.Write(' ');
+                            }
+                        }
+
                     }
-                }
-            } while (true);
-            return numeroConvertido;
+                } while (true);
+            }
+            return textoFinal;
+        }
+
+        internal static int ValidarNumerico(string mensajeSolicitudDeDatos, int tamanoRequerido)
+        {
+            bool numeroConfirmado = false;
+            int numeroFinal = 0;
+            int anchoConsola = Console.WindowWidth;
+            int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
+            if (espacios < 0) espacios = 0;
+            while (!numeroConfirmado)
+            {
+                Console.Clear();
+                Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.Write($"Presione Enter para enviar. \nEl número debe ser de {tamanoRequerido} dígitos.\n\n Ingresar: ");
+                StringBuilder sb = new StringBuilder(tamanoRequerido, tamanoRequerido);
+                do
+                {
+                    ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+                    if (teclaInfo.Key == ConsoleKey.Enter && sb.Length == tamanoRequerido)
+                    {
+                        if (int.TryParse(sb.ToString(), out int numeroConvertido))
+                        {
+                            Console.Write($"\n\nConfirmar el número {numeroConvertido} (Yes/No): ");
+                            string respuesta = Console.ReadLine().ToLower().Trim();
+
+                            if (respuesta == "yes")
+                            {
+                                numeroFinal = numeroConvertido;
+                                numeroConfirmado = true;
+                                Console.Clear();
+                                break;
+                            }
+                            else if (respuesta == "no")
+                            {
+                                Mostrar("Reiniciando número", 1);
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nElección inválida");
+                                Mostrar("Reiniciando número", 1);
+                                break;
+                            }
+                        }
+                    }
+                    if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
+                    {
+                        sb.Remove(sb.Length - 1, 1);
+                        Console.Write("\b \b");
+                    }
+                    if (sb.Length < tamanoRequerido)
+                    {
+                        if (char.IsDigit(teclaInfo.KeyChar))
+                        {
+                            if (teclaInfo.KeyChar == '0')
+                            {
+                                if (sb.Length > 0)
+                                {
+                                    sb.Append('0');
+                                    Console.Write('0');
+                                }
+                            }
+                            else
+                            {
+                                sb.Append(teclaInfo.KeyChar);
+                                Console.Write(teclaInfo.KeyChar);
+                            }
+                        }
+                    }
+                } while (true);
+            }
+            return numeroFinal;
         }
 
         internal static int ValidarTelefono()
         {
+            bool telefonoConfirmado = false;
+            int telefonoFinal = 0;
             string mensajeSolicitudDeDatos = "Ingrese su número de teléfono";
             int tamanoRequerido = 8;
             int anchoConsola = Console.WindowWidth;
             int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
             if (espacios < 0) espacios = 0;
-            Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
-            Console.Write($"Presione Enter para enviar. \nEl número debe ser de 8 dígitos.\n\n Ingresar: ");
-            StringBuilder sb = new StringBuilder(tamanoRequerido, tamanoRequerido);
-            int numeroConvertido;
-            do
-            {
-                ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
-                if (teclaInfo.Key == ConsoleKey.Enter && sb.Length == tamanoRequerido)
+            while (!telefonoConfirmado)
+            { 
+                Console.Clear();
+                Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.Write($"Presione Enter para enviar. \nEl número debe ser de 8 dígitos.\n\n Ingresar: ");
+                StringBuilder sb = new StringBuilder(tamanoRequerido, tamanoRequerido);
+
+                do
                 {
-                    if (int.TryParse(sb.ToString(), out numeroConvertido))
+                    ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+                    if (teclaInfo.Key == ConsoleKey.Enter && sb.Length == tamanoRequerido)
                     {
-                        break;
-                    }
-                }
-                if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
-                {
-                    if (sb.Length == 5)
-                    {
-                        Console.Write("\b \b");
-                    }
-                    sb.Remove(sb.Length - 1, 1);
-                    Console.Write("\b \b");
-                }
-                if (sb.Length < tamanoRequerido)
-                {
-                    if (char.IsDigit(teclaInfo.KeyChar))
-                    {
-                        if (teclaInfo.KeyChar == '0')
+                        if (int.TryParse(sb.ToString(), out int numeroConvertido))
                         {
-                            if (sb.Length > 0)
+                            Console.Write($"\n\nConfirmar el número de teléfono {numeroConvertido} (Yes/No): ");
+                            string respuesta = Console.ReadLine().ToLower().Trim();
+
+                            if (respuesta == "yes")
                             {
-                                sb.Append('0');
-                                Console.Write('0');
+                                telefonoFinal = numeroConvertido;
+                                telefonoConfirmado = true;
+                                Console.Clear();
+                                break;
+                            }
+                            else if (respuesta == "no")
+                            {
+                                Mostrar("Reiniciando teléfono", 1);
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nElección inválida");
+                                Mostrar("Reiniciando teléfono", 1);
+                                break;
                             }
                         }
-                        else
+                    }
+                    if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
+                    {
+                        if (sb.Length == 5)
                         {
-                            sb.Append(teclaInfo.KeyChar);
-                            Console.Write(teclaInfo.KeyChar);
+                            Console.Write("\b \b");
                         }
-                        if (sb.Length == 4)
+                        sb.Remove(sb.Length - 1, 1);
+                        Console.Write("\b \b");
+                    }
+                    if (sb.Length < tamanoRequerido)
+                    {
+                        if (char.IsDigit(teclaInfo.KeyChar))
                         {
-                            Console.Write("-");
+                            if (teclaInfo.KeyChar == '0')
+                            {
+                                if (sb.Length > 0)
+                                {
+                                    sb.Append('0');
+                                    Console.Write('0');
+                                }
+                            }
+                            else
+                            {
+                                sb.Append(teclaInfo.KeyChar);
+                                Console.Write(teclaInfo.KeyChar);
+                            }
+                            if (sb.Length == 4)
+                            {
+                                Console.Write("-");
+                            }
                         }
                     }
-                }
-            } while (true);
-            return numeroConvertido;
+                } while (true);
+            }
+            return telefonoFinal;
         }
 
         internal static string ValidarCorreo()
@@ -177,6 +254,7 @@ namespace GoXelaDelivery
             string correoFinal = string.Empty;
             while (!correoConfirmado)
             {
+                Console.Clear();
                 Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
                 Console.Write("Presione Enter para enviar\n\n Ingresar: ");
                 StringBuilder sb = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
@@ -192,17 +270,18 @@ namespace GoXelaDelivery
                         {
                             correoFinal = sb.ToString();
                             correoConfirmado = true;
+                            Console.Clear();
                             break;
                         }
                         else if (respuesta == "no")
                         {
-                            Mostrar("Reiniciando dirección", 1);
+                            Mostrar("Reiniciando correo", 1);
                             break;
                         }
                         else
                         {
                             Console.WriteLine("\nElección inválida");
-                            Mostrar("Reiniciando dirección", 1);
+                            Mostrar("Reiniciando correo", 1);
                             break;
                         }
                     }
@@ -300,18 +379,19 @@ namespace GoXelaDelivery
 
                     if (respuesta == "no")
                     {
-                        Mostrar("Reiniciando", 1);
+                        Mostrar("Reiniciando municipio", 1);
                         Console.Clear();
                         return MenuMunicipios();
                     }
                     else if (respuesta == "yes")
                     {
+                        Console.Clear();
                         break;
                     }
                     else
                     {
                         Console.WriteLine("\nElección inválida");
-                        Mostrar("Reiniciando", 1);
+                        Mostrar("Reiniciando municipio", 1);
                         Console.Clear();
                         return MenuMunicipios();
                     }
@@ -342,10 +422,10 @@ namespace GoXelaDelivery
             string municipioElegido = ((Municipio)numeroMunicipioElegido).ObtenerDescripcion();
             cliente.MunicipioDestino = (Municipio)numeroMunicipioElegido;
 
-            int limiteCaracteres = 50;
+            int limiteCaracteres = 80;
             string mensajeSolicitudDeDatos = "Ingrese su dirección completa";
             int anchoConsola = Console.WindowWidth;
-            int espacios = Math.Max(0, (anchoConsola - mensajeSolicitudDeDatos.Length) / 2);
+            int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
 
             bool direccionConfirmada = false;
             string direccionFinal = string.Empty;
@@ -375,18 +455,18 @@ namespace GoXelaDelivery
                         {
                             direccionFinal = sbDireccionCompleta.ToString();
                             direccionConfirmada = true;
-                            break; 
+                            break;
                         }
                         else if (respuesta == "no")
                         {
                             Mostrar("Reiniciando dirección", 1);
-                            break; 
+                            break;
                         }
                         else
                         {
                             Console.WriteLine("\nElección inválida");
                             Mostrar("Reiniciando dirección", 1);
-                            break; 
+                            break;
                         }
                     }
 
@@ -440,7 +520,7 @@ namespace GoXelaDelivery
             string municipioElegido = ((Municipio)numeroMunicipioElegido).ObtenerDescripcion();
             paquete.MunicipioOrigen = (Municipio)numeroMunicipioElegido;
 
-            int limiteCaracteres = 50;
+            int limiteCaracteres = 80;
             string mensajeSolicitudDeDatos = "Ingrese su dirección completa";
             int anchoConsola = Console.WindowWidth;
             int espacios = Math.Max(0, (anchoConsola - mensajeSolicitudDeDatos.Length) / 2);
@@ -484,7 +564,7 @@ namespace GoXelaDelivery
                         {
                             Console.WriteLine("\nElección inválida");
                             Mostrar("Reiniciando dirección", 1);
-                            break; 
+                            break;
                         }
                     }
 
@@ -530,6 +610,63 @@ namespace GoXelaDelivery
             }
 
             paquete.DireccionOrigen = direccionOrigen;
+        }
+
+        internal static string ValidarAlfanumerico(string mensajePedirDatos, int limiteCaracteres)
+        {
+            bool alfanumericoConfirmado = false;
+            string alfanumericoFinal = string.Empty;
+            int anchoConsola = Console.WindowWidth;
+            int espacios = (anchoConsola - mensajePedirDatos.Length) / 2;
+            if (espacios < 0) espacios = 0;
+            while (!alfanumericoConfirmado)
+            {
+                Console.Clear();
+                Console.WriteLine(new string(' ', espacios) + mensajePedirDatos.ToUpper());
+                Console.Write($"\n\n Ingresar: ");
+                StringBuilder sb = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
+                do
+                {
+                    ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+                    if (teclaInfo.Key == ConsoleKey.Enter && sb.Length > 0 && sb.Length <= limiteCaracteres)
+                    {
+
+                        Console.Write($"\n\nConfirmar el texto {sb.ToString()} (Yes/No): ");
+                        string respuesta = Console.ReadLine().ToLower().Trim();
+
+                        if (respuesta == "yes")
+                        {
+                            alfanumericoFinal = sb.ToString();
+                            alfanumericoConfirmado = true;
+                            Console.Clear();
+                            break;
+                        }
+                        else if (respuesta == "no")
+                        {
+                            Mostrar("Reiniciando texto", 1);
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nElección inválida");
+                            Mostrar("Reiniciando texto", 1);
+                            break;
+                        }
+
+                    }
+                    if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
+                    {
+                        sb.Remove(sb.Length - 1, 1);
+                        Console.Write("\b \b");
+                    }
+                    if (sb.Length < limiteCaracteres && teclaInfo.Key != ConsoleKey.Spacebar && teclaInfo.Key != ConsoleKey.Backspace)
+                    {
+                        sb.Append(teclaInfo.KeyChar);
+                        Console.Write(teclaInfo.KeyChar);
+                    }
+                } while (true);
+            }
+            return alfanumericoFinal;
         }
     }
 
