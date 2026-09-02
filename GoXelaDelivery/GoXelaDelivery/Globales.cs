@@ -6,7 +6,114 @@ using System.Threading.Tasks;
 
 namespace GoXelaDelivery
 {
-    internal class Globales
+    internal static class Globales
     {
+		private static int contadorEntregasActivas;
+
+		private static int contadorEntregasFinalizadas;
+
+		private static int contadorEntregasCanceladas;
+
+		private static int contadorEntregasConIncidentes;
+
+		private static int contadorRepartidoresDisponibles;
+
+		private static List<Repartidor> repartidorConMasEntregas;
+
+		private static int entregasMaximas;
+
+		private static Repartidor elRepatidor;
+
+		private static int cantidadMaximaUsosVehiculo;
+
+		private static List<Vehiculo> vehiculoMasUsado;
+
+		private static Vehiculo elVehiculo;
+
+		private static List<List<Vehiculo>> tiposDeVehiculosNoVacios;
+
+		public static List<List<Vehiculo>> TiposDeVehiculosNoVacios
+        {
+			get { return tiposDeVehiculosNoVacios; }
+			set { tiposDeVehiculosNoVacios = value; }
+		}
+
+		public static Vehiculo ElVehiculo
+		{
+			get { return elVehiculo; }
+			set { elVehiculo = value; }
+		}
+
+		public static List<Vehiculo> VehiculoMasUsado 
+		{
+			get { return vehiculoMasUsado; }
+			set { vehiculoMasUsado = value; }
+		}
+
+		public static int CantidadMaximaUsosVehiculo
+		{
+			get { return cantidadMaximaUsosVehiculo; }
+			set { cantidadMaximaUsosVehiculo = value; }
+		}
+
+		public static Repartidor ElRepartidor
+		{
+			get { return elRepatidor; }
+			set { elRepatidor = value; }
+		}
+
+		public static int EntregasMaximas
+		{
+			get { return entregasMaximas; }
+			set { entregasMaximas = value; }
+		}
+
+		public static List<Repartidor> RepartidorConMasEntregas
+		{
+			get { return repartidorConMasEntregas; }
+			set { repartidorConMasEntregas = value; }
+		}
+
+		public static int ContadorRepartidoresDisponibles
+		{
+			get { return contadorRepartidoresDisponibles; }
+			set { contadorRepartidoresDisponibles = value; }
+		}
+
+		public static int ContadorEntregasConIncidentes
+		{
+			get { return contadorEntregasConIncidentes; }
+			set { contadorEntregasConIncidentes = value; }
+		}
+
+		public static int ContadorEntregasCanceladas
+		{
+			get { return contadorEntregasCanceladas; }
+			set { contadorEntregasCanceladas = value; }
+		}
+
+		public static int ContadorEntregasFinalizadas
+		{
+			get { return contadorEntregasFinalizadas; }
+			set { contadorEntregasFinalizadas = value; }
+		}
+
+		public static int ContadorEntregasActivas
+		{
+			get { return contadorEntregasActivas; }
+			set { contadorEntregasActivas = value; }
+		}
+
+        public static void LimpiarConsola()
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Presione CUALQUIER tecla para continuar");
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.ReadKey();
+            Console.Clear();
+        }
     }
 }

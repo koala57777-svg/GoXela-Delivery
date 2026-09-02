@@ -23,7 +23,7 @@ namespace GoXelaDelivery
 			NumeroTelefono = nuevoNumeroTelefono;
 		}
 
-		protected virtual void MostrarInformacion()
+		internal virtual void MostrarInformacion()
 		{
             Console.WriteLine("ID: " + CodigoUnico);
             Console.WriteLine();
@@ -77,7 +77,7 @@ namespace GoXelaDelivery
 			SolicitudesRealizadas = nuevasSolicitudesRealizadas;
 		}
 
-		protected override void MostrarInformacion()
+		internal override void MostrarInformacion()
 		{
 			base.MostrarInformacion();
 			Console.WriteLine();
@@ -139,7 +139,7 @@ namespace GoXelaDelivery
 			CalificacionPromedio = nuevaCalificacionPromedio;
 		}
 
-        protected override void MostrarInformacion()
+        internal override void MostrarInformacion()
         {
             base.MostrarInformacion();
             Console.WriteLine();

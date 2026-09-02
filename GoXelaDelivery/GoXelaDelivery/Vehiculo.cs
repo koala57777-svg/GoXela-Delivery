@@ -45,7 +45,7 @@ namespace GoXelaDelivery
             Especializacion = nuevoTipoEspecializacion;
         }
 
-        protected void MostarInformacion()
+        internal void MostarInformacion()
         {
             Console.WriteLine("ID: " + CodigoUnico);
             Console.WriteLine();
