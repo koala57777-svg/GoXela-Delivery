@@ -668,6 +668,103 @@ namespace GoXelaDelivery
             }
             return alfanumericoFinal;
         }
+
+        internal static double ValidarCalificacion()
+        {
+            string mensajeSolicitudDeDatos = "Ingrese su calificación";
+            int tamanoRequerido = 2;
+            bool calificacionConfirmada = false;
+            double calificacionFinal = 0;
+
+            int anchoConsola = Console.WindowWidth;
+            int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
+            if (espacios < 0) espacios = 0;
+
+            while (!calificacionConfirmada)
+            {
+                Console.Clear();
+                Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.Write($"\nCalificación de 1.0 a 5.0 \n\n Ingresar: ");
+
+                
+                StringBuilder sb = new StringBuilder(tamanoRequerido, tamanoRequerido);
+
+                do
+                {
+                    ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+
+                    
+                    if (teclaInfo.Key == ConsoleKey.Enter && sb.Length == tamanoRequerido)
+                    {
+                        if (double.TryParse(sb.ToString(), out double numeroConvertido))
+                        {
+                            double numeroDividido = numeroConvertido / 10.0;
+
+                            if (numeroDividido >= 1.0 && numeroDividido <= 5.0 && numeroConvertido % 5 == 0)
+                            {
+                                Console.Write($"\n\nConfirmar la calificación de {numeroDividido:F1} (Yes/No): ");
+                                string respuesta = Console.ReadLine().ToLower().Trim();
+
+                                if (respuesta == "yes")
+                                {
+                                    calificacionFinal = numeroDividido;
+                                    calificacionConfirmada = true;
+                                    Console.Clear();
+                                    break;
+                                }
+                                else if (respuesta == "no")
+                                {
+                                    Mostrar("Reiniciando calificación", 1);
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\n Calificación inválida. Ingrese una calificación válida (ej. 2.5, 4.0)");
+                                    Mostrar("Reiniciando número", 1);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
+                    {
+                        if (sb.Length == 2)
+                        { 
+                            sb.Remove(sb.Length - 1, 1);
+                            Console.Write("\b \b");
+                        }
+                        else if (sb.Length == 1)
+                        {
+                            sb.Remove(sb.Length - 1, 1);
+                            Console.Write("\b \b\b \b");
+                        }
+                    }
+                    else if (sb.Length < tamanoRequerido)
+                    {
+                        if (char.IsDigit(teclaInfo.KeyChar))
+                        {
+                            if (teclaInfo.KeyChar == '0' && sb.Length == 0)
+                            {
+                                continue;
+                            }
+
+                            sb.Append(teclaInfo.KeyChar);
+
+                            if (sb.Length == 1)
+                            {
+                                Console.Write(teclaInfo.KeyChar + ".");
+                            }
+                            else if (sb.Length == 2)
+                            {
+                                Console.Write(teclaInfo.KeyChar);
+                            }
+                        }
+                    }
+                } while (true);
+            }
+            return calificacionFinal;
+        }
     }
 
 }
