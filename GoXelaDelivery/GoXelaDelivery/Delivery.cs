@@ -448,17 +448,167 @@ namespace GoXelaDelivery
 
         protected void CantidadPaquetesPorTipo()
         {
-            Console.WriteLine("Se muestra la cantidad de Paquetes por Tipos...");
+            Console.WriteLine();
+            if (listasPaquetes[0] == null || listasPaquetes[0].Count == 0)
+            {
+                Console.Write("Hay ");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("0 ");
+                Console.ResetColor();
+                Console.Write("Paquetes de tipo Documento");
+            }
+            else if (listasPaquetes[0].Count == 1)
+            {
+                Console.Write("Hay ");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write($"{listasPaquetes[0].Count} ");
+                Console.ResetColor();
+                Console.Write("Paquete de tipo Documento");
+            }
+            else
+            {
+                Console.Write("Hay ");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write($"{listasPaquetes[0].Count} ");
+                Console.ResetColor();
+                Console.Write("Paquetes de tipo Documento");
+            }
+            if (listasPaquetes[1] == null || listasPaquetes[1].Count == 0)
+            {
+                Console.Write("Hay ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write("0 ");
+                Console.ResetColor();
+                Console.Write("Paquetes de tipo Documento");
+            }
+            else if (listasPaquetes[1].Count == 1)
+            {
+                Console.Write("Hay ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"{listasPaquetes[1].Count} ");
+                Console.ResetColor();
+                Console.Write("Paquete de tipo Estándar");
+            }
+            else
+            {
+                Console.Write("Hay ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"{listasPaquetes[1].Count} ");
+                Console.ResetColor();
+                Console.Write("Paquetes de tipo Estándar");
+            }
+            if (listasPaquetes[2] == null || listasPaquetes[2].Count == 0)
+            {
+                Console.Write("Hay ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("0 ");
+                Console.ResetColor();
+                Console.Write("Paquetes de tipo Frágil");
+            }
+            else if (listasPaquetes[2].Count == 1)
+            {
+                Console.Write("Hay ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"{listasPaquetes[2].Count} ");
+                Console.ResetColor();
+                Console.Write("Paquete de tipo Frágil");
+            }
+            else
+            {
+                Console.Write("Hay ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"{listasPaquetes[2].Count} ");
+                Console.ResetColor();
+                Console.Write("Paquetes de tipo Frágil");
+            }
+            if (listasPaquetes[3] == null || listasPaquetes[3].Count == 0)
+            {
+                Console.Write("Hay ");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write("0 ");
+                Console.ResetColor();
+                Console.Write("Paquetes de tipo Producto Refrigerado");
+            }
+            else if (listasPaquetes[3].Count == 1)
+            {
+                Console.Write("Hay ");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write($"{listasPaquetes[3].Count} ");
+                Console.ResetColor();
+                Console.Write("Paquete de tipo Producto Refrigerado");
+            }
+            else
+            {
+                Console.Write("Hay ");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write($"{listasPaquetes[3].Count} ");
+                Console.ResetColor();
+                Console.Write("Paquetes de tipo Producto Refrigerado");
+            }
+            LimpiarConsola();
         }
 
         protected void MostrarTotalIngresos()
         {
-            Console.WriteLine("Se muestra el Total de Ingresos Generados...");
+            Console.WriteLine();
+            Console.ForegroundColor= ConsoleColor.Green;
+            Console.WriteLine("Total de Ingresos Generado: Q" + TotalIngresos);
+            Console.ResetColor();
+            LimpiarConsola();
         }
 
         protected void MostrarEntregaConMayorCosto()
         {
-            Console.WriteLine("Se muestra la Entrega con Mayor Costo...");
+            if (listaEntregas.Count == 0 || listaEntregas == null)
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("No hay ninguna Entrega Registrada");
+                Console.ResetColor();
+            }
+            else
+            {
+                EntregasFinalizadas = listaEntregas.Where(entrega => entrega.EstadoEntrega == EstadoEntrega.Entregada).ToList();
+                MayorCostoDeEntrega = EntregasFinalizadas.Max(entrega => entrega.Total);
+                EntregaConMayorCosto = EntregasFinalizadas.Where(entrega => entrega.Total == MayorCostoDeEntrega).ToList();
+                if (MayorCostoDeEntrega == 0 || EntregasFinalizadas.Count == 0 || EntregasFinalizadas == null)
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("No hay ninguna Entrega con el Mayor Costo");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    if (EntregasFinalizadas.Count == 1)
+                    {
+                        LaEntrega = EntregasFinalizadas.First();
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("La Entrega con Mayor Costo es: ");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        LaEntrega.MostrarInformacion();
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("(Empate) Las Entregas con Mayor Costo son: ");
+                        Console.ResetColor();
+                        foreach (Entrega entrega in EntregasFinalizadas)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            entrega.MostrarInformacion();
+                            Console.ResetColor();
+                            Console.WriteLine();
+                        }
+                    }
+                }
+            }
+            LimpiarConsola();
         }
 
         public double TotalIngresos

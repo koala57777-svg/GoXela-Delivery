@@ -32,6 +32,38 @@ namespace GoXelaDelivery
 
 		private static List<List<Vehiculo>> tiposDeVehiculosNoVacios;
 
+		private static List<Entrega> entregasFinalizadas;
+
+		private static double mayorCostoDeEntrega;
+
+		private static List<Entrega> entregaConMayorCosto;
+
+		private static Entrega laEntrega;
+
+		public static Entrega LaEntrega
+		{
+			get { return laEntrega; }
+			set { laEntrega = value; }
+		}
+
+		public static List<Entrega> EntregaConMayorCosto
+		{
+			get { return entregaConMayorCosto; }
+			set { entregaConMayorCosto = value; }
+		}
+
+		public static double MayorCostoDeEntrega
+		{
+			get { return mayorCostoDeEntrega; }
+			set { mayorCostoDeEntrega = value; }
+		}
+
+		public static List<Entrega> EntregasFinalizadas
+		{
+			get { return entregasFinalizadas; }
+			set { entregasFinalizadas = value; }
+		}
+
 		public static List<List<Vehiculo>> TiposDeVehiculosNoVacios
         {
 			get { return tiposDeVehiculosNoVacios; }

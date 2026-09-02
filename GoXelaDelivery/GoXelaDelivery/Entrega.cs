@@ -62,7 +62,7 @@ namespace GoXelaDelivery
 			Total = nuevoTotal;
 		}
 
-		protected void MostrarInformacion()
+		internal void MostrarInformacion()
 		{
             Console.WriteLine("ID: " + CodigoUnico);
             Console.WriteLine();
