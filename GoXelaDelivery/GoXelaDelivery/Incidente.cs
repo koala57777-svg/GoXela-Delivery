@@ -25,11 +25,11 @@ namespace GoXelaDelivery
 
 		private DateTime fechaIncidente;
 
-		public Incidente(TipoIncidencia nuevoTipoIncidente, string nuevaDescripcion, EstadoIncidencia nuevoEstadoIncidencia, Entrega nuevaEntregaRelacionada)
+		public Incidente(TipoIncidencia nuevoTipoIncidente, string nuevaDescripcion, Entrega nuevaEntregaRelacionada)
 		{
 			TipoIncidente = nuevoTipoIncidente;
             Descripcion = nuevaDescripcion;
-			EstadoIncidente = nuevoEstadoIncidencia;
+			EstadoIncidente = EstadoIncidencia.SinResolver;
 			EntregaRelacionada = nuevaEntregaRelacionada;
 		}
 

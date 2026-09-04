@@ -45,7 +45,7 @@ namespace GoXelaDelivery
                     {
                         Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("No hay ningún Repartidor que pueda llevar el Paquete");
+                        Console.WriteLine("No hay ningún Repartidor Registrado");
                         Console.ResetColor();
                         LimpiarConsola();
                         return;

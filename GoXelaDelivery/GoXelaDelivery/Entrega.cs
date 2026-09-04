@@ -60,6 +60,26 @@ namespace GoXelaDelivery
 			listaIncidentes = new List<Incidente>();
 		}
 
+		internal void AgregarIncidenteAEntrega(Entrega entregaAAgregarIncidente, Incidente incidenteAAgregar)
+		{
+            if (incidenteAAgregar != null)
+            {
+                string codigoUnico = GoXelaDelivery.CodigoUnico.GenerarCodigoUnico(incidenteAAgregar.Prefijo);
+                incidenteAAgregar.CodigoUnico = codigoUnico;
+                entregaAAgregarIncidente.ListaIncidentes.Add(incidenteAAgregar);
+            }
+        }
+
+		internal void CambiarEstadoIncidente(Incidente incidenteACambiarEstado)
+		{
+			incidenteACambiarEstado.EstadoIncidente = EstadoIncidencia.Resuelta;
+		}
+
+		internal void CambiarAccionTomadaIncidente(Incidente incidenteACambiarDescripcion, string nuevaAccionTomada)
+		{
+			incidenteACambiarDescripcion.Descripcion = nuevaAccionTomada;
+		}
+		
 		internal void MostrarInformacion()
 		{
             Console.WriteLine("ID: " + CodigoUnico);
@@ -81,6 +101,16 @@ namespace GoXelaDelivery
             Console.WriteLine("Tarifa Base de la Entrega : Q" + TarifaBase);
             Console.WriteLine();
             Console.WriteLine("Total de la Entrega (Pueden aplicar Recargos y Descuentos): Q" + Total);
+		}
+
+		internal void CancelarEntrega(Entrega entregaACancelar)
+		{
+			entregaACancelar.EstadoEntrega = EstadoEntrega.Cancelada;
+		}
+
+		internal void ReprogramarEntrega(Entrega entregaAReprogramar)
+		{
+			entregaAReprogramar.EstadoEntrega = EstadoEntrega.Reprogramado;
 		}
 
 		internal void CalcularTotalEntregaConfirmada(Entrega entregaConfirmada)
