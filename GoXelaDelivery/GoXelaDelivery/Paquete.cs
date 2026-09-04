@@ -84,7 +84,7 @@ namespace GoXelaDelivery
 
 		internal virtual double CalcularCostoTipo(double valorDeclarado, double Peso)
 		{
-            Console.WriteLine("Se calcula el costo por el tipo de paquete...");
+			return 0;
 		}
 
 		public Municipio MunicipioDestino

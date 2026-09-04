@@ -50,10 +50,9 @@ namespace GoXelaDelivery
 
 		private double total;
 
-		public Entrega(Paquete nuevoPaqueteEntrega, Repartidor nuevoRepartidorAsignado, TipoVehiculoGeneral nuevoVehiculoGeneral, double nuevaDistanciaEstimada, TipoServicio nuevoTipoServicio, double nuevaTarifaBase)
+		public Entrega(Paquete nuevoPaqueteEntrega, TipoVehiculoGeneral nuevoVehiculoGeneral, double nuevaDistanciaEstimada, TipoServicio nuevoTipoServicio, double nuevaTarifaBase)
 		{
 			PaqueteEntrega = nuevoPaqueteEntrega;
-			RepartidorAsignado = nuevoRepartidorAsignado;
 			VehiculoGeneral = nuevoVehiculoGeneral;
 			DistanciaEstimada = nuevaDistanciaEstimada;
 			TipoServicio = nuevoTipoServicio;
@@ -99,12 +98,12 @@ namespace GoXelaDelivery
 			}
 			else if (entregaConfirmada.estadoEntrega == EstadoEntrega.Reprogramado)
 			{
-                entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando) + 5)
+				entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando) + 5);
 
             }
 			else
 			{
-                entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando))
+				entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando));
 
             }
 		}

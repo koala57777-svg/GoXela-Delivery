@@ -6,13 +6,201 @@ using System.Threading;
 using System.Threading.Tasks;
 using static GoXelaDelivery.Enums;
 using static System.Net.Mime.MediaTypeNames;
+using static GoXelaDelivery.Delivery;
+using static GoXelaDelivery.Globales;
 using System.Reflection;
 using System.ComponentModel;
+using System.Net;
 
 namespace GoXelaDelivery
 {
     internal static class AyudanteConsola
     {
+        public static void ConfirmarEntrega(Entrega entregaAConfirmar)
+        {
+            if ((ListaVehiculos[0].Count == 0 && ListaVehiculos[1].Count == 0 && ListaVehiculos[2].Count == 0) || (ListaVehiculos[0] == null && ListaVehiculos[1] == null && ListaVehiculos[2] == null))
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("No hay ningún Vehículo Registrado");
+                Console.ResetColor();
+                LimpiarConsola();
+                return;
+            }
+            else
+            {
+                ListaVehiculosCorrectos = EncontrarVehiculoCorrecto(entregaAConfirmar);
+                if (ListaVehiculosCorrectos.Count == 0 || ListaVehiculosCorrectos == null)
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("No hay ningún Vehículo que Pueda llevar el Paquete");
+                    Console.ResetColor();
+                    LimpiarConsola();
+                    return;
+                }
+                else
+                {
+                    if (ListaRepartidores.Count == 0 || ListaRepartidores == null)
+                    {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("No hay ningún Repartidor que pueda llevar el Paquete");
+                        Console.ResetColor();
+                        LimpiarConsola();
+                        return;
+                    }
+                    else
+                    {
+                        ListaRepartidoresCorrectos = EncontrarRepartidorCorrecto(entregaAConfirmar);
+                        if (ListaRepartidoresCorrectos.Count == 0 || ListaRepartidoresCorrectos == null)
+                        {
+                            Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("No hay ningún Repartidor que Pueda llevar el Paquete");
+                            Console.ResetColor();
+                            LimpiarConsola();
+                            return;
+                        }
+                        else
+                        {
+                            entregaAConfirmar.VehiculoAsigando = ListaVehiculosCorrectos.First();
+                            entregaAConfirmar.RepartidorAsignado = ListaRepartidoresCorrectos.First();
+                            entregaAConfirmar.VehiculoAsigando.EstadoVehiculo = EstadoVehiculo.Asignado;
+                            entregaAConfirmar.RepartidorAsignado.EstadoDisponibilidad = EstadoRepartidor.Asignado;
+                            Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine($"Se ha Cofirmado Correctamente la Entrega ({entregaAConfirmar.CodigoUnico})");
+                            Console.WriteLine();
+                            Console.WriteLine($"Repartidor Asignado: {entregaAConfirmar.RepartidorAsignado.NombreCompleto} ({entregaAConfirmar.RepartidorAsignado.CodigoUnico})");
+                            Console.WriteLine();
+                            Console.WriteLine($"Vehículo Asigando: Placa {entregaAConfirmar.VehiculoAsigando.Placa} ({entregaAConfirmar.VehiculoAsigando.CodigoUnico})");
+                            Console.WriteLine();
+                            Console.ResetColor();
+                            LimpiarConsola();
+                        }
+                    }
+                }
+            }
+        }
+
+        internal static List<Repartidor> EncontrarRepartidorCorrecto(Entrega entregaAConfirmar)
+        {
+            if (entregaAConfirmar.VehiculoGeneral == TipoVehiculoGeneral.Bicicleta)
+            {
+                RepartidorCorrecto = ListaRepartidores.Where(repartidor => (repartidor.TipoLicencia == TipoLicencia.B) && (repartidor.EstadoDisponibilidad == EstadoRepartidor.Disponible)).ToList();
+                return RepartidorCorrecto;
+            }
+            else if (entregaAConfirmar.VehiculoGeneral == TipoVehiculoGeneral.Motocicleta)
+            {
+                RepartidorCorrecto = ListaRepartidores.Where(repartidor => (repartidor.TipoLicencia == TipoLicencia.M) && (repartidor.EstadoDisponibilidad == EstadoRepartidor.Disponible)).ToList();
+                return RepartidorCorrecto;
+            }
+            else
+            {
+                RepartidorCorrecto = ListaRepartidores.Where(repartidor => (repartidor.TipoLicencia == TipoLicencia.C) && (repartidor.EstadoDisponibilidad == EstadoRepartidor.Disponible)).ToList();
+                return RepartidorCorrecto;
+            }
+        }
+
+        internal static List<Vehiculo> EncontrarVehiculoCorrecto(Entrega entraAConfirmar)
+        {
+            if (entraAConfirmar.VehiculoGeneral == TipoVehiculoGeneral.Bicicleta)
+            {
+                if (ListaVehiculos[2].Count == 0 || ListaVehiculos[2] == null)
+                {
+                    LimpiarConsola();
+                    VehiculoCorrecto.Clear();
+                    return VehiculoCorrecto;
+                }
+                else
+                {
+                    if (entraAConfirmar.PaqueteEntrega.TipoPaquete == TipoPaquete.Estandar)
+                    {
+                        VehiculoCorrecto = ListaVehiculos[2].Where(vehiculo => (vehiculo.Especializacion == TipoEspecializacion.Estandar) && (vehiculo.EstadoVehiculo == EstadoVehiculo.Disponible)).ToList();
+                        return VehiculoCorrecto;
+                    }
+                    else if (entraAConfirmar.PaqueteEntrega.TipoPaquete == TipoPaquete.Documento)
+                    {
+                        VehiculoCorrecto = ListaVehiculos[2].Where(vehiculo => (vehiculo.Especializacion == TipoEspecializacion.Asegurado) && (vehiculo.EstadoVehiculo == EstadoVehiculo.Disponible)).ToList();
+                        return VehiculoCorrecto;
+                    }
+                    else if (entraAConfirmar.PaqueteEntrega.TipoPaquete == TipoPaquete.Fragil)
+                    {
+                        VehiculoCorrecto = ListaVehiculos[2].Where(vehiculo => (vehiculo.Especializacion == TipoEspecializacion.Acolchado) && (vehiculo.EstadoVehiculo == EstadoVehiculo.Disponible)).ToList();
+                        return VehiculoCorrecto;
+                    }
+                    else
+                    {
+                        VehiculoCorrecto = ListaVehiculos[2].Where(vehiculo => (vehiculo.Especializacion == TipoEspecializacion.Refrigerado) && (vehiculo.EstadoVehiculo == EstadoVehiculo.Disponible)).ToList();
+                        return VehiculoCorrecto;
+                    }
+                }
+            }
+            else if (entraAConfirmar.VehiculoGeneral == TipoVehiculoGeneral.Motocicleta)
+            {
+                if (ListaVehiculos[0].Count == 0 || ListaVehiculos[0] == null)
+                {
+                    VehiculoCorrecto.Clear();
+                    return VehiculoCorrecto;
+                }
+                else
+                {
+                    if (entraAConfirmar.PaqueteEntrega.TipoPaquete == TipoPaquete.Estandar)
+                    {
+                        VehiculoCorrecto = ListaVehiculos[0].Where(vehiculo => (vehiculo.Especializacion == TipoEspecializacion.Estandar) && (vehiculo.EstadoVehiculo == EstadoVehiculo.Disponible)).ToList();
+                        return VehiculoCorrecto;
+                    }
+                    else if (entraAConfirmar.PaqueteEntrega.TipoPaquete == TipoPaquete.Documento)
+                    {
+                        VehiculoCorrecto = ListaVehiculos[0].Where(vehiculo => (vehiculo.Especializacion == TipoEspecializacion.Asegurado) && (vehiculo.EstadoVehiculo == EstadoVehiculo.Disponible)).ToList();
+                        return VehiculoCorrecto;
+                    }
+                    else if (entraAConfirmar.PaqueteEntrega.TipoPaquete == TipoPaquete.Fragil)
+                    {
+                        VehiculoCorrecto = ListaVehiculos[0].Where(vehiculo => (vehiculo.Especializacion == TipoEspecializacion.Acolchado) && (vehiculo.EstadoVehiculo == EstadoVehiculo.Disponible)).ToList();
+                        return VehiculoCorrecto;
+                    }
+                    else
+                    {
+                        VehiculoCorrecto = ListaVehiculos[0].Where(vehiculo => (vehiculo.Especializacion == TipoEspecializacion.Refrigerado) && (vehiculo.EstadoVehiculo == EstadoVehiculo.Disponible)).ToList();
+                        return VehiculoCorrecto;
+                    }
+                }
+            }
+            else
+            {
+                if (ListaVehiculos[1].Count == 0 || ListaVehiculos[1] == null)
+                {
+                    VehiculoCorrecto.Clear();
+                    return VehiculoCorrecto;
+                }
+                else
+                {
+                    if (entraAConfirmar.PaqueteEntrega.TipoPaquete == TipoPaquete.Estandar)
+                    {
+                        VehiculoCorrecto = ListaVehiculos[1].Where(vehiculo => (vehiculo.Especializacion == TipoEspecializacion.Estandar) && (vehiculo.EstadoVehiculo == EstadoVehiculo.Disponible)).ToList();
+                        return VehiculoCorrecto;
+                    }
+                    else if (entraAConfirmar.PaqueteEntrega.TipoPaquete == TipoPaquete.Documento)
+                    {
+                        VehiculoCorrecto = ListaVehiculos[1].Where(vehiculo => (vehiculo.Especializacion == TipoEspecializacion.Asegurado) && (vehiculo.EstadoVehiculo == EstadoVehiculo.Disponible)).ToList();
+                        return VehiculoCorrecto;
+                    }
+                    else if (entraAConfirmar.PaqueteEntrega.TipoPaquete == TipoPaquete.Fragil)
+                    {
+                        VehiculoCorrecto = ListaVehiculos[1].Where(vehiculo => (vehiculo.Especializacion == TipoEspecializacion.Acolchado) && (vehiculo.EstadoVehiculo == EstadoVehiculo.Disponible)).ToList();
+                        return VehiculoCorrecto;
+                    }
+                    else
+                    {
+                        VehiculoCorrecto = ListaVehiculos[1].Where(vehiculo => (vehiculo.Especializacion == TipoEspecializacion.Refrigerado) && (vehiculo.EstadoVehiculo == EstadoVehiculo.Disponible)).ToList();
+                        return VehiculoCorrecto;
+                    }
+                }
+            }
+        }
+
         public static string ObtenerDescripcion(this Enum valor)
         {
             FieldInfo field = valor.GetType().GetField(valor.ToString());

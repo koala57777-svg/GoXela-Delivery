@@ -32,19 +32,19 @@ namespace GoXelaDelivery
 
         private TipoEspecializacion especializacion;
 
-        public Vehiculo(string nuevaPlaca, string nuevaMarca, int nuevoModelo, EstadoVehiculo nuevoEstadoVehiculo, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion)
+        public Vehiculo(string nuevaPlaca, string nuevaMarca, int nuevoModelo, EstadoVehiculo nuevoEstadoVehiculo, TipoVehiculo nuevoTipoVehiculo, TipoEspecializacion nuevoTipoEspecializacion)
         {
+            Especializacion = nuevoTipoEspecializacion;
             Placa = nuevaPlaca;
             Marca = nuevaMarca;
             Modelo = nuevoModelo;
             EntregasRealizadas = 0;
             EstadoVehiculo = nuevoEstadoVehiculo;
             TipoVehiculo = nuevoTipoVehiculo;
-            RepartidorAsignado = nuevoRepartidor;
-            Especializacion = nuevoTipoEspecializacion;
+
         }
 
-        internal     void MostarInformacion()
+        internal void MostarInformacion()
         {
             Console.WriteLine("ID: " + CodigoUnico);
             Console.WriteLine();
@@ -81,7 +81,7 @@ namespace GoXelaDelivery
 
         internal virtual double CalcularCostoOperativo(Vehiculo vehiculo)
         {
-            Console.WriteLine("Se calcula el costo operativo del vehículo...");
+            return 0;
         }
 
         internal virtual double CalcularTarifaEspecialización(Vehiculo vehiculo)
@@ -98,7 +98,7 @@ namespace GoXelaDelivery
             {
                 return 100;
             }
-            else if (vehiculo.Especializacion == TipoEspecializacion.Refrigerado)
+            else 
             {
                 return 175;
             }
@@ -173,7 +173,7 @@ namespace GoXelaDelivery
 
     internal class Bicicleta : Vehiculo
     {
-        public Bicicleta(string nuevaPlaca, string nuevaMarca, int nuevoModelo, EstadoVehiculo nuevoEstadoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevoEstadoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
+        public Bicicleta(string nuevaPlaca, string nuevaMarca, int nuevoModelo, EstadoVehiculo nuevoEstadoVehiculo, TipoVehiculo nuevoTipoVehiculo, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevoEstadoVehiculo, nuevoTipoVehiculo, nuevoTipoEspecializacion)
         {
             TipoVehiculo = TipoVehiculo.Bicicleta;
             EntregasRealizadas = 0;
@@ -181,7 +181,7 @@ namespace GoXelaDelivery
             Prefijo = "BIC";
         }
 
-        internal override double CalcularCostoOperativo()
+        internal override double CalcularCostoOperativo(Vehiculo vehiculo)
         {
             return 100;
         }
@@ -200,7 +200,7 @@ namespace GoXelaDelivery
             {
                 return 100;
             }
-            else if (vehiculo.Especializacion == TipoEspecializacion.Refrigerado)
+            else 
             {
                 return 175;
             }
@@ -209,7 +209,7 @@ namespace GoXelaDelivery
 
     internal class Motocicleta : Vehiculo
     {
-        public Motocicleta(string nuevaPlaca, string nuevaMarca, int nuevoModelo, EstadoVehiculo nuevoEstadoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevoEstadoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
+        public Motocicleta(string nuevaPlaca, string nuevaMarca, int nuevoModelo, EstadoVehiculo nuevoEstadoVehiculo, TipoVehiculo nuevoTipoVehiculo, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevoEstadoVehiculo, nuevoTipoVehiculo, nuevoTipoEspecializacion)
         {
             TipoVehiculo = TipoVehiculo.Motocicleta;
             EntregasRealizadas = 0;
@@ -217,7 +217,7 @@ namespace GoXelaDelivery
             Prefijo = "MOT";
         }
 
-        internal override double CalcularCostoOperativo()
+        internal override double CalcularCostoOperativo(Vehiculo vehiculo)
         {
             return 200;
         }
@@ -236,7 +236,7 @@ namespace GoXelaDelivery
             {
                 return 100;
             }
-            else if (vehiculo.Especializacion == TipoEspecializacion.Refrigerado)
+            else 
             {
                 return 175;
             }
@@ -245,7 +245,7 @@ namespace GoXelaDelivery
 
     internal class Carro : Vehiculo
     {
-        public Carro(string nuevaPlaca, string nuevaMarca, int nuevoModelo, EstadoVehiculo nuevoEstadoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevoEstadoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
+        public Carro(string nuevaPlaca, string nuevaMarca, int nuevoModelo, EstadoVehiculo nuevoEstadoVehiculo, TipoVehiculo nuevoTipoVehiculo, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevoEstadoVehiculo, nuevoTipoVehiculo, nuevoTipoEspecializacion)
         {
             TipoVehiculo = TipoVehiculo.Automovil;
             EntregasRealizadas = 0;
@@ -253,7 +253,7 @@ namespace GoXelaDelivery
             Prefijo = "CAR";
         }
 
-        internal override double CalcularCostoOperativo()
+        internal override double CalcularCostoOperativo(Vehiculo vehiculo)
         {
             return 300;
         }
@@ -272,7 +272,7 @@ namespace GoXelaDelivery
             {
                 return 100;
             }
-            else if (vehiculo.Especializacion == TipoEspecializacion.Refrigerado)
+            else 
             {
                 return 175;
             }

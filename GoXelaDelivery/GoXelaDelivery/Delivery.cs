@@ -10,17 +10,17 @@ namespace GoXelaDelivery
 {
     internal class Delivery
     {
-        private List<Cliente> listaClientes = new List<Cliente>();
+        private static List<Cliente> listaClientes = new List<Cliente>();
 
-        private List<Repartidor> listaRepartidores = new List<Repartidor>();
+        private static List<Repartidor> listaRepartidores = new List<Repartidor>();
 
-        private List<List<Vehiculo>> listasVehiculos = new List<List<Vehiculo>>();
+        private static List<List<Vehiculo>> listasVehiculos = new List<List<Vehiculo>>();
 
-        private List<List<Paquete>> listasPaquetes = new List<List<Paquete>>();
+        private static List<List<Paquete>> listasPaquetes = new List<List<Paquete>>();
 
-        private List<Entrega> listaEntregas = new List<Entrega>();
+        private static List<Entrega> listaEntregas = new List<Entrega>();
 
-        private double totalIngresos;
+        private static double totalIngresos;
 
         public Delivery()
         {
@@ -42,7 +42,7 @@ namespace GoXelaDelivery
             listaEntregas = new List<Entrega>();
         }
 
-        protected void IngresarCliente(Cliente cliente)
+        public void IngresarCliente(Cliente cliente)
         {
             if (cliente != null)
             {
@@ -52,7 +52,7 @@ namespace GoXelaDelivery
             }
         }
 
-        protected void IngresarRepartidor(Repartidor repartidor)
+        public void IngresarRepartidor(Repartidor repartidor)
         {
             if (repartidor != null)
             {
@@ -62,7 +62,7 @@ namespace GoXelaDelivery
             }
         }
 
-        protected void IngresarVehiculo(Vehiculo vehiculo)
+        public void IngresarVehiculo(Vehiculo vehiculo)
         {
             if (vehiculo != null)
             {
@@ -83,7 +83,7 @@ namespace GoXelaDelivery
             }
         }
 
-        protected void IngresarPaquete(Paquete paquete)
+        public void IngresarPaquete(Paquete paquete)
         {
             if (paquete != null)
             {
@@ -108,7 +108,7 @@ namespace GoXelaDelivery
             }
         }
 
-        protected void IngresarEntrega(Entrega entrega)
+        public void IngresarEntrega(Entrega entrega)
         {
             if (entrega != null)
             {
@@ -118,7 +118,7 @@ namespace GoXelaDelivery
             }
         }
 
-        protected void MostrarEntregasActivas()
+        public void MostrarEntregasActivas()
         {
             if (listaEntregas.Count == 0 || listaEntregas == null)
             {
@@ -163,7 +163,7 @@ namespace GoXelaDelivery
             LimpiarConsola();
         }
 
-        protected void MostrarEntregasFinalizadas()
+        public void MostrarEntregasFinalizadas()
         {
             if (listaEntregas.Count == 0 || listaEntregas == null)
             {
@@ -208,7 +208,7 @@ namespace GoXelaDelivery
             LimpiarConsola();
         }
 
-        protected void MostrarEntregasCanceladas()
+        public void MostrarEntregasCanceladas()
         {
             if (listaEntregas.Count == 0 || listaEntregas == null)
             {
@@ -253,7 +253,7 @@ namespace GoXelaDelivery
             LimpiarConsola();
         }
 
-        protected void MostrarEntregasConIncidencias()
+        public void MostrarEntregasConIncidencias()
         {
             if (listaEntregas.Count == 0 || listaEntregas == null)
             {
@@ -298,7 +298,7 @@ namespace GoXelaDelivery
             LimpiarConsola();
         }
 
-        protected void MostrarRepartidoresDisponibles()
+        public void MostrarRepartidoresDisponibles()
         {
             if (listaRepartidores.Count == 0 || listaRepartidores == null)
             {
@@ -343,7 +343,7 @@ namespace GoXelaDelivery
             LimpiarConsola();
         }
 
-        protected void MostrarRepartidorConMasEntregas()
+        public void MostrarRepartidorConMasEntregas()
         {
             if (listaRepartidores.Count == 0 || listaRepartidores == null)
             {
@@ -396,9 +396,9 @@ namespace GoXelaDelivery
             LimpiarConsola();
         }
 
-        protected void MostrarVehiculoMasUsado()
+        public void MostrarVehiculoMasUsado()
         {
-            if ((listasVehiculos[0].Count == 0 && listasVehiculos[1].Count == 0 && listasVehiculos[2].Count == 0) || (listasVehiculos[0] == null && listasVehiculos[1] == null && listasVehiculos[2] == null))
+            if ((ListaVehiculos[0].Count == 0 && ListaVehiculos[1].Count == 0 && ListaVehiculos[2].Count == 0) || (ListaVehiculos[0] == null && ListaVehiculos[1] == null && ListaVehiculos[2] == null))
             {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -456,7 +456,7 @@ namespace GoXelaDelivery
             LimpiarConsola();
         }
 
-        protected void CantidadPaquetesPorTipo()
+        public void CantidadPaquetesPorTipo()
         {
             Console.WriteLine();
             if (listasPaquetes[0] == null || listasPaquetes[0].Count == 0)
@@ -558,7 +558,7 @@ namespace GoXelaDelivery
             LimpiarConsola();
         }
 
-        protected void MostrarTotalIngresos()
+        public void MostrarTotalIngresos()
         {
             Console.WriteLine();
             Console.ForegroundColor= ConsoleColor.Green;
@@ -567,7 +567,7 @@ namespace GoXelaDelivery
             LimpiarConsola();
         }
 
-        protected void MostrarEntregaConMayorCosto()
+        public void MostrarEntregaConMayorCosto()
         {
             if (listaEntregas.Count == 0 || listaEntregas == null)
             {
@@ -621,37 +621,37 @@ namespace GoXelaDelivery
             LimpiarConsola();
         }
 
-        public double TotalIngresos
+        public static double TotalIngresos
         {
             get { return totalIngresos; }
             set { totalIngresos = value; }
         }
 
-        public List<Entrega> ListaEntregas
+        public static List<Entrega> ListaEntregas
         {
             get { return listaEntregas; }
             set { listaEntregas = value; }
         }
 
-        public List<List<Paquete>> ListasPaquetes
+        public static List<List<Paquete>> ListasPaquetes
         {
             get { return listasPaquetes; }
             set { listasPaquetes = value; }
         }
 
-        public List<List<Vehiculo>> ListaVehiculos
+        public static List<List<Vehiculo>> ListaVehiculos
         {
             get { return listasVehiculos; }
             set { listasVehiculos = value; }
         }
 
-        public List<Repartidor> ListaRepartidores
+        public static List<Repartidor> ListaRepartidores
         {
             get { return listaRepartidores; }
             set { listaRepartidores = value; }
         }
 
-        public List<Cliente> ListaClientes
+        public static List<Cliente> ListaClientes
         {
             get { return listaClientes; }
             set { listaClientes = value; }

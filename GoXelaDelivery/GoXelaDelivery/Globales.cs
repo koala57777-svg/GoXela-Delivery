@@ -45,6 +45,38 @@ namespace GoXelaDelivery
 
 		private static TipoServicio servicioSeleccionado;
 
+		private static List<Vehiculo> vehiculoCorrecto;
+
+		private static List<Vehiculo> listaVehiculosCorrectos;
+
+		private static List<Repartidor> listaRepartidoresCorrectos;
+
+		public static List<Repartidor>  ListaRepartidoresCorrectos
+		{
+			get { return listaRepartidoresCorrectos; }
+			set { listaRepartidoresCorrectos = value; }
+		}
+
+		private static List<Repartidor> repartidorCorrecto;
+
+		public static List<Repartidor>  RepartidorCorrecto
+		{
+			get { return repartidorCorrecto; }
+			set { repartidorCorrecto = value; }
+		}
+
+		public static List<Vehiculo> ListaVehiculosCorrectos
+		{
+			get { return listaVehiculosCorrectos; }
+			set { listaVehiculosCorrectos = value; }
+		}
+
+		public static List<Vehiculo> VehiculoCorrecto
+		{
+			get { return vehiculoCorrecto; }
+			set { vehiculoCorrecto = value; }
+		}
+
 		public static TipoServicio ServicioSeleccionado
 		{
 			get { return servicioSeleccionado; }
