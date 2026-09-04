@@ -32,20 +32,19 @@ namespace GoXelaDelivery
 
         private TipoEspecializacion especializacion;
 
-        public Vehiculo(string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion)
+        public Vehiculo(string nuevaPlaca, string nuevaMarca, int nuevoModelo, EstadoVehiculo nuevoEstadoVehiculo, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion)
         {
             Placa = nuevaPlaca;
             Marca = nuevaMarca;
             Modelo = nuevoModelo;
-            CapacidadMaxima = nuevaCapacidadMaxima;
+            EntregasRealizadas = 0;
             EstadoVehiculo = nuevoEstadoVehiculo;
-            EntregasRealizadas = nuevasEntregasRealizadas;
             TipoVehiculo = nuevoTipoVehiculo;
             RepartidorAsignado = nuevoRepartidor;
             Especializacion = nuevoTipoEspecializacion;
         }
 
-        internal void MostarInformacion()
+        internal     void MostarInformacion()
         {
             Console.WriteLine("ID: " + CodigoUnico);
             Console.WriteLine();
@@ -70,19 +69,39 @@ namespace GoXelaDelivery
             Console.WriteLine("Especialización del Vehículo: " + Especializacion);
         }
 
-        protected void ModificarEstado(EstadoVehiculo nuevoEstadoVehiculo)
+        internal void ModificarEstado(EstadoVehiculo nuevoEstadoVehiculo)
         {
             EstadoVehiculo = nuevoEstadoVehiculo;
         }
 
-        protected void AgregarEntregasRealizadas(int nuevaEntrega)
+        internal void AgregarEntregasRealizadas(int nuevaEntrega)
         {
             EntregasRealizadas += nuevaEntrega;
         }
 
-        protected virtual void CalcularCostoOperativo()
+        internal virtual double CalcularCostoOperativo(Vehiculo vehiculo)
         {
             Console.WriteLine("Se calcula el costo operativo del vehículo...");
+        }
+
+        internal virtual double CalcularTarifaEspecialización(Vehiculo vehiculo)
+        {
+            if (vehiculo.Especializacion == TipoEspecializacion.Estandar)
+            {
+                return 0;
+            }
+            else if (vehiculo.Especializacion == TipoEspecializacion.Acolchado)
+            {
+                return 50;
+            }
+            else if (vehiculo.Especializacion == TipoEspecializacion.Asegurado)
+            {
+                return 100;
+            }
+            else if (vehiculo.Especializacion == TipoEspecializacion.Refrigerado)
+            {
+                return 175;
+            }
         }
 
         public TipoEspecializacion Especializacion
@@ -154,40 +173,109 @@ namespace GoXelaDelivery
 
     internal class Bicicleta : Vehiculo
     {
-        public Bicicleta(string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
+        public Bicicleta(string nuevaPlaca, string nuevaMarca, int nuevoModelo, EstadoVehiculo nuevoEstadoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevoEstadoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
         {
+            TipoVehiculo = TipoVehiculo.Bicicleta;
+            EntregasRealizadas = 0;
+            CapacidadMaxima = 280;
             Prefijo = "BIC";
         }
 
-        protected override void CalcularCostoOperativo()
+        internal override double CalcularCostoOperativo()
         {
-            Console.WriteLine("Se calcula el costo operativo de la Bicicleta...");
+            return 100;
+        }
+
+        internal override double CalcularTarifaEspecialización(Vehiculo vehiculo)
+        {
+            if (vehiculo.Especializacion == TipoEspecializacion.Estandar)
+            {
+                return 0;
+            }
+            else if (vehiculo.Especializacion == TipoEspecializacion.Acolchado)
+            {
+                return 50;
+            }
+            else if (vehiculo.Especializacion == TipoEspecializacion.Asegurado)
+            {
+                return 100;
+            }
+            else if (vehiculo.Especializacion == TipoEspecializacion.Refrigerado)
+            {
+                return 175;
+            }
         }
     }
 
     internal class Motocicleta : Vehiculo
     {
-        public Motocicleta(string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
+        public Motocicleta(string nuevaPlaca, string nuevaMarca, int nuevoModelo, EstadoVehiculo nuevoEstadoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevoEstadoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
         {
+            TipoVehiculo = TipoVehiculo.Motocicleta;
+            EntregasRealizadas = 0;
+            CapacidadMaxima = 400;
             Prefijo = "MOT";
         }
 
-        protected override void CalcularCostoOperativo()
+        internal override double CalcularCostoOperativo()
         {
-            Console.WriteLine("Se calcula el costo operativo de la Motocicleta...");
+            return 200;
+        }
+
+        internal override double CalcularTarifaEspecialización(Vehiculo vehiculo)
+        {
+            if (vehiculo.Especializacion == TipoEspecializacion.Estandar)
+            {
+                return 0;
+            }
+            else if (vehiculo.Especializacion == TipoEspecializacion.Acolchado)
+            {
+                return 50;
+            }
+            else if (vehiculo.Especializacion == TipoEspecializacion.Asegurado)
+            {
+                return 100;
+            }
+            else if (vehiculo.Especializacion == TipoEspecializacion.Refrigerado)
+            {
+                return 175;
+            }
         }
     }
 
     internal class Carro : Vehiculo
     {
-        public Carro(string nuevaPlaca, string nuevaMarca, int nuevoModelo, double nuevaCapacidadMaxima, EstadoVehiculo nuevoEstadoVehiculo, int nuevasEntregasRealizadas, TipoVehiculo nuevoTipoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevaCapacidadMaxima, nuevoEstadoVehiculo, nuevasEntregasRealizadas, nuevoTipoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
+        public Carro(string nuevaPlaca, string nuevaMarca, int nuevoModelo, EstadoVehiculo nuevoEstadoVehiculo, Repartidor nuevoRepartidor, TipoEspecializacion nuevoTipoEspecializacion) : base(nuevaPlaca, nuevaMarca, nuevoModelo, nuevoEstadoVehiculo, nuevoRepartidor, nuevoTipoEspecializacion)
         {
+            TipoVehiculo = TipoVehiculo.Automovil;
+            EntregasRealizadas = 0;
+            CapacidadMaxima = 800;
             Prefijo = "CAR";
         }
 
-        protected override void CalcularCostoOperativo()
+        internal override double CalcularCostoOperativo()
         {
-            Console.WriteLine("Se calcula el costo operativo del Carro...");
+            return 300;
+        }
+
+        internal override double CalcularTarifaEspecialización(Vehiculo vehiculo)
+        {
+            if (vehiculo.Especializacion == TipoEspecializacion.Estandar)
+            {
+                return 0;
+            }
+            else if (vehiculo.Especializacion == TipoEspecializacion.Acolchado)
+            {
+                return 50;
+            }
+            else if (vehiculo.Especializacion == TipoEspecializacion.Asegurado)
+            {
+                return 100;
+            }
+            else if (vehiculo.Especializacion == TipoEspecializacion.Refrigerado)
+            {
+                return 175;
+            }
         }
     }
 }

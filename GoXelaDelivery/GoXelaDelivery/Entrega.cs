@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static GoXelaDelivery.Enums;
+using static GoXelaDelivery.Globales;
 
 namespace GoXelaDelivery
 {
@@ -49,17 +50,15 @@ namespace GoXelaDelivery
 
 		private double total;
 
-		public Entrega(Paquete nuevoPaqueteEntrega, Repartidor nuevoRepartidorAsignado, Vehiculo nuevoVehiculoAsignado, TipoVehiculoGeneral nuevoVehiculoGeneral, double nuevaDistanciaEstimada, TipoServicio nuevoTipoServicio, double nuevaTarifaBase, double nuevoTotal)
+		public Entrega(Paquete nuevoPaqueteEntrega, Repartidor nuevoRepartidorAsignado, TipoVehiculoGeneral nuevoVehiculoGeneral, double nuevaDistanciaEstimada, TipoServicio nuevoTipoServicio, double nuevaTarifaBase)
 		{
 			PaqueteEntrega = nuevoPaqueteEntrega;
 			RepartidorAsignado = nuevoRepartidorAsignado;
-			VehiculoAsigando = nuevoVehiculoAsignado;
 			VehiculoGeneral = nuevoVehiculoGeneral;
 			DistanciaEstimada = nuevaDistanciaEstimada;
 			TipoServicio = nuevoTipoServicio;
 			TarifaBase = nuevaTarifaBase;
 			listaIncidentes = new List<Incidente>();
-			Total = nuevoTotal;
 		}
 
 		internal void MostrarInformacion()
@@ -83,6 +82,92 @@ namespace GoXelaDelivery
             Console.WriteLine("Tarifa Base de la Entrega : Q" + TarifaBase);
             Console.WriteLine();
             Console.WriteLine("Total de la Entrega (Pueden aplicar Recargos y Descuentos): Q" + Total);
+		}
+
+		internal void CalcularTotalEntregaConfirmada(Entrega entregaConfirmada)
+		{
+			if (entregaConfirmada.ClienteEntrega.SolicitudesRealizadas > 10)
+			{
+				if (entregaConfirmada.EstadoEntrega == EstadoEntrega.Reprogramado)
+				{
+					entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando) + 5) - (0.10*entregaConfirmada.tarifaBase);
+				}
+				else
+				{
+                    entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando)) - (0.10 * entregaConfirmada.tarifaBase);
+                }
+			}
+			else if (entregaConfirmada.estadoEntrega == EstadoEntrega.Reprogramado)
+			{
+                entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando) + 5)
+
+            }
+			else
+			{
+                entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando))
+
+            }
+		}
+
+		internal double CalcularTarifaServicio()
+		{
+			if (ServicioSeleccionado == TipoServicio.Normal)
+			{
+				return 20;
+			}
+			else if (ServicioSeleccionado == TipoServicio.Prioritario)
+			{
+				return 60;
+			}
+			else
+			{
+				return 110;
+			}
+		}
+
+		internal void SeleccionarVehiculoGeneral(Paquete paqueteEntrega)
+		{
+			if ((280 - paqueteEntrega.Peso) >= 0)
+			{
+				VehiculoSeleccionado = TipoVehiculoGeneral.Bicicleta;
+			}
+			else if ((400 - paqueteEntrega.Peso) >= 0)
+			{
+                VehiculoSeleccionado = TipoVehiculoGeneral.Motocicleta;
+			}
+			else if ((400 - paqueteEntrega.Peso) >= 0)
+			{
+                VehiculoSeleccionado = TipoVehiculoGeneral.Motocicleta;
+            }
+			else
+			{
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("El paquete supera el peso de cualquier tipo de vehículo.");
+                Console.ResetColor();
+            }
+		}
+
+		internal double CalcularTarifaVehiculoGeneral(double distanciaRecorrer)
+		{
+			if (VehiculoSeleccionado == TipoVehiculoGeneral.Bicicleta)
+			{
+                return (distanciaRecorrer * 0.75);
+            }
+			else if (VehiculoSeleccionado == TipoVehiculoGeneral.Motocicleta)
+			{
+                return (distanciaRecorrer * 1.50);
+            }
+			else
+			{
+                return (distanciaRecorrer * 2.50);
+            }
+		}
+
+		internal double CalcularTarifaEntrega(Paquete paqueteEntrega, double distanciaRecorrer)
+		{
+			SeleccionarVehiculoGeneral(paqueteEntrega);
+			return CalcularTarifaVehiculoGeneral(distanciaRecorrer) + paqueteEntrega.CalcularCostoTipo(paqueteEntrega.ValorDeclarado, paqueteEntrega.Peso) + CalcularTarifaServicio();
 		}
 
 		protected void IngresarIncidente(Incidente incidente)

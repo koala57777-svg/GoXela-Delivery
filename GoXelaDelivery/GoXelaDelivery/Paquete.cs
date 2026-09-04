@@ -33,7 +33,7 @@ namespace GoXelaDelivery
 
 		private Municipio municipioDestino;
 
-		public Paquete(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen)
+		public Paquete(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen)
 		{
 			TipoPaquete = nuevoTipoPaquete;
 			Descripcion = nuevaDescripcion;
@@ -41,7 +41,7 @@ namespace GoXelaDelivery
 			ValorDeclarado = nuevoValorDeclarado;
 			ClientePaquete = nuevoClientePaquete;
 			DireccionOrigen = nuevaDireccionOrigen;
-			EstadoPaquete = nuevoEstadoPaquete;
+			EstadoPaquete = EstadoPaquete.NoAsignado;
 			MunicipioOrigen = nuevoMunicipioOrigen;
 		}
 
@@ -82,9 +82,9 @@ namespace GoXelaDelivery
 			Descripcion = nuevaDescripcion;
 		}
 
-		protected virtual void CalcularCostoTipo()
+		internal virtual double CalcularCostoTipo(double valorDeclarado, double Peso)
 		{
-            Console.WriteLine("Se calcula el costo del tipo de paquete...");
+            Console.WriteLine("Se calcula el costo por el tipo de paquete...");
 		}
 
 		public Municipio MunicipioDestino
@@ -162,53 +162,57 @@ namespace GoXelaDelivery
 
 	internal class Documento : Paquete
 	{
-		public Documento(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
+		public Documento(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
 		{
+            EstadoPaquete = EstadoPaquete.NoAsignado;
             Prefijo = "DPQ";
         }
 
-        protected override void CalcularCostoTipo()
+        internal override double CalcularCostoTipo(double valorDeclarado, double Peso)
         {
-            Console.WriteLine("Calcula el costo del tipo paquete Documento...");
+            return (valorDeclarado * 0.10) + (Peso * 20);
         }
 	}
 
 	internal class PaqueteEstandar : Paquete
 	{
-        public PaqueteEstandar(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
+        public PaqueteEstandar(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
         {
+            EstadoPaquete = EstadoPaquete.NoAsignado;
             Prefijo = "EPQ";
         }
 
-        protected override void CalcularCostoTipo()
+        internal override double CalcularCostoTipo(double valorDeclarado, double Peso)
         {
-            Console.WriteLine("Calcula el costo del tipo paquete PaqueteEstandar...");
+			return (valorDeclarado * 0.00) + (Peso * 20);
         }
     }
 
     internal class PaqueteFragil : Paquete
     {
-        public PaqueteFragil(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
+        public PaqueteFragil(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
         {
+            EstadoPaquete = EstadoPaquete.NoAsignado;
             Prefijo = "FPQ";
         }
 
-        protected override void CalcularCostoTipo()
+        internal override double CalcularCostoTipo(double valorDeclarado, double Peso)
         {
-            Console.WriteLine("Calcula el costo del tipo paquete PaqueteFragil...");
+            return (valorDeclarado * 0.20) + (Peso * 20);
         }
     }
 
 	internal class ProductoRefrigerado : Paquete
 	{
-        public ProductoRefrigerado(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, EstadoPaquete nuevoEstadoPaquete, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoEstadoPaquete, nuevoMunicipioOrigen)
+        public ProductoRefrigerado(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
         {
+            EstadoPaquete = EstadoPaquete.NoAsignado;
             Prefijo = "RPQ";
         }
 
-        protected override void CalcularCostoTipo()
+        internal override double CalcularCostoTipo(double valorDeclarado, double Peso)
         {
-            Console.WriteLine("Calcula el costo del tipo paquete ProductoRefrigerado...");
+            return (valorDeclarado * 0.25) + (Peso * 20);
         }
     }
 }

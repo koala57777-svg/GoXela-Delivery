@@ -75,7 +75,8 @@ namespace GoXelaDelivery
             [Description("En ruta")]
             EnRuta,
             Entregada,
-            Cancelada
+            Cancelada,
+            Reprogramado
         }
         public enum TipoIncidencia
         {

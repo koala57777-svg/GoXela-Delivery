@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GoXelaDelivery.Enums;
 
 namespace GoXelaDelivery
 {
@@ -39,6 +40,22 @@ namespace GoXelaDelivery
 		private static List<Entrega> entregaConMayorCosto;
 
 		private static Entrega laEntrega;
+
+		private static TipoVehiculoGeneral vehiculoSeleccionado;
+
+		private static TipoServicio servicioSeleccionado;
+
+		public static TipoServicio ServicioSeleccionado
+		{
+			get { return servicioSeleccionado; }
+			set { servicioSeleccionado = value; }
+		}
+
+		public static TipoVehiculoGeneral VehiculoSeleccionado
+		{
+			get { return vehiculoSeleccionado; }
+			set { vehiculoSeleccionado = value; }
+		}
 
 		public static Entrega LaEntrega
 		{
