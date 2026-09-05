@@ -20,6 +20,7 @@ namespace GoXelaDelivery
                 Console.WriteLine("           GOXELA DELIVERY         ");
                 Console.WriteLine("===================================");
                 Console.ResetColor();
+                Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("1. Gestión de Clientes");
                 Console.WriteLine("2. Gestión de Repartidores");
@@ -51,7 +52,7 @@ namespace GoXelaDelivery
                 switch (OpcionMenuPrincipal)
                 {
                     case 1:
-
+                        ModuloClientes.IniciarSubmenu(GoXelaDelivery);
                         break;
                     case 2:
 

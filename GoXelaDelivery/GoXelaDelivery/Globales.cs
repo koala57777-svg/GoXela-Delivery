@@ -211,6 +211,7 @@ namespace GoXelaDelivery
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Gracias por usar el programa :)");
             Console.WriteLine();
+            Console.ReadKey();
             Console.ResetColor();
         }
 
