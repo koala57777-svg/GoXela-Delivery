@@ -154,15 +154,15 @@ namespace GoXelaDelivery
 
 		private double calificacionPromedio;
 
-		public Repartidor(string nuevoNombreCompleto, int nuevoNumeroTelefono, int nuevoNumeroLicencia, TipoLicencia nuevoTipoLicencia, EstadoRepartidor nuevoEstadoDisponibilidad, double nuevaCalificacionTotal, double nuevaCalificacionPromedio) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
+		public Repartidor(string nuevoNombreCompleto, int nuevoNumeroTelefono, int nuevoNumeroLicencia, TipoLicencia nuevoTipoLicencia, EstadoRepartidor nuevoEstadoDisponibilidad) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
 		{
             Prefijo = "REP";
             NumeroLicencia = nuevoNumeroLicencia;
 			TipoLicencia = nuevoTipoLicencia;
 			EstadoDisponibilidad = nuevoEstadoDisponibilidad;
 			CantidadEntregasRealizadas = 0;
-			CalificacionTotal = nuevaCalificacionTotal;
-			CalificacionPromedio = nuevaCalificacionPromedio;
+			CalificacionTotal = 0;
+			CalificacionPromedio = 0;
 		}
 
         internal override void MostrarInformacion()
