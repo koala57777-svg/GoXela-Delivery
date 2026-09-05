@@ -51,6 +51,14 @@ namespace GoXelaDelivery
 
 		private static List<Repartidor> listaRepartidoresCorrectos;
 
+		private static int opcionMenuPrincipal;
+
+		public static int OpcionMenuPrincipal
+		{
+			get { return opcionMenuPrincipal; }
+			set { opcionMenuPrincipal = value; }
+		}
+
 		public static List<Repartidor>  ListaRepartidoresCorrectos
 		{
 			get { return listaRepartidoresCorrectos; }
@@ -195,6 +203,25 @@ namespace GoXelaDelivery
             Console.WriteLine();
             Console.ReadKey();
             Console.Clear();
+        }
+
+		public static void SalirMenu()
+		{
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Gracias por usar el programa :)");
+            Console.WriteLine();
+            Console.ResetColor();
+        }
+
+		public static void ErroOpcionNoValida()
+		{
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Error opción no válida");
+            Console.WriteLine();
+            Console.ResetColor();
+			LimpiarConsola();
         }
     }
 }
