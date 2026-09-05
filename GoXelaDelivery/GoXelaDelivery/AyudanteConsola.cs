@@ -466,14 +466,14 @@ namespace GoXelaDelivery
             return numeroFinal;
         }
 
-        internal static int ValidarNumerico(int tamanoRequerido, Action<Delivery> menuMostrar, Delivery GoXelaDelivery, int rangoValido)
+        internal static int ValidarNumerico<T>(int tamanoRequerido, Action<T> menuMostrar, T parametroMenu, int rangoValido)
         {
             bool numeroConfirmado = false;
             int numeroFinal = 0;
             while (!numeroConfirmado)
             {
                 Console.Clear();
-                menuMostrar(GoXelaDelivery);
+                menuMostrar(parametroMenu);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("\n Ingresar: ");
                 Console.ResetColor();
