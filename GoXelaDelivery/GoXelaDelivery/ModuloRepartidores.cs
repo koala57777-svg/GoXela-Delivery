@@ -55,6 +55,7 @@ namespace GoXelaDelivery
                 int posicionRepartidor = ValidarNumerico(1, ListaDeRepartidores, goXelaDelivery, goXelaDelivery.ListaRepartidores.Count);
                 Console.WriteLine();
                 SubmenuModificacionRepartidor(goXelaDelivery.ListaRepartidores[posicionRepartidor - 1]);
+                OpcionMenuPrincipal = 0;
                 LimpiarConsola();
                 return;
             }
@@ -85,7 +86,7 @@ namespace GoXelaDelivery
                         ErroOpcionNoValida();
                         break;
                 }
-            } while (OpcionMenuPrincipal != 5);
+            } while (OpcionMenuPrincipal != 4);
         }
         public static void ModificarNumeroTelefonoRepartidor(Repartidor repartidor)
         {
@@ -115,6 +116,7 @@ namespace GoXelaDelivery
                 Console.WriteLine($"¡Estado del repartidor modificado exitosamente!");
                 Console.ResetColor();
             }
+            LimpiarConsola();
         }
         public static void OpcionesSubMenuModificarRepartidor(Repartidor repartidor)
         {
@@ -129,7 +131,7 @@ namespace GoXelaDelivery
             Console.WriteLine("1. Modificar el Número de teléfono");
             Console.WriteLine("2. Modificar el Nombre");
             Console.WriteLine("3. Cambiar estado Fuera de servicio");
-            Console.WriteLine("4. Regresar a Gestión de Clientes");
+            Console.WriteLine("4. Regresar a Gestión de Repartidores");
             Console.ResetColor();
         }
 
@@ -205,7 +207,6 @@ namespace GoXelaDelivery
             string nombreCompletoRepartidor = ValidarTexto("Ingrese el Nombre Completo: ", 35);
             int numeroTelefonoRepartidor = ValidarTelefono();
             int numeroLicenciaRepartidor = ValidarNumerico("Ingrese el número de licencia (5 dígitos)", 5);
-            string correoElectronicoRepartidor = ValidarCorreo();
             int numeroTipoLicenciaElegida = ValidarNumerico(1, MenuTipoLicencias, Enum.GetNames(typeof(TipoLicencia)).Length);
             TipoLicencia tipoLicenciaRepartidor = (TipoLicencia)numeroTipoLicenciaElegida;
             int numeroEstadoRepartidorElegida = ValidarNumerico(1, MenuEstadoDisponibilidad, Enum.GetNames(typeof(EstadoRepartidor)).Length);
