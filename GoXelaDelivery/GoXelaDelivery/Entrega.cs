@@ -132,19 +132,19 @@ namespace GoXelaDelivery
             }
 			else
 			{
-				if (entregaACambiarEstado.EstadoEntrega == EstadoEntrega.Reprogramado)
+				if (EstadoEntrega == EstadoEntrega.Reprogramado)
 				{
-					entregaACambiarEstado.EstadoEntrega = EstadoEntrega.Cofirmado;
+					EstadoEntrega = EstadoEntrega.Cofirmado;
 				}
 
-                if (entregaACambiarEstado.ListaIncidentes != null && entregaACambiarEstado.ListaIncidentes.Any())
+                if (ListaIncidentes != null && ListaIncidentes.Any())
                 {
-                    bool todosResueltos = entregaACambiarEstado.ListaIncidentes.All(incidente => incidente.EstadoIncidente == EstadoIncidencia.Resuelta);
+                    bool todosResueltos = ListaIncidentes.All(incidente => incidente.EstadoIncidente == EstadoIncidencia.Resuelta);
                     if (todosResueltos)
                     {
-                        entregaACambiarEstado.EstadoEntrega = (EstadoEntrega)((int)entregaACambiarEstado.EstadoEntrega + 1);
+                        EstadoEntrega = (EstadoEntrega)((int)EstadoEntrega + 1);
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine($"Se ha cambiado Correctamente el Estado de la Entrega. Nuevo Estado: {entregaACambiarEstado.EstadoEntrega}");
+                        Console.WriteLine($"Se ha cambiado Correctamente el Estado de la Entrega. Nuevo Estado: {EstadoEntrega}");
                         Console.ResetColor();
                         LimpiarConsola();
                         return;
@@ -160,9 +160,9 @@ namespace GoXelaDelivery
                 }
                 else
                 {
-                    entregaACambiarEstado.EstadoEntrega = (EstadoEntrega)((int)entregaACambiarEstado.EstadoEntrega + 1);
+                    EstadoEntrega = (EstadoEntrega)((int)EstadoEntrega + 1);
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Se ha cambiado Correctamente el Estado de la Entrega. Nuevo Estado: {entregaACambiarEstado.EstadoEntrega}");
+                    Console.WriteLine($"Se ha cambiado Correctamente el Estado de la Entrega. Nuevo Estado: {EstadoEntrega}");
                     Console.ResetColor();
                     LimpiarConsola();
                     return;
