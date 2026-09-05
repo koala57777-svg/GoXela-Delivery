@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static GoXelaDelivery.Enums;
-
+using static GoXelaDelivery.Globales;
 namespace GoXelaDelivery
 {
     internal class Incidente
