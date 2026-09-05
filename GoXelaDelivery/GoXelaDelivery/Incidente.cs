@@ -52,9 +52,9 @@ namespace GoXelaDelivery
             Console.WriteLine("Fecha del Incidente: "+ FechaIncidente);
 		}
 
-		protected void CambiarEstado(Incidente incidente)
+		protected void CambiarEstado(Incidente incidenteACambiarEstado)
 		{
-			if (incidente.AccionTomada == null || incidente.AccionTomada.Length == 0)
+			if (incidenteACambiarEstado.AccionTomada == null || incidenteACambiarEstado.AccionTomada.Length == 0)
 			{
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No se puede el estado de la incidencia. Coloque una acción tomada");
@@ -64,7 +64,12 @@ namespace GoXelaDelivery
             }
 			else
 			{
-                EstadoIncidente = EstadoIncidencia.Resuelta;
+                incidenteACambiarEstado.EstadoIncidente = EstadoIncidencia.Resuelta;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Se cambió correctamente el estado del incidente a Resuelto.");
+                Console.ResetColor();
+                LimpiarConsola();
+                return;
             }
 		}
 
