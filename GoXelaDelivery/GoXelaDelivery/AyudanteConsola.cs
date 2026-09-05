@@ -80,6 +80,7 @@ namespace GoXelaDelivery
                                 entregaAConfirmar.VehiculoAsigando.EstadoVehiculo = EstadoVehiculo.Asignado;
                                 entregaAConfirmar.RepartidorAsignado.EstadoDisponibilidad = EstadoRepartidor.Asignado;
                                 entregaAConfirmar.EstadoEntrega = EstadoEntrega.Cofirmado;
+                                entregaAConfirmar.VehiculoAsigando.RepartidorAsignado = ListaRepartidoresCorrectos.First();
                                 Console.WriteLine();
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine($"Se ha Cofirmado Correctamente la Entrega ({entregaAConfirmar.CodigoUnico})");
