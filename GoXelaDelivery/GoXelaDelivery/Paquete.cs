@@ -206,7 +206,7 @@ namespace GoXelaDelivery
 
 	internal class ProductoRefrigerado : Paquete
 	{
-        public ProductoRefrigerado(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen, string nuevaDireccionDestino) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen, nuevaDireccionDestino)
+        public ProductoRefrigerado(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
         {
             EstadoPaquete = EstadoPaquete.NoAsignado;
             Prefijo = "RPQ";
