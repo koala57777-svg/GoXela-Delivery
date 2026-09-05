@@ -479,8 +479,12 @@ namespace GoXelaDelivery
             while (!telefonoConfirmado)
             { 
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write($"Presione Enter para enviar. \nEl número debe ser de 8 dígitos.\n\n Ingresar: ");
+                Console.ResetColor();
                 StringBuilder sb = new StringBuilder(tamanoRequerido, tamanoRequerido);
 
                 do
@@ -490,7 +494,15 @@ namespace GoXelaDelivery
                     {
                         if (int.TryParse(sb.ToString(), out int numeroConvertido))
                         {
-                            Console.Write($"\n\nConfirmar el número de teléfono {numeroConvertido} (Yes/No): ");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write($"\n\nConfirmar el número de teléfono ");
+                            Console.ResetColor();
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(numeroConvertido);
+                            Console.ResetColor();
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write(" (Yes/No): ");
+                            Console.ResetColor();
                             string respuesta = Console.ReadLine().ToLower().Trim();
 
                             if (respuesta == "yes")
@@ -507,7 +519,9 @@ namespace GoXelaDelivery
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("\nElección inválida");
+                                Console.ResetColor();
                                 Mostrar("Reiniciando teléfono", 1);
                                 break;
                             }
@@ -562,15 +576,27 @@ namespace GoXelaDelivery
             while (!correoConfirmado)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("Presione Enter para enviar\n\n Ingresar: ");
+                Console.ResetColor();
                 StringBuilder sb = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
                 do
                 {
                     ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
                     if (teclaInfo.Key == ConsoleKey.Enter && sb.Length > 0 && sb.Length <= limiteCaracteres && sb.ToString().Contains('@') && sb.ToString().Contains('.') && sb[sb.Length - 1] != '.' && sb[sb.Length - 1] != ' ')
                     {
-                        Console.Write($"\n\nConfirmar correo {sb.ToString()} (Yes/No): ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"\n\nConfirmar correo ");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(sb.ToString());
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(" (Yes/No): ");
+                        Console.ResetColor();
                         string respuesta = Console.ReadLine().ToLower().Trim();
 
                         if (respuesta == "yes")
@@ -587,7 +613,9 @@ namespace GoXelaDelivery
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("\nElección inválida");
+                            Console.ResetColor();
                             Mostrar("Reiniciando correo", 1);
                             break;
                         }
@@ -666,15 +694,27 @@ namespace GoXelaDelivery
             int anchoConsola = Console.WindowWidth;
             int espacios = (anchoConsola - mensajeSolicitudDeMunicipio.Length) / 2;
             if (espacios < 0) espacios = 0;
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeMunicipio.ToUpper());
+            Console.ResetColor();
             Console.Write("\n\n");
             StringBuilder sbMunicipio = new StringBuilder(1, 1);
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Ingrese el número de su municipio\n");
+            Console.ResetColor();
             foreach (string municipio in listaMunicipios)
             {
-                Console.WriteLine($"{listaMunicipios.IndexOf(municipio) + 1}. {municipio}");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write($"{listaMunicipios.IndexOf(municipio) + 1}. ");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"{municipio}");
+                Console.ResetColor();
+                Console.WriteLine();
             }
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("\nElección: ");
+            Console.ResetColor();
             do
             {
                 ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
@@ -682,8 +722,16 @@ namespace GoXelaDelivery
                 {
                     numeroMunicipioElegido = int.Parse(sbMunicipio.ToString());
 
-                    Console.Write($"\n\nConfirmar elección de {listaMunicipios[numeroMunicipioElegido - 1]} (Yes/No): ");
-                    string respuesta = Console.ReadLine().ToLower();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write($"\n\nConfirmar elección de ");
+                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write(listaMunicipios[numeroMunicipioElegido - 1]);
+                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(" (Yes/No): ");
+                    Console.ResetColor();
+                    string respuesta = Console.ReadLine().ToLower().Trim();
 
                     if (respuesta == "no")
                     {
@@ -698,7 +746,9 @@ namespace GoXelaDelivery
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nElección inválida");
+                        Console.ResetColor();
                         Mostrar("Reiniciando municipio", 1);
                         Console.Clear();
                         return MenuMunicipios();
@@ -741,8 +791,12 @@ namespace GoXelaDelivery
             while (!direccionConfirmada)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("Presione Enter para enviar\n\n Ingresar: ");
+                Console.ResetColor();
 
                 StringBuilder sbDireccionCompleta = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
                 sbDireccionCompleta.Append($"{municipioElegido}, ");
@@ -756,7 +810,15 @@ namespace GoXelaDelivery
 
                     if (teclaInfo.Key == ConsoleKey.Enter && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length <= limiteCaracteres)
                     {
-                        Console.Write($"\n\nConfirmar dirección de destino en {municipioElegido} (Yes/No): ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"\n\nConfirmar dirección de destino en ");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(municipioElegido);
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(" (Yes/No): ");
+                        Console.ResetColor();
                         string respuesta = Console.ReadLine().ToLower().Trim();
 
                         if (respuesta == "yes")
@@ -772,7 +834,9 @@ namespace GoXelaDelivery
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("\nElección inválida");
+                            Console.ResetColor();
                             Mostrar("Reiniciando dirección", 1);
                             break;
                         }
@@ -822,25 +886,28 @@ namespace GoXelaDelivery
             cliente.DireccionDestino = direccionFinal;
         }
 
-        internal static void ValidarDireccion(Paquete paquete)
+        internal static string ValidarDireccion(Municipio municipioDestino)
         {
-            int numeroMunicipioElegido = MenuMunicipios();
-            string municipioElegido = ((Municipio)numeroMunicipioElegido).ObtenerDescripcion();
-            paquete.MunicipioOrigen = (Municipio)numeroMunicipioElegido;
+            string municipioElegido = municipioDestino.ObtenerDescripcion();
+
 
             int limiteCaracteres = 80;
             string mensajeSolicitudDeDatos = "Ingrese su dirección completa";
             int anchoConsola = Console.WindowWidth;
-            int espacios = Math.Max(0, (anchoConsola - mensajeSolicitudDeDatos.Length) / 2);
+            int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
 
             bool direccionConfirmada = false;
-            string direccionOrigen = string.Empty;
+            string direccionFinal = string.Empty;
 
             while (!direccionConfirmada)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("Presione Enter para enviar\n\n Ingresar: ");
+                Console.ResetColor();
 
                 StringBuilder sbDireccionCompleta = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
                 sbDireccionCompleta.Append($"{municipioElegido}, ");
@@ -854,12 +921,20 @@ namespace GoXelaDelivery
 
                     if (teclaInfo.Key == ConsoleKey.Enter && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length <= limiteCaracteres)
                     {
-                        Console.Write($"\n\nConfirmar dirección de destino en {municipioElegido} (Yes/No): ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"\n\nConfirmar dirección de destino en ");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(municipioElegido);
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(" (Yes/No): ");
+                        Console.ResetColor();
                         string respuesta = Console.ReadLine().ToLower().Trim();
 
                         if (respuesta == "yes")
                         {
-                            direccionOrigen = sbDireccionCompleta.ToString();
+                            direccionFinal = sbDireccionCompleta.ToString();
                             direccionConfirmada = true;
                             break;
                         }
@@ -870,7 +945,121 @@ namespace GoXelaDelivery
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("\nElección inválida");
+                            Console.ResetColor();
+                            Mostrar("Reiniciando dirección", 1);
+                            break;
+                        }
+                    }
+
+                    if (teclaInfo.Key == ConsoleKey.Backspace && sbDireccionCompleta.Length > longitudMinima)
+                    {
+                        sbDireccionCompleta.Remove(sbDireccionCompleta.Length - 1, 1);
+                        Console.Write("\b \b");
+                    }
+
+                    if (sbDireccionCompleta.Length < limiteCaracteres)
+                    {
+                        if (char.IsLetterOrDigit(teclaInfo.KeyChar))
+                        {
+                            sbDireccionCompleta.Append(teclaInfo.KeyChar);
+                            Console.Write(teclaInfo.KeyChar);
+                        }
+                        else if (teclaInfo.Key == ConsoleKey.Spacebar && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length + 1 != limiteCaracteres)
+                        {
+                            if (sbDireccionCompleta[sbDireccionCompleta.Length - 1] != ' ')
+                            {
+                                sbDireccionCompleta.Append(' ');
+                                Console.Write(' ');
+                            }
+                        }
+                        else if (teclaInfo.KeyChar == ',' && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length + 1 != limiteCaracteres)
+                        {
+                            if (sbDireccionCompleta[sbDireccionCompleta.Length - 1] != ',')
+                            {
+                                sbDireccionCompleta.Append(',');
+                                Console.Write(',');
+                            }
+                        }
+                        else if (teclaInfo.KeyChar == '-' && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length + 1 != limiteCaracteres)
+                        {
+                            if (sbDireccionCompleta[sbDireccionCompleta.Length - 1] != '-')
+                            {
+                                sbDireccionCompleta.Append('-');
+                                Console.Write('-');
+                            }
+                        }
+                    }
+                }
+            }
+            return direccionFinal;
+
+        }
+
+        internal static void ValidarDireccion(Paquete paquete)
+        {
+            int numeroMunicipioElegido = MenuMunicipios();
+            string municipioElegido = ((Municipio)numeroMunicipioElegido).ObtenerDescripcion();
+            paquete.MunicipioOrigen = (Municipio)numeroMunicipioElegido;
+
+            int limiteCaracteres = 80;
+            string mensajeSolicitudDeDatos = "Ingrese su dirección completa";
+            int anchoConsola = Console.WindowWidth;
+            int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
+
+            bool direccionConfirmada = false;
+            string direccionFinal = string.Empty;
+
+            while (!direccionConfirmada)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("Presione Enter para enviar\n\n Ingresar: ");
+                Console.ResetColor();
+
+                StringBuilder sbDireccionCompleta = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
+                sbDireccionCompleta.Append($"{municipioElegido}, ");
+                int longitudMinima = sbDireccionCompleta.Length;
+                Console.Write(sbDireccionCompleta);
+
+
+                while (true)
+                {
+                    ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+
+                    if (teclaInfo.Key == ConsoleKey.Enter && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length <= limiteCaracteres)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"\n\nConfirmar dirección de origen del paquete en ");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(municipioElegido);
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(" (Yes/No): ");
+                        Console.ResetColor();
+                        string respuesta = Console.ReadLine().ToLower().Trim();
+
+                        if (respuesta == "yes")
+                        {
+                            direccionFinal = sbDireccionCompleta.ToString();
+                            direccionConfirmada = true;
+                            break;
+                        }
+                        else if (respuesta == "no")
+                        {
+                            Mostrar("Reiniciando dirección", 1);
+                            break;
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\nElección inválida");
+                            Console.ResetColor();
                             Mostrar("Reiniciando dirección", 1);
                             break;
                         }
@@ -917,7 +1106,118 @@ namespace GoXelaDelivery
                 }
             }
 
-            paquete.DireccionOrigen = direccionOrigen;
+            paquete.DireccionOrigen = direccionFinal;
+        }
+
+        internal static string ValidarDireccion(Municipio municipioOrigen, bool direccionOrigen)
+        {
+            string municipioElegido = municipioOrigen.ObtenerDescripcion();
+
+
+            int limiteCaracteres = 80;
+            string mensajeSolicitudDeDatos = "Ingrese su dirección completa";
+            int anchoConsola = Console.WindowWidth;
+            int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
+
+            bool direccionConfirmada = false;
+            string direccionFinal = string.Empty;
+
+            while (!direccionConfirmada)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("Presione Enter para enviar\n\n Ingresar: ");
+                Console.ResetColor();
+
+                StringBuilder sbDireccionCompleta = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
+                sbDireccionCompleta.Append($"{municipioElegido}, ");
+                int longitudMinima = sbDireccionCompleta.Length;
+                Console.Write(sbDireccionCompleta);
+
+
+                while (true)
+                {
+                    ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+
+                    if (teclaInfo.Key == ConsoleKey.Enter && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length <= limiteCaracteres)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"\n\nConfirmar dirección de origen del paquete en ");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(municipioElegido);
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(" (Yes/No): ");
+                        Console.ResetColor();
+                        string respuesta = Console.ReadLine().ToLower().Trim();
+
+                        if (respuesta == "yes")
+                        {
+                            direccionFinal = sbDireccionCompleta.ToString();
+                            direccionConfirmada = true;
+                            break;
+                        }
+                        else if (respuesta == "no")
+                        {
+                            Mostrar("Reiniciando dirección", 1);
+                            break;
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\nElección inválida");
+                            Console.ResetColor();
+                            Mostrar("Reiniciando dirección", 1);
+                            break;
+                        }
+                    }
+
+                    if (teclaInfo.Key == ConsoleKey.Backspace && sbDireccionCompleta.Length > longitudMinima)
+                    {
+                        sbDireccionCompleta.Remove(sbDireccionCompleta.Length - 1, 1);
+                        Console.Write("\b \b");
+                    }
+
+                    if (sbDireccionCompleta.Length < limiteCaracteres)
+                    {
+                        if (char.IsLetterOrDigit(teclaInfo.KeyChar))
+                        {
+                            sbDireccionCompleta.Append(teclaInfo.KeyChar);
+                            Console.Write(teclaInfo.KeyChar);
+                        }
+                        else if (teclaInfo.Key == ConsoleKey.Spacebar && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length + 1 != limiteCaracteres)
+                        {
+                            if (sbDireccionCompleta[sbDireccionCompleta.Length - 1] != ' ')
+                            {
+                                sbDireccionCompleta.Append(' ');
+                                Console.Write(' ');
+                            }
+                        }
+                        else if (teclaInfo.KeyChar == ',' && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length + 1 != limiteCaracteres)
+                        {
+                            if (sbDireccionCompleta[sbDireccionCompleta.Length - 1] != ',')
+                            {
+                                sbDireccionCompleta.Append(',');
+                                Console.Write(',');
+                            }
+                        }
+                        else if (teclaInfo.KeyChar == '-' && sbDireccionCompleta.Length > longitudMinima && sbDireccionCompleta.Length + 1 != limiteCaracteres)
+                        {
+                            if (sbDireccionCompleta[sbDireccionCompleta.Length - 1] != '-')
+                            {
+                                sbDireccionCompleta.Append('-');
+                                Console.Write('-');
+                            }
+                        }
+                    }
+                }
+            }
+            return direccionFinal;
+
         }
 
         internal static string ValidarAlfanumerico(string mensajePedirDatos, int limiteCaracteres)
