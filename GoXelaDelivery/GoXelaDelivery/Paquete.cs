@@ -45,7 +45,7 @@ namespace GoXelaDelivery
 			MunicipioOrigen = nuevoMunicipioOrigen;
 		}
 
-        protected void MostrarInformacion()
+        internal virtual void MostrarInformacion()
         {
             Console.WriteLine("ID: " + CodigoUnico);
             Console.WriteLine();
@@ -72,12 +72,12 @@ namespace GoXelaDelivery
             Console.WriteLine("Municipio de Destino: " + MunicipioDestino);
         }
 
-        protected void CambiarEstado(EstadoPaquete nuevoEstadoPaquete)
+        internal void CambiarEstado(EstadoPaquete nuevoEstadoPaquete)
 		{
 			EstadoPaquete = nuevoEstadoPaquete;
 		}
 
-		protected void CambiarDescripcion(string nuevaDescripcion)
+		internal void CambiarDescripcion(string nuevaDescripcion)
 		{
 			Descripcion = nuevaDescripcion;
 		}
