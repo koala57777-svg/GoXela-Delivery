@@ -25,14 +25,26 @@ namespace GoXelaDelivery
 
 		internal virtual void MostrarInformacion()
 		{
-            Console.WriteLine("ID: " + CodigoUnico);
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.Write("ID: ");
+			Console.ResetColor();
+            Console.Write(CodigoUnico);
+			Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Prefijo: ");
+            Console.ResetColor();
+            Console.Write(Prefijo);
             Console.WriteLine();
-            Console.WriteLine("Prefijo: " + Prefijo);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Nombre Completo: ");
+            Console.ResetColor();
+            Console.Write(NombreCompleto);
             Console.WriteLine();
-            Console.WriteLine("Nombre Completo: " + NombreCompleto);
-            Console.WriteLine();
-            Console.WriteLine("Número de Teléfono: " + NumeroTelefono);
-		}
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Número de Teléfono: ");
+            Console.ResetColor();
+            Console.Write(NumeroTelefono);
+        }
 
 		public int NumeroTelefono
 		{
@@ -82,13 +94,25 @@ namespace GoXelaDelivery
 		{
 			base.MostrarInformacion();
 			Console.WriteLine();
-			Console.WriteLine("Correo Electrónico: " + CorreoElectronico);
-			Console.WriteLine();
-			Console.WriteLine("Dirección de Destino: " + DireccionDestino);
-			Console.WriteLine();
-			Console.WriteLine("Municipio de Destino: " + MunicipioDestino);
-			Console.WriteLine();
-			Console.WriteLine("Cantidad de Solicitudes Realizadas: " + SolicitudesRealizadas);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Correo Electrónico: ");
+            Console.ResetColor();
+            Console.Write(CorreoElectronico);
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Dirección de Destino: ");
+            Console.ResetColor();
+            Console.Write(DireccionDestino);
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Municipio de Destino: " );
+            Console.ResetColor();
+            Console.Write(MunicipioDestino);
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Cantidad de Solicitudes Realizadas: ");
+            Console.ResetColor();
+            Console.Write(SolicitudesRealizadas);
         }
 
 		public int SolicitudesRealizadas
@@ -145,17 +169,35 @@ namespace GoXelaDelivery
         {
             base.MostrarInformacion();
             Console.WriteLine();
-            Console.WriteLine("Número de Licencia: " + NumeroLicencia);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Número de Licencia: ");
+            Console.ResetColor();
+            Console.Write(NumeroLicencia);
             Console.WriteLine();
-            Console.WriteLine("Tipo de Licencia: " + TipoLicencia);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Tipo de Licencia: ");
+            Console.ResetColor();
+            Console.Write(TipoLicencia);
             Console.WriteLine();
-            Console.WriteLine("Estado de Disponibilidad: " + EstadoDisponibilidad);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Estado de Disponibilidad: ");
+            Console.ResetColor();
+            Console.Write(EstadoDisponibilidad);
             Console.WriteLine();
-            Console.WriteLine("Cantidad de Entregas Realizadas: " + CantidadEntregasRealizadas);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Cantidad de Entregas Realizadas: ");
+            Console.ResetColor();
+            Console.Write(CantidadEntregasRealizadas);
             Console.WriteLine();
-            Console.WriteLine("Calificación Total: " + CalificacionTotal);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Calificación Total: ");
+            Console.ResetColor();
+            Console.Write(CalificacionTotal);
             Console.WriteLine();
-            Console.WriteLine("Calificación Promedio: " + CalificacionPromedio);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Calificación Promedio: ");
+            Console.ResetColor();
+            Console.Write(CalificacionPromedio);
         }
 
         public double CalificacionPromedio
