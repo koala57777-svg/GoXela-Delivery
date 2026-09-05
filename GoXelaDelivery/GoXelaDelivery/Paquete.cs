@@ -33,7 +33,7 @@ namespace GoXelaDelivery
 
 		private Municipio municipioDestino;
 
-		public Paquete(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen)
+		public Paquete(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen, string nuevaDireccionDestino)
 		{
 			TipoPaquete = nuevoTipoPaquete;
 			Descripcion = nuevaDescripcion;
@@ -43,6 +43,7 @@ namespace GoXelaDelivery
 			DireccionOrigen = nuevaDireccionOrigen;
 			EstadoPaquete = EstadoPaquete.NoAsignado;
 			MunicipioOrigen = nuevoMunicipioOrigen;
+			DireccionDestino = nuevaDireccionDestino;
 		}
 
         internal virtual void MostrarInformacion()
@@ -51,7 +52,7 @@ namespace GoXelaDelivery
             Console.WriteLine();
             Console.WriteLine("Prefijo: " + Prefijo);
             Console.WriteLine();
-            Console.WriteLine("Tipo de Paquete: " + TipoPaquete);
+            Console.WriteLine("Tipo de Paquete: " + TipoPaquete.ObtenerDescripcion());
             Console.WriteLine();
             Console.WriteLine("Descripción del Paquete: " + Descripcion);
             Console.WriteLine();
@@ -59,17 +60,17 @@ namespace GoXelaDelivery
             Console.WriteLine();
             Console.WriteLine("Valor Declarado: " + ValorDeclarado);
             Console.WriteLine();
-            Console.WriteLine("Cliente del Paquete: " + ClientePaquete);
+            Console.WriteLine("Cliente del Paquete: " + ClientePaquete.NombreCompleto);
             Console.WriteLine();
             Console.WriteLine("Dirección de Origen: " + DireccionOrigen);
             Console.WriteLine();
             Console.WriteLine("Dirección de Destino: " + DireccionDestino);
             Console.WriteLine();
-            Console.WriteLine("Estado del Paquete: " + EstadoPaquete);
+            Console.WriteLine("Estado del Paquete: " + EstadoPaquete.ObtenerDescripcion());
             Console.WriteLine();
-            Console.WriteLine("Municipio de Origen: " + MunicipioOrigen);
+            Console.WriteLine("Municipio de Origen: " + MunicipioOrigen.ObtenerDescripcion());
             Console.WriteLine();
-            Console.WriteLine("Municipio de Destino: " + MunicipioDestino);
+            Console.WriteLine("Municipio de Destino: " + MunicipioDestino.ObtenerDescripcion());
         }
 
         internal void CambiarEstado(EstadoPaquete nuevoEstadoPaquete)
@@ -162,7 +163,7 @@ namespace GoXelaDelivery
 
 	internal class Documento : Paquete
 	{
-		public Documento(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
+		public Documento(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen, string nuevaDireccionDestino) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen, nuevaDireccionDestino)
 		{
             EstadoPaquete = EstadoPaquete.NoAsignado;
             Prefijo = "DPQ";
@@ -176,7 +177,7 @@ namespace GoXelaDelivery
 
 	internal class PaqueteEstandar : Paquete
 	{
-        public PaqueteEstandar(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
+        public PaqueteEstandar(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen, string nuevaDireccionDestino) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen, nuevaDireccionDestino)
         {
             EstadoPaquete = EstadoPaquete.NoAsignado;
             Prefijo = "EPQ";
@@ -190,7 +191,7 @@ namespace GoXelaDelivery
 
     internal class PaqueteFragil : Paquete
     {
-        public PaqueteFragil(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
+        public PaqueteFragil(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen, string nuevaDireccionDestino) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen, nuevaDireccionDestino)
         {
             EstadoPaquete = EstadoPaquete.NoAsignado;
             Prefijo = "FPQ";
@@ -204,7 +205,7 @@ namespace GoXelaDelivery
 
 	internal class ProductoRefrigerado : Paquete
 	{
-        public ProductoRefrigerado(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
+        public ProductoRefrigerado(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen, string nuevaDireccionDestino) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen, nuevaDireccionDestino)
         {
             EstadoPaquete = EstadoPaquete.NoAsignado;
             Prefijo = "RPQ";

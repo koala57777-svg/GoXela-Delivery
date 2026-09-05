@@ -58,15 +58,15 @@ namespace GoXelaDelivery
             Console.WriteLine();
             Console.WriteLine("Capacidad Máxima de Carga: " + CapacidadMaxima);
             Console.WriteLine();
-            Console.WriteLine("Estado del Vehículo: " + EstadoVehiculo);
+            Console.WriteLine("Estado del Vehículo: " + EstadoVehiculo.ObtenerDescripcion());
             Console.WriteLine();
             Console.WriteLine("Entregas Realizadas: " + EntregasRealizadas);
             Console.WriteLine();
-            Console.WriteLine("Tipo de Vehículo: " + TipoVehiculo);
+            Console.WriteLine("Tipo de Vehículo: " + TipoVehiculo.ObtenerDescripcion());
             Console.WriteLine();
             Console.WriteLine("Repartidor Asignado: " + RepartidorAsignado);
             Console.WriteLine();
-            Console.WriteLine("Especialización del Vehículo: " + Especializacion);
+            Console.WriteLine("Especialización del Vehículo: " + Especializacion.ObtenerDescripcion());
         }
 
         internal void ModificarEstado(EstadoVehiculo nuevoEstadoVehiculo)

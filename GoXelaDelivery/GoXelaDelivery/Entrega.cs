@@ -109,7 +109,7 @@ namespace GoXelaDelivery
             Console.WriteLine();
             Console.WriteLine("Vehículo Asignado: " + VehiculoAsigando);
             Console.WriteLine();
-            Console.WriteLine("Vehículo General: " + VehiculoGeneral);
+            Console.WriteLine("Vehículo General: " + VehiculoGeneral.ObtenerDescripcion());
             Console.WriteLine();
             Console.WriteLine("Distancia Estimada (Km): " + DistanciaEstimada);
             Console.WriteLine();

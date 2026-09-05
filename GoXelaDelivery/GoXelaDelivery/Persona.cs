@@ -177,12 +177,12 @@ namespace GoXelaDelivery
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Tipo de Licencia: ");
             Console.ResetColor();
-            Console.Write(TipoLicencia);
+            Console.Write(TipoLicencia.ObtenerDescripcion());
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Estado de Disponibilidad: ");
             Console.ResetColor();
-            Console.Write(EstadoDisponibilidad);
+            Console.Write(EstadoDisponibilidad.ObtenerDescripcion());
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Cantidad de Entregas Realizadas: ");

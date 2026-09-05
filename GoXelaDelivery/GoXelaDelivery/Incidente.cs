@@ -39,11 +39,11 @@ namespace GoXelaDelivery
             Console.WriteLine();
             Console.WriteLine("Prefijo: " + Prefijo);
             Console.WriteLine();
-            Console.WriteLine("Tipo de Incidente: " + TipoIncidente);
+            Console.WriteLine("Tipo de Incidente: " + TipoIncidente.ObtenerDescripcion());
             Console.WriteLine();
             Console.WriteLine("Descripción del Incidente: " + Descripcion);
             Console.WriteLine();
-            Console.WriteLine("Estado de la Incidencia: " + EstadoIncidente);
+            Console.WriteLine("Estado de la Incidencia: " + EstadoIncidente.ObtenerDescripcion());
             Console.WriteLine();
             Console.WriteLine("Acción Tomada: " + AccionTomada);
             Console.WriteLine();
