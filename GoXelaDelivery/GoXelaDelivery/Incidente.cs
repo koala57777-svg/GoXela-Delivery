@@ -52,9 +52,9 @@ namespace GoXelaDelivery
             Console.WriteLine("Fecha del Incidente: "+ FechaIncidente);
 		}
 
-		protected void CambiarEstado(EstadoIncidencia nuevoEstado)
+		protected void CambiarEstado(Incidente incidente, EstadoIncidencia nuevoEstado)
 		{
-			EstadoIncidente = nuevoEstado;
+			if (incidente.AccionTomada == null)
 		}
 
 		protected void CambiarAccionTomada(string nuevaAccionTomada)

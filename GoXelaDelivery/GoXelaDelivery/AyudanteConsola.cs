@@ -18,66 +18,79 @@ namespace GoXelaDelivery
     {
         public static void ConfirmarEntrega(Entrega entregaAConfirmar, Delivery goXelaDelivey)
         {
-            if ((goXelaDelivey.ListaVehiculos[0].Count == 0 && goXelaDelivey.ListaVehiculos[1].Count == 0 && goXelaDelivey.ListaVehiculos[2].Count == 0) || (goXelaDelivey.ListaVehiculos[0] == null && goXelaDelivey.ListaVehiculos[1] == null && goXelaDelivey.ListaVehiculos[2] == null))
+            if (entregaAConfirmar.EstadoEntrega == EstadoEntrega.Cofirmado)
             {
                 Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("No hay ningún Vehículo Registrado");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("La Entrega ya está Confirmada.");
                 Console.ResetColor();
                 LimpiarConsola();
                 return;
             }
             else
             {
-                ListaVehiculosCorrectos = EncontrarVehiculoCorrecto(entregaAConfirmar, goXelaDelivey);
-                if (ListaVehiculosCorrectos.Count == 0 || ListaVehiculosCorrectos == null)
+                if ((goXelaDelivey.ListaVehiculos[0].Count == 0 && goXelaDelivey.ListaVehiculos[1].Count == 0 && goXelaDelivey.ListaVehiculos[2].Count == 0) || (goXelaDelivey.ListaVehiculos[0] == null && goXelaDelivey.ListaVehiculos[1] == null && goXelaDelivey.ListaVehiculos[2] == null))
                 {
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("No hay ningún Vehículo que Pueda llevar el Paquete");
+                    Console.WriteLine("No hay ningún Vehículo Registrado");
                     Console.ResetColor();
                     LimpiarConsola();
                     return;
                 }
                 else
                 {
-                    if (goXelaDelivey.ListaRepartidores.Count == 0 || goXelaDelivey.ListaRepartidores == null)
+                    ListaVehiculosCorrectos = EncontrarVehiculoCorrecto(entregaAConfirmar, goXelaDelivey);
+                    if (ListaVehiculosCorrectos.Count == 0 || ListaVehiculosCorrectos == null)
                     {
                         Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("No hay ningún Repartidor Registrado");
+                        Console.WriteLine("No hay ningún Vehículo que Pueda llevar el Paquete");
                         Console.ResetColor();
                         LimpiarConsola();
                         return;
                     }
                     else
                     {
-                        ListaRepartidoresCorrectos = EncontrarRepartidorCorrecto(entregaAConfirmar, goXelaDelivey);
-                        if (ListaRepartidoresCorrectos.Count == 0 || ListaRepartidoresCorrectos == null)
+                        if (goXelaDelivey.ListaRepartidores.Count == 0 || goXelaDelivey.ListaRepartidores == null)
                         {
                             Console.WriteLine();
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("No hay ningún Repartidor que Pueda llevar el Paquete");
+                            Console.WriteLine("No hay ningún Repartidor Registrado");
                             Console.ResetColor();
                             LimpiarConsola();
                             return;
                         }
                         else
                         {
-                            entregaAConfirmar.VehiculoAsigando = ListaVehiculosCorrectos.First();
-                            entregaAConfirmar.RepartidorAsignado = ListaRepartidoresCorrectos.First();
-                            entregaAConfirmar.VehiculoAsigando.EstadoVehiculo = EstadoVehiculo.Asignado;
-                            entregaAConfirmar.RepartidorAsignado.EstadoDisponibilidad = EstadoRepartidor.Asignado;
-                            Console.WriteLine();
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"Se ha Cofirmado Correctamente la Entrega ({entregaAConfirmar.CodigoUnico})");
-                            Console.WriteLine();
-                            Console.WriteLine($"Repartidor Asignado: {entregaAConfirmar.RepartidorAsignado.NombreCompleto} ({entregaAConfirmar.RepartidorAsignado.CodigoUnico})");
-                            Console.WriteLine();
-                            Console.WriteLine($"Vehículo Asigando: Placa {entregaAConfirmar.VehiculoAsigando.Placa} ({entregaAConfirmar.VehiculoAsigando.CodigoUnico})");
-                            Console.WriteLine();
-                            Console.ResetColor();
-                            LimpiarConsola();
+                            ListaRepartidoresCorrectos = EncontrarRepartidorCorrecto(entregaAConfirmar, goXelaDelivey);
+                            if (ListaRepartidoresCorrectos.Count == 0 || ListaRepartidoresCorrectos == null)
+                            {
+                                Console.WriteLine();
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine("No hay ningún Repartidor que Pueda llevar el Paquete");
+                                Console.ResetColor();
+                                LimpiarConsola();
+                                return;
+                            }
+                            else
+                            {
+                                entregaAConfirmar.VehiculoAsigando = ListaVehiculosCorrectos.First();
+                                entregaAConfirmar.RepartidorAsignado = ListaRepartidoresCorrectos.First();
+                                entregaAConfirmar.VehiculoAsigando.EstadoVehiculo = EstadoVehiculo.Asignado;
+                                entregaAConfirmar.RepartidorAsignado.EstadoDisponibilidad = EstadoRepartidor.Asignado;
+                                entregaAConfirmar.EstadoEntrega = EstadoEntrega.Cofirmado;
+                                Console.WriteLine();
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"Se ha Cofirmado Correctamente la Entrega ({entregaAConfirmar.CodigoUnico})");
+                                Console.WriteLine();
+                                Console.WriteLine($"Repartidor Asignado: {entregaAConfirmar.RepartidorAsignado.NombreCompleto} ({entregaAConfirmar.RepartidorAsignado.CodigoUnico})");
+                                Console.WriteLine();
+                                Console.WriteLine($"Vehículo Asigando: Placa {entregaAConfirmar.VehiculoAsigando.Placa} ({entregaAConfirmar.VehiculoAsigando.CodigoUnico})");
+                                Console.WriteLine();
+                                Console.ResetColor();
+                                LimpiarConsola();
+                            }
                         }
                     }
                 }

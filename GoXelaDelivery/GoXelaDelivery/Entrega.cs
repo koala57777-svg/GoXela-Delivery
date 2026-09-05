@@ -52,6 +52,7 @@ namespace GoXelaDelivery
 
 		public Entrega(Paquete nuevoPaqueteEntrega, TipoVehiculoGeneral nuevoVehiculoGeneral, double nuevaDistanciaEstimada, TipoServicio nuevoTipoServicio, double nuevaTarifaBase)
 		{
+			EstadoEntrega = EstadoEntrega.Solicitado;
 			PaqueteEntrega = nuevoPaqueteEntrega;
 			VehiculoGeneral = nuevoVehiculoGeneral;
 			DistanciaEstimada = nuevaDistanciaEstimada;
@@ -103,6 +104,56 @@ namespace GoXelaDelivery
             Console.WriteLine("Total de la Entrega (Pueden aplicar Recargos y Descuentos): Q" + Total);
 		}
 
+		internal void CambiarEstadoEntregaConfirmada(Entrega entregaACambiarEstado)
+		{
+			if (entregaACambiarEstado.EstadoEntrega == EstadoEntrega.Solicitado)
+			{
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("No se puede el estado de la entrega. Confirme la Entrega primero");
+                Console.ResetColor();
+                LimpiarConsola();
+                return;
+            }
+			else
+			{
+				if (entregaACambiarEstado.EstadoEntrega == EstadoEntrega.Reprogramado)
+				{
+					entregaACambiarEstado.EstadoEntrega = EstadoEntrega.Cofirmado;
+				}
+
+                if (entregaACambiarEstado.ListaIncidentes != null && entregaACambiarEstado.ListaIncidentes.Any())
+                {
+                    bool todosResueltos = entregaACambiarEstado.ListaIncidentes.All(incidente => incidente.EstadoIncidente == EstadoIncidencia.Resuelta);
+                    if (todosResueltos)
+                    {
+                        entregaACambiarEstado.EstadoEntrega = (EstadoEntrega)((int)entregaACambiarEstado.EstadoEntrega + 1);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"Se ha cambiado Correctamente el Estado de la Entrega. Nuevo Estado: {entregaACambiarEstado.EstadoEntrega}");
+                        Console.ResetColor();
+                        LimpiarConsola();
+                        return;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("No se puede cambiar el estado: existen incidentes marcados como Sin Resolver.");
+                        Console.ResetColor();
+                        LimpiarConsola();
+                        return;
+                    }
+                }
+                else
+                {
+                    entregaACambiarEstado.EstadoEntrega = (EstadoEntrega)((int)entregaACambiarEstado.EstadoEntrega + 1);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"Se ha cambiado Correctamente el Estado de la Entrega. Nuevo Estado: {entregaACambiarEstado.EstadoEntrega}");
+                    Console.ResetColor();
+                    LimpiarConsola();
+                    return;
+                }
+            }
+		}
+
 		internal void CancelarEntrega(Entrega entregaACancelar)
 		{
 			entregaACancelar.EstadoEntrega = EstadoEntrega.Cancelada;
@@ -110,7 +161,18 @@ namespace GoXelaDelivery
 
 		internal void ReprogramarEntrega(Entrega entregaAReprogramar)
 		{
-			entregaAReprogramar.EstadoEntrega = EstadoEntrega.Reprogramado;
+			if (entregaAReprogramar.estadoEntrega != EstadoEntrega.Cofirmado)
+			{
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("No se puede Reprogramar la entrega. Debe solo estar en Confirmada para poder hacerlo");
+                Console.ResetColor();
+                LimpiarConsola();
+                return;
+            }
+			else
+			{
+                entregaAReprogramar.EstadoEntrega = EstadoEntrega.Reprogramado;
+            }
 		}
 
 		internal void CalcularTotalEntregaConfirmada(Entrega entregaConfirmada)

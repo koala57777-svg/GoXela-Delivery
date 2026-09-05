@@ -99,8 +99,6 @@ namespace GoXelaDelivery
         {
             [Description("Sin resolver")]
             SinResolver = 1,
-            [Description("En revisión")]
-            EnRevision,
             Resuelta
         }
 
