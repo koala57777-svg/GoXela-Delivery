@@ -1229,16 +1229,27 @@ namespace GoXelaDelivery
             while (!alfanumericoConfirmado)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine(new string(' ', espacios) + mensajePedirDatos.ToUpper());
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write($"\n\n Ingresar: ");
+                Console.ResetColor();
                 StringBuilder sb = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
                 do
                 {
                     ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
                     if (teclaInfo.Key == ConsoleKey.Enter && sb.Length > 0 && sb.Length <= limiteCaracteres)
                     {
-
-                        Console.Write($"\n\nConfirmar el texto {sb.ToString()} (Yes/No): ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"\n\nConfirmar el texto ");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(sb.ToString());
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(" (Yes/No): ");
+                        Console.ResetColor();
                         string respuesta = Console.ReadLine().ToLower().Trim();
 
                         if (respuesta == "yes")
@@ -1255,7 +1266,9 @@ namespace GoXelaDelivery
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("\nElección inválida");
+                            Console.ResetColor();
                             Mostrar("Reiniciando texto", 1);
                             break;
                         }
@@ -1290,10 +1303,14 @@ namespace GoXelaDelivery
             while (!calificacionConfirmada)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write($"\nCalificación de 1.0 a 5.0 \n\n Ingresar: ");
+                Console.ResetColor();
 
-                
+
                 StringBuilder sb = new StringBuilder(tamanoRequerido, tamanoRequerido);
 
                 do
@@ -1309,7 +1326,15 @@ namespace GoXelaDelivery
 
                             if (numeroDividido >= 1.0 && numeroDividido <= 5.0 && numeroConvertido % 5 == 0)
                             {
-                                Console.Write($"\n\nConfirmar la calificación de {numeroDividido:F1} (Yes/No): ");
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write($"\n\nConfirmar la calificación de ");
+                                Console.ResetColor();
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                                Console.Write($"{numeroDividido:F1}");
+                                Console.ResetColor();
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write(" (Yes/No): ");
+                                Console.ResetColor();
                                 string respuesta = Console.ReadLine().ToLower().Trim();
 
                                 if (respuesta == "yes")
@@ -1326,7 +1351,9 @@ namespace GoXelaDelivery
                                 }
                                 else
                                 {
+                                    Console.ForegroundColor = ConsoleColor.Red;
                                     Console.WriteLine("\n Calificación inválida. Ingrese una calificación válida (ej. 2.5, 4.0)");
+                                    Console.ResetColor();
                                     Mostrar("Reiniciando número", 1);
                                     break;
                                 }
