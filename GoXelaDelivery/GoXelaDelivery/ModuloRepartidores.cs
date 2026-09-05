@@ -206,7 +206,7 @@ namespace GoXelaDelivery
         {
             string nombreCompletoRepartidor = ValidarTexto("Ingrese el Nombre Completo: ", 35);
             int numeroTelefonoRepartidor = ValidarTelefono();
-            int numeroLicenciaRepartidor = ValidarNumerico("Ingrese el número de licencia (5 dígitos)", 5);
+            int numeroLicenciaRepartidor = ValidarNumerico("Ingrese el número de licencia (hasta 5 dígitos)", 5, true);
             int numeroTipoLicenciaElegida = ValidarNumerico(1, MenuTipoLicencias, Enum.GetNames(typeof(TipoLicencia)).Length);
             TipoLicencia tipoLicenciaRepartidor = (TipoLicencia)numeroTipoLicenciaElegida;
             int numeroEstadoRepartidorElegida = ValidarNumerico(1, MenuEstadoDisponibilidad, Enum.GetNames(typeof(EstadoRepartidor)).Length);

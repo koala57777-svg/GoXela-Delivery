@@ -52,6 +52,7 @@
     <Compile Include="Globales.cs" />
     <Compile Include="Incidente.cs" />
     <Compile Include="ModuloClientes.cs" />
+    <Compile Include="ModuloPaquetes.cs" />
     <Compile Include="ModuloRepartidores.cs" />
     <Compile Include="ModuloVehiculos.cs" />
     <Compile Include="Paquete.cs" />
