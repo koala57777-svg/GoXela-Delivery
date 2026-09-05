@@ -51,6 +51,7 @@
     <Compile Include="GestorDistancias.cs" />
     <Compile Include="Globales.cs" />
     <Compile Include="Incidente.cs" />
+    <Compile Include="ModuloClientes.cs" />
     <Compile Include="Paquete.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Program.cs" />
