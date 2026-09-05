@@ -33,7 +33,7 @@ namespace GoXelaDelivery
 			EntregaRelacionada = nuevaEntregaRelacionada;
 		}
 
-		protected void MostrarInformacion()
+		internal void MostrarInformacion()
 		{
             Console.WriteLine("ID: " + CodigoUnico);
             Console.WriteLine();
@@ -52,7 +52,7 @@ namespace GoXelaDelivery
             Console.WriteLine("Fecha del Incidente: "+ FechaIncidente);
 		}
 
-		protected void CambiarEstado(Incidente incidenteACambiarEstado)
+		internal void CambiarEstado(Incidente incidenteACambiarEstado)
 		{
 			if (incidenteACambiarEstado.AccionTomada == null || incidenteACambiarEstado.AccionTomada.Length == 0)
 			{
@@ -73,7 +73,7 @@ namespace GoXelaDelivery
             }
 		}
 
-		protected void CambiarAccionTomada(string nuevaAccionTomada)
+		internal void CambiarAccionTomada(string nuevaAccionTomada)
 		{
 			AccionTomada = nuevaAccionTomada;
 		}
