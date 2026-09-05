@@ -69,13 +69,13 @@ namespace GoXelaDelivery
 
 		private int solicitudesRealizadas;
 
-		public Cliente(string nuevoNombreCompleto, int nuevoNumeroTelefono, string nuevoCorreoElectronico, string nuevaDireccionDestino, Municipio nuevoMunicipioDestino, int nuevasSolicitudesRealizadas) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
+		public Cliente(string nuevoNombreCompleto, int nuevoNumeroTelefono, string nuevoCorreoElectronico, string nuevaDireccionDestino, Municipio nuevoMunicipioDestino) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
 		{
 			Prefijo = "CLI";
 			CorreoElectronico = nuevoCorreoElectronico;
 			DireccionDestino = nuevaDireccionDestino;
 			MunicipioDestino = nuevoMunicipioDestino;
-			SolicitudesRealizadas = nuevasSolicitudesRealizadas;
+			SolicitudesRealizadas = 0;
 		}
 
 		internal override void MostrarInformacion()
@@ -130,13 +130,13 @@ namespace GoXelaDelivery
 
 		private double calificacionPromedio;
 
-		public Repartidor(string nuevoNombreCompleto, int nuevoNumeroTelefono, int nuevoNumeroLicencia, TipoLicencia nuevoTipoLicencia, EstadoRepartidor nuevoEstadoDisponibilidad, int nuevaCantidadEntregas, double nuevaCalificacionTotal, double nuevaCalificacionPromedio) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
+		public Repartidor(string nuevoNombreCompleto, int nuevoNumeroTelefono, int nuevoNumeroLicencia, TipoLicencia nuevoTipoLicencia, EstadoRepartidor nuevoEstadoDisponibilidad, double nuevaCalificacionTotal, double nuevaCalificacionPromedio) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
 		{
             Prefijo = "REP";
             NumeroLicencia = nuevoNumeroLicencia;
 			TipoLicencia = nuevoTipoLicencia;
 			EstadoDisponibilidad = nuevoEstadoDisponibilidad;
-			CantidadEntregasRealizadas = nuevaCantidadEntregas;
+			CantidadEntregasRealizadas = 0;
 			CalificacionTotal = nuevaCalificacionTotal;
 			CalificacionPromedio = nuevaCalificacionPromedio;
 		}

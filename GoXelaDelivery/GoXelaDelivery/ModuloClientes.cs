@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using static GoXelaDelivery.AyudanteConsola;
 using static GoXelaDelivery.Globales;
+using static GoXelaDelivery.Enums;
+
 
 namespace GoXelaDelivery
 {
     internal static class ModuloClientes
     {
-        public static void IniciarSubmenu(Delivery GoXelaDelivery)
+        public static void IniciarSubmenu()
         {
             OpcionMenuPrincipal = 0;
             do
@@ -60,10 +62,27 @@ namespace GoXelaDelivery
 
                         break;
                     default:
-
+                        ErroOpcionNoValida();
                         break;
                 }
             } while (OpcionMenuPrincipal != 4);
+        }
+
+        public static void RegistrarCliente(Delivery GoXelaDelivery)
+        {
+            string nombreCompletoCliente = ValidarTexto("Ingrese el Nombre Completo: ", 35);
+            int numeroTelefonoCliente = ValidarTelefono();
+            string correoElectronicoCliente = ValidarCorreo();
+            int numeroMunicipioElegido = MenuMunicipios();
+            Municipio municipioCliente = (Municipio)numeroMunicipioElegido;
+            string direccionCliente = ValidarDireccion(municipioCliente);
+            Cliente cliente = new Cliente(nombreCompletoCliente, numeroTelefonoCliente, correoElectronicoCliente, direccionCliente, municipioCliente);
+            GoXelaDelivery.IngresarCliente(cliente);
+        }
+
+        public static void MostarInformacionCliete()
+        {
+            
         }
     }
 }

@@ -10,17 +10,17 @@ namespace GoXelaDelivery
 {
     internal class Delivery
     {
-        private static List<Cliente> listaClientes = new List<Cliente>();
+        private  List<Cliente> listaClientes = new List<Cliente>();
 
-        private static List<Repartidor> listaRepartidores = new List<Repartidor>();
+        private  List<Repartidor> listaRepartidores = new List<Repartidor>();
 
-        private static List<List<Vehiculo>> listasVehiculos = new List<List<Vehiculo>>();
+        private  List<List<Vehiculo>> listasVehiculos = new List<List<Vehiculo>>();
 
-        private static List<List<Paquete>> listasPaquetes = new List<List<Paquete>>();
+        private  List<List<Paquete>> listasPaquetes = new List<List<Paquete>>();
 
-        private static List<Entrega> listaEntregas = new List<Entrega>();
+        private  List<Entrega> listaEntregas = new List<Entrega>();
 
-        private static double totalIngresos;
+        private  double totalIngresos;
 
         public Delivery()
         {
@@ -621,37 +621,37 @@ namespace GoXelaDelivery
             LimpiarConsola();
         }
 
-        public static double TotalIngresos
+        public  double TotalIngresos
         {
             get { return totalIngresos; }
             set { totalIngresos = value; }
         }
 
-        public static List<Entrega> ListaEntregas
+        public  List<Entrega> ListaEntregas
         {
             get { return listaEntregas; }
             set { listaEntregas = value; }
         }
 
-        public static List<List<Paquete>> ListasPaquetes
+        public  List<List<Paquete>> ListasPaquetes
         {
             get { return listasPaquetes; }
             set { listasPaquetes = value; }
         }
 
-        public static List<List<Vehiculo>> ListaVehiculos
+        public  List<List<Vehiculo>> ListaVehiculos
         {
             get { return listasVehiculos; }
             set { listasVehiculos = value; }
         }
 
-        public static List<Repartidor> ListaRepartidores
+        public  List<Repartidor> ListaRepartidores
         {
             get { return listaRepartidores; }
             set { listaRepartidores = value; }
         }
 
-        public static List<Cliente> ListaClientes
+        public  List<Cliente> ListaClientes
         {
             get { return listaClientes; }
             set { listaClientes = value; }

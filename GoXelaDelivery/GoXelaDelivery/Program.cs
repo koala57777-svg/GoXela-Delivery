@@ -7,7 +7,7 @@ using static GoXelaDelivery.Globales;
 namespace GoXelaDelivery
 {
     internal class Program
-    {
+    { 
         static void Main(string[] args)
         {
             Delivery GoXelaDelivery = new Delivery();
