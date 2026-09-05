@@ -58,7 +58,7 @@ namespace GoXelaDelivery
                         ModuloRepartidores.IniciarSubmenu(GoXelaDelivery);
                         break;
                     case 3:
-
+                        ModuloVehiculos.IniciarSubmenu(GoXelaDelivery);
                         break;
                     case 4:
 
