@@ -11,6 +11,7 @@ using static GoXelaDelivery.Globales;
 using System.Reflection;
 using System.ComponentModel;
 using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace GoXelaDelivery
 {
@@ -219,15 +220,27 @@ namespace GoXelaDelivery
             while (!textoConfirmado)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("Presione Enter para enviar\n\n Ingresar: ");
+                Console.ResetColor();
                 StringBuilder sb = new StringBuilder(limiteCaracteres - 1, limiteCaracteres);
                 do
                 {
                     ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
                     if (teclaInfo.Key == ConsoleKey.Enter && sb.Length > 0 && sb.Length <= limiteCaracteres)
                     {
-                        Console.Write($"\n\nConfirmar el texto {sb.ToString()} (Yes/No): ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"\n\nConfirmar el texto ");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(sb.ToString());
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(" (Yes/No): ");
+                        Console.ResetColor();
                         string respuesta = Console.ReadLine().ToLower().Trim();
 
                         if (respuesta == "yes")
@@ -244,7 +257,9 @@ namespace GoXelaDelivery
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("\nElección inválida");
+                            Console.ResetColor();
                             Mostrar("Reiniciando texto", 1);
                             break;
                         }
@@ -286,8 +301,18 @@ namespace GoXelaDelivery
             while (!numeroConfirmado)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
-                Console.Write($"Presione Enter para enviar. \nEl número debe ser de {tamanoRequerido} dígitos.\n\n Ingresar: ");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"Presione Enter para enviar. \nEl número debe ser de ");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(tamanoRequerido);
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(" dígitos. \n\n Ingrsar: ");
+                Console.ResetColor();
                 StringBuilder sb = new StringBuilder(tamanoRequerido, tamanoRequerido);
                 do
                 {
@@ -296,7 +321,15 @@ namespace GoXelaDelivery
                     {
                         if (int.TryParse(sb.ToString(), out int numeroConvertido))
                         {
-                            Console.Write($"\n\nConfirmar el número {numeroConvertido} (Yes/No): ");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write($"\n\nConfirmar el número ");
+                            Console.ResetColor();
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(numeroConvertido);
+                            Console.ResetColor();
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write(" (Yes/No): ");
+                            Console.ResetColor();
                             string respuesta = Console.ReadLine().ToLower().Trim();
 
                             if (respuesta == "yes")
@@ -313,9 +346,95 @@ namespace GoXelaDelivery
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("\nElección inválida");
+                                Console.ResetColor();
                                 Mostrar("Reiniciando número", 1);
                                 break;
+                            }
+                        }
+                    }
+                    if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
+                    {
+                        sb.Remove(sb.Length - 1, 1);
+                        Console.Write("\b \b");
+                    }
+                    if (sb.Length < tamanoRequerido)
+                    {
+                        if (char.IsDigit(teclaInfo.KeyChar))
+                        {
+                            if (teclaInfo.KeyChar == '0')
+                            {
+                                if (sb.Length > 0)
+                                {
+                                    sb.Append('0');
+                                    Console.Write('0');
+                                }
+                            }
+                            else
+                            {
+                                sb.Append(teclaInfo.KeyChar);
+                                Console.Write(teclaInfo.KeyChar);
+                            }
+                        }
+                    }
+                } while (true);
+            }
+            return numeroFinal;
+        }
+
+        internal static int ValidarNumerico(int tamanoRequerido, Action menuMostrar, int rangoValido)
+        {
+            bool numeroConfirmado = false;
+            int numeroFinal = 0;
+            while (!numeroConfirmado)
+            {
+                Console.Clear();
+                menuMostrar();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("\n Ingresar: ");
+                Console.ResetColor();
+                StringBuilder sb = new StringBuilder(tamanoRequerido, tamanoRequerido);
+                do
+                {
+                    ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+                    if (teclaInfo.Key == ConsoleKey.Enter && sb.Length == tamanoRequerido)
+                    {
+                        if (int.TryParse(sb.ToString(), out int numeroConvertido))
+                        {
+                            if (numeroConvertido >= 1 && numeroConvertido <= rangoValido)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write($"\n\nConfirmar el número ");
+                                Console.ResetColor();
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                                Console.Write(numeroConvertido);
+                                Console.ResetColor();
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write(" (Yes/No): ");
+                                Console.ResetColor();
+                                string respuesta = Console.ReadLine().ToLower().Trim();
+
+                                if (respuesta == "yes")
+                                {
+                                    numeroFinal = numeroConvertido;
+                                    numeroConfirmado = true;
+                                    Console.Clear();
+                                    break;
+                                }
+                                else if (respuesta == "no")
+                                {
+                                    Mostrar("Reiniciando número", 1);
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("\nElección inválida");
+                                    Console.ResetColor();
+                                    Mostrar("Reiniciando número", 1);
+                                    break;
+                                }
                             }
                         }
                     }
@@ -513,12 +632,12 @@ namespace GoXelaDelivery
         }
         internal static void Mostrar(string textoMostrar, int duracionSegundos)
         {
-
+            
             int ciclosTotales = duracionSegundos * 4;
 
             for (int i = 0; i < ciclosTotales; i++)
             {
-
+                Console.ForegroundColor = ConsoleColor.Blue;
                 int cantidadPuntos = i % 4;
                 string puntos = new string('.', cantidadPuntos);
 
@@ -530,8 +649,9 @@ namespace GoXelaDelivery
 
 
                 Thread.Sleep(250);
+                
             }
-
+            Console.ResetColor();
 
             Console.Write("\r" + new string(' ', 20) + "\r");
         }
