@@ -52,9 +52,20 @@ namespace GoXelaDelivery
             Console.WriteLine("Fecha del Incidente: "+ FechaIncidente);
 		}
 
-		protected void CambiarEstado(Incidente incidente, EstadoIncidencia nuevoEstado)
+		protected void CambiarEstado(Incidente incidente)
 		{
-			if (incidente.AccionTomada == null)
+			if (incidente.AccionTomada == null || incidente.AccionTomada.Length == 0)
+			{
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("No se puede el estado de la incidencia. Coloque una acción tomada");
+                Console.ResetColor();
+                LimpiarConsola();
+                return;
+            }
+			else
+			{
+                EstadoIncidente = EstadoIncidencia.Resuelta;
+            }
 		}
 
 		protected void CambiarAccionTomada(string nuevaAccionTomada)
