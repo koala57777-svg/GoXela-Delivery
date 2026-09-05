@@ -572,8 +572,9 @@ namespace GoXelaDelivery
             int anchoConsola = Console.WindowWidth;
             int espacios = (anchoConsola - mensajeSolicitudDeDatos.Length) / 2;
             if (espacios < 0) espacios = 0;
+
             while (!telefonoConfirmado)
-            { 
+            {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine(new string(' ', espacios) + mensajeSolicitudDeDatos.ToUpper());
@@ -581,6 +582,7 @@ namespace GoXelaDelivery
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write($"Presione Enter para enviar. \nEl número debe ser de 8 dígitos.\n\n Ingresar: ");
                 Console.ResetColor();
+
                 StringBuilder sb = new StringBuilder(tamanoRequerido, tamanoRequerido);
 
                 do
@@ -594,11 +596,12 @@ namespace GoXelaDelivery
                             Console.Write($"\n\nConfirmar el número de teléfono ");
                             Console.ResetColor();
                             Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.Write(numeroConvertido);
+                            Console.Write($"{numeroConvertido.ToString("####-####")}");
                             Console.ResetColor();
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write(" (Yes/No): ");
                             Console.ResetColor();
+
                             string respuesta = Console.ReadLine().ToLower().Trim();
 
                             if (respuesta == "yes")
@@ -623,35 +626,39 @@ namespace GoXelaDelivery
                             }
                         }
                     }
+
                     if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
                     {
-                        if (sb.Length == 5)
+                        if (sb.Length == 4)
                         {
+                            sb.Remove(sb.Length - 1, 1);
+                            Console.Write("\b \b\b \b");
+                        }
+                        else
+                        {
+                            sb.Remove(sb.Length - 1, 1);
                             Console.Write("\b \b");
                         }
-                        sb.Remove(sb.Length - 1, 1);
-                        Console.Write("\b \b");
                     }
-                    if (sb.Length < tamanoRequerido)
+
+                    else if (sb.Length < tamanoRequerido)
                     {
                         if (char.IsDigit(teclaInfo.KeyChar))
                         {
-                            if (teclaInfo.KeyChar == '0')
+                            if (teclaInfo.KeyChar == '0' && sb.Length == 0)
                             {
-                                if (sb.Length > 0)
-                                {
-                                    sb.Append('0');
-                                    Console.Write('0');
-                                }
+                                continue;
+                            }
+
+                            sb.Append(teclaInfo.KeyChar);
+
+                            if (sb.Length == 4)
+                            {
+                                Console.Write(teclaInfo.KeyChar + "-");
                             }
                             else
                             {
-                                sb.Append(teclaInfo.KeyChar);
                                 Console.Write(teclaInfo.KeyChar);
-                            }
-                            if (sb.Length == 4)
-                            {
-                                Console.Write("-");
                             }
                         }
                     }
