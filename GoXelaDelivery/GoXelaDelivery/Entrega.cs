@@ -282,7 +282,7 @@ namespace GoXelaDelivery
 			return CalcularTarifaVehiculoGeneral(distanciaRecorrer) + paqueteEntrega.CalcularCostoTipo(paqueteEntrega.ValorDeclarado, paqueteEntrega.Peso) + CalcularTarifaServicio();
 		}
 
-		protected void IngresarIncidente(Incidente incidente)
+		internal void IngresarIncidente(Incidente incidente)
 		{
 			string nuevoCodigo = GoXelaDelivery.CodigoUnico.GenerarCodigoUnico(incidente.Prefijo);
             incidente.CodigoUnico = nuevoCodigo;
