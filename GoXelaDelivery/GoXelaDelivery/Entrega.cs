@@ -103,7 +103,7 @@ namespace GoXelaDelivery
             Console.WriteLine();
             Console.WriteLine("Prefijo: " + Prefijo);
             Console.WriteLine();
-            Console.WriteLine("Paquete de la Entrega: " + PaqueteEntrega);
+            Console.WriteLine("Paquete de la Entrega: " + PaqueteEntrega.CodigoUnico);
             Console.WriteLine();
             Console.WriteLine("Repartidor Asignado: " + RepartidorAsignado);
             Console.WriteLine();
