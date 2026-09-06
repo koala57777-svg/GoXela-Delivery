@@ -187,6 +187,7 @@ namespace GoXelaDelivery
             }
             else
             {
+                ContadorEntregasFinalizadas = 0;
                 foreach (Entrega entrega in ListaEntregas)
                 {
                     if (entrega.EstadoEntrega == EstadoEntrega.Entregada)
@@ -236,6 +237,7 @@ namespace GoXelaDelivery
             }
             else
             {
+                ContadorEntregasCanceladas = 0;
                 foreach (Entrega entrega in ListaEntregas)
                 {
                     if (entrega.EstadoEntrega == EstadoEntrega.Cancelada)
@@ -285,6 +287,7 @@ namespace GoXelaDelivery
             }
             else
             {
+                ContadorEntregasCanceladas = 0;
                 foreach (Entrega entrega in ListaEntregas)
                 {
                     if (entrega.ListaIncidentes.Count > 0)
@@ -334,6 +337,7 @@ namespace GoXelaDelivery
             }
             else
             {
+                ContadorRepartidoresDisponibles = 0;
                 foreach (Repartidor repartidor in ListaRepartidores)
                 {
                     if (repartidor.EstadoDisponibilidad == EstadoRepartidor.Disponible)
