@@ -172,7 +172,7 @@ namespace GoXelaDelivery
                     {
                         EstadoEntrega = (EstadoEntrega)((int)EstadoEntrega + 1);
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine($"Se ha cambiado Correctamente el Estado de la Entrega. Nuevo Estado: {EstadoEntrega}");
+                        Console.WriteLine($"Se ha cambiado Correctamente el Estado de la Entrega. Nuevo Estado: {EstadoEntrega.ObtenerDescripcion()}");
                         Console.ResetColor();
                         LimpiarConsola();
                         return;
@@ -190,7 +190,7 @@ namespace GoXelaDelivery
                 {
                     EstadoEntrega = (EstadoEntrega)((int)EstadoEntrega + 1);
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Se ha cambiado Correctamente el Estado de la Entrega. Nuevo Estado: {EstadoEntrega}");
+                    Console.WriteLine($"Se ha cambiado Correctamente el Estado de la Entrega. Nuevo Estado: {EstadoEntrega.ObtenerDescripcion()}");
                     Console.ResetColor();
                     LimpiarConsola();
                     return;
@@ -203,7 +203,7 @@ namespace GoXelaDelivery
             if (EstadoEntrega != EstadoEntrega.Solicitado)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"No se puede Cancelar la Entrega en este Estado ({EstadoEntrega}), solo en Solicitado.");
+                Console.WriteLine($"No se puede Cancelar la Entrega en este Estado ({EstadoEntrega.ObtenerDescripcion()}), solo en Solicitado.");
                 Console.ResetColor();
                 LimpiarConsola();
             }
