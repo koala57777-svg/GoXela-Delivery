@@ -370,59 +370,54 @@ namespace GoXelaDelivery
 
         public void MostrarRepartidorConMasEntregas()
         {
-            if (listaRepartidores.Count == 0 || listaRepartidores == null)
+            if (listaRepartidores == null || listaRepartidores.Count == 0)
             {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("No hay ningún Repartidor Registrado");
                 Console.ResetColor();
+                LimpiarConsola();
                 return;
+            }
+            int entregasMaximas = listaRepartidores.Max(r => r.CantidadEntregasRealizadas);
+            if (entregasMaximas == 0)
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Ningún repartidor ha realizado entregas todavía.");
+                Console.ResetColor();
+                LimpiarConsola();
+                return;
+            }
+            List<Repartidor> repartidoresConMasEntregas = listaRepartidores
+                .Where(r => r.CantidadEntregasRealizadas == entregasMaximas)
+                .ToList();
+            Console.WriteLine();
+            if (repartidoresConMasEntregas.Count == 1)
+            {
+                Repartidor elRepartidor = repartidoresConMasEntregas.First();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"El Repartidor con Más Entregas ({entregasMaximas} entregas) es: ");
+                Console.ResetColor();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Blue;
+                elRepartidor.MostrarInformacion();
+                Console.ResetColor();
             }
             else
             {
-                EntregasMaximas = listaRepartidores.Max(repartidor => repartidor.CantidadEntregasRealizadas);
-                RepartidorConMasEntregas = listaRepartidores.Where(repartidor => repartidor.CantidadEntregasRealizadas == EntregasMaximas).ToList();
-                if (EntregasMaximas == 0 || RepartidorConMasEntregas.Count == 0 || RepartidorConMasEntregas == null)
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"(Empate con {entregasMaximas} entregas) Los Repartidores con Más Entregas son: ");
+                Console.ResetColor();
+                Console.WriteLine();
+                foreach (Repartidor repartidor in repartidoresConMasEntregas)
                 {
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("No hay ningún Repartidor con las Máximas Entregas");
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    repartidor.MostrarInformacion();
                     Console.ResetColor();
-                    return;
-                }
-                else
-                {
-                    if (RepartidorConMasEntregas.Count == 1)
-                    {
-                        ElRepartidor = listaRepartidores.First();
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("El Repartidor con Más Entregas es: ");
-                        Console.ResetColor();
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        ElRepartidor.MostrarInformacion();
-                        Console.ResetColor();
-                        return;
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("(Empate) Los Repartidores con Más Entregas son: ");
-                        Console.ResetColor();
-                        foreach (Repartidor repartidor in RepartidorConMasEntregas)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            repartidor.MostrarInformacion();
-                            Console.ResetColor();
-                            Console.WriteLine();
-                        }
-                        return;
-                    }
+                    Console.WriteLine();
                 }
             }
-            return;
             LimpiarConsola();
         }
 
