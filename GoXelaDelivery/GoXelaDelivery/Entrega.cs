@@ -200,11 +200,21 @@ namespace GoXelaDelivery
 
         internal void CancelarEntrega()
         {
-            EstadoEntrega = EstadoEntrega.Cancelada;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Se ha Cancelado Correctamente la Entrega.");
-            Console.ResetColor();
-            LimpiarConsola();
+            if (EstadoEntrega != EstadoEntrega.Solicitado)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"No se puede Cancelar la Entrega en este Estado ({EstadoEntrega}), solo en Solicitado, o ya está Cancelada.");
+                Console.ResetColor();
+                LimpiarConsola();
+            }
+            else
+            {
+                EstadoEntrega = EstadoEntrega.Cancelada;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Se ha Cancelado Correctamente la Entrega.");
+                Console.ResetColor();
+                LimpiarConsola();
+            }
         }
 
         internal void ReprogramarEntrega()
