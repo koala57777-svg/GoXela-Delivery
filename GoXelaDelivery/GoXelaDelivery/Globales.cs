@@ -27,17 +27,17 @@ namespace GoXelaDelivery
 
 		private static int cantidadMaximaUsosVehiculo;
 
-		private static List<Vehiculo> vehiculoMasUsado = new List<Vehiculo>;
+		private static List<Vehiculo> vehiculoMasUsado = new List<Vehiculo>();
 
 		private static Vehiculo elVehiculo;
 
-		private static List<List<Vehiculo>> tiposDeVehiculosNoVacios new List<List<Vehiculo>>;
+		private static List<List<Vehiculo>> tiposDeVehiculosNoVacios new List<List<Vehiculo>>();
 
-		private static List<Entrega> entregasFinalizadas = new List<Entrega>;
+		private static List<Entrega> entregasFinalizadas = new List<Entrega>();
 
 		private static double mayorCostoDeEntrega;
 
-		private static List<Entrega> entregaConMayorCosto = new List<Entrega>;
+		private static List<Entrega> entregaConMayorCosto = new List<Entrega>();
 
 		private static Entrega laEntrega;
 
@@ -45,11 +45,11 @@ namespace GoXelaDelivery
 
 		private static TipoServicio servicioSeleccionado;
 
-		private static List<Vehiculo> vehiculoCorrecto = new List<Vehiculo>;
+		private static List<Vehiculo> vehiculoCorrecto = new List<Vehiculo>();
 
-		private static List<Vehiculo> listaVehiculosCorrectos = new List<Vehiculo>;
+		private static List<Vehiculo> listaVehiculosCorrectos = new List<Vehiculo>();
 
-		private static List<Repartidor> listaRepartidoresCorrectos = new List<Repartidor>;
+		private static List<Repartidor> listaRepartidoresCorrectos = new List<Repartidor>();
 
 		private static int opcionMenuPrincipal;
 
