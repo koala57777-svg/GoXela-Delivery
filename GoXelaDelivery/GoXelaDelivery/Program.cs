@@ -11,6 +11,7 @@ namespace GoXelaDelivery
         static void Main(string[] args)
         {
             Delivery GoXelaDelivery = new Delivery();
+            InicializadorDatos.CargarDatosPrueba(GoXelaDelivery);
             OpcionMenuPrincipal = 0;
             do
             {
@@ -64,7 +65,7 @@ namespace GoXelaDelivery
                         ModuloPaquetes.IniciarSubmenu(GoXelaDelivery);
                         break;
                     case 5:
-
+                        ModuloEntregas.IniciarSubmenu(GoXelaDelivery);
                         break;
                     case 6:
 

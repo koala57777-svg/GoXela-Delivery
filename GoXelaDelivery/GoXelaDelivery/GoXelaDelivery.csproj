@@ -51,7 +51,9 @@
     <Compile Include="GestorDistancias.cs" />
     <Compile Include="Globales.cs" />
     <Compile Include="Incidente.cs" />
+    <Compile Include="InicializadorDatos.cs" />
     <Compile Include="ModuloClientes.cs" />
+    <Compile Include="ModuloEntregas.cs" />
     <Compile Include="ModuloPaquetes.cs" />
     <Compile Include="ModuloRepartidores.cs" />
     <Compile Include="ModuloVehiculos.cs" />
