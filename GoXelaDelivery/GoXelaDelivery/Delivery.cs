@@ -126,6 +126,7 @@ namespace GoXelaDelivery
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("No hay ninguna Entrega Registrada");
                 Console.ResetColor();
+                
             }
             else
             {
@@ -142,6 +143,7 @@ namespace GoXelaDelivery
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("No hay ninguna Entrega Activa por el momento");
                     Console.ResetColor();
+                    
                 }
                 else if (ContadorEntregasActivas == 1)
                 {
@@ -150,6 +152,7 @@ namespace GoXelaDelivery
                     Console.Write($"{ContadorEntregasActivas} ");
                     Console.ResetColor();
                     Console.Write("Entrega Activa");
+                    
                 }
                 else
                 {
@@ -158,8 +161,10 @@ namespace GoXelaDelivery
                     Console.Write($"{ContadorEntregasActivas} ");
                     Console.ResetColor();
                     Console.Write("Entregas Activas");
+                    
                 }
             }
+            return;
             LimpiarConsola();
         }
 
@@ -171,6 +176,7 @@ namespace GoXelaDelivery
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("No hay ninguna Entrega Registrada");
                 Console.ResetColor();
+                
             }
             else
             {
@@ -187,6 +193,7 @@ namespace GoXelaDelivery
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("No hay ninguna Entrega Finalizada por el momento");
                     Console.ResetColor();
+                   
                 }
                 else if (ContadorEntregasFinalizadas == 1)
                 {
@@ -195,6 +202,7 @@ namespace GoXelaDelivery
                     Console.Write($"{ContadorEntregasFinalizadas} ");
                     Console.ResetColor();
                     Console.Write("Entrega Finalizada");
+                   
                 }
                 else
                 {
@@ -203,8 +211,10 @@ namespace GoXelaDelivery
                     Console.Write($"{ContadorEntregasFinalizadas} ");
                     Console.ResetColor();
                     Console.Write("Entregas Finalizadas");
+                    
                 }
             }
+            return;
             LimpiarConsola();
         }
 
@@ -216,6 +226,7 @@ namespace GoXelaDelivery
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("No hay ninguna Entrega Registrada");
                 Console.ResetColor();
+               
             }
             else
             {
@@ -232,6 +243,7 @@ namespace GoXelaDelivery
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("No hay ninguna Entrega Cancelada por el momento");
                     Console.ResetColor();
+                    
                 }
                 else if (ContadorEntregasCanceladas == 1)
                 {
@@ -240,6 +252,7 @@ namespace GoXelaDelivery
                     Console.Write($"{ContadorEntregasCanceladas} ");
                     Console.ResetColor();
                     Console.Write("Entrega Cancelada");
+                   
                 }
                 else
                 {
@@ -248,8 +261,10 @@ namespace GoXelaDelivery
                     Console.Write($"{ContadorEntregasCanceladas} ");
                     Console.ResetColor();
                     Console.Write("Entregas Canceladas");
+                    
                 }
             }
+            return;
             LimpiarConsola();
         }
 
@@ -261,6 +276,7 @@ namespace GoXelaDelivery
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("No hay ninguna Entrega Registrada");
                 Console.ResetColor();
+                
             }
             else
             {
@@ -277,6 +293,7 @@ namespace GoXelaDelivery
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("No hay ninguna Entrega con Incidentes por el momento");
                     Console.ResetColor();
+                    
                 }
                 else if (ContadorEntregasConIncidentes == 1)
                 {
@@ -285,6 +302,7 @@ namespace GoXelaDelivery
                     Console.Write($"{ContadorEntregasConIncidentes} ");
                     Console.ResetColor();
                     Console.Write("Entrega con Incidente");
+                    
                 }
                 else
                 {
@@ -293,8 +311,10 @@ namespace GoXelaDelivery
                     Console.Write($"{ContadorEntregasConIncidentes} ");
                     Console.ResetColor();
                     Console.Write("Entregas con Incidentes");
+                   
                 }
             }
+            return;
             LimpiarConsola();
         }
 
@@ -306,6 +326,7 @@ namespace GoXelaDelivery
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("No hay ningún Repartidor Registrado");
                 Console.ResetColor();
+                
             }
             else
             {
@@ -322,6 +343,7 @@ namespace GoXelaDelivery
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("No hay ningun Repartidor Disponible por el momento");
                     Console.ResetColor();
+                    
                 }
                 else if (ContadorRepartidoresDisponibles == 1)
                 {
@@ -330,6 +352,7 @@ namespace GoXelaDelivery
                     Console.Write($"{ContadorRepartidoresDisponibles} ");
                     Console.ResetColor();
                     Console.Write("Repartidor Disponible");
+                    
                 }
                 else
                 {
@@ -338,8 +361,10 @@ namespace GoXelaDelivery
                     Console.Write($"{ContadorRepartidoresDisponibles} ");
                     Console.ResetColor();
                     Console.Write("Repartidores Disponibles");
+                    
                 }
             }
+            return;
             LimpiarConsola();
         }
 
@@ -351,6 +376,7 @@ namespace GoXelaDelivery
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("No hay ningún Repartidor Registrado");
                 Console.ResetColor();
+                
             }
             else
             {
@@ -362,6 +388,7 @@ namespace GoXelaDelivery
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("No hay ningún Repartidor con las Máximas Entregas");
                     Console.ResetColor();
+                    
                 }
                 else
                 {
@@ -376,6 +403,7 @@ namespace GoXelaDelivery
                         Console.ForegroundColor = ConsoleColor.Blue;
                         ElRepartidor.MostrarInformacion();
                         Console.ResetColor();
+                       
                     }
                     else
                     {
@@ -390,9 +418,11 @@ namespace GoXelaDelivery
                             Console.ResetColor();
                             Console.WriteLine();
                         }
+                        
                     }
                 }
             }
+            return;
             LimpiarConsola();
         }
 
@@ -404,6 +434,7 @@ namespace GoXelaDelivery
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("No hay ningún Vehículo Registrado");
                 Console.ResetColor();
+                
             }
             else
             {
@@ -422,6 +453,7 @@ namespace GoXelaDelivery
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("No hay ningún Vehículo Más Usado");
                     Console.ResetColor();
+                   
                 }
                 else
                 {
@@ -453,6 +485,7 @@ namespace GoXelaDelivery
                     }
                 }
             }
+            return;
             LimpiarConsola();
         }
 
@@ -556,6 +589,7 @@ namespace GoXelaDelivery
                 Console.Write("Paquetes de tipo Producto Refrigerado");
             }
             LimpiarConsola();
+            return;
         }
 
         public void MostrarTotalIngresos()
@@ -565,6 +599,7 @@ namespace GoXelaDelivery
             Console.WriteLine("Total de Ingresos Generado: Q" + TotalIngresos);
             Console.ResetColor();
             LimpiarConsola();
+            return;
         }
 
         public void MostrarEntregaConMayorCosto()
@@ -618,6 +653,7 @@ namespace GoXelaDelivery
                     }
                 }
             }
+            return;
             LimpiarConsola();
         }
 
