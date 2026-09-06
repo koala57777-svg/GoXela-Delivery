@@ -71,7 +71,7 @@ namespace GoXelaDelivery
                         ModuloIncidencias.IniciarSubmenu(GoXelaDelivery);
                         break;
                     case 7:
-
+                        ModuloReportes.IniciarSubmenu(GoXelaDelivery);
                         break;
                     case 8:
                         SalirMenu();

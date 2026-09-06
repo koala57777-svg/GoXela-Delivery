@@ -575,6 +575,84 @@ namespace GoXelaDelivery
             return numeroFinal;
         }
 
+        internal static int ValidarNumerico(int limiteCaracteres, Action menuMostrar, int rangoValido, bool esLimite)
+        {
+            bool numeroConfirmado = false;
+            int numeroFinal = 0;
+            while (!numeroConfirmado)
+            {
+                Console.Clear();
+                menuMostrar();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("\n Ingresar: ");
+                Console.ResetColor();
+                StringBuilder sb = new StringBuilder(limiteCaracteres);
+                do
+                {
+                    ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
+                    if (teclaInfo.Key == ConsoleKey.Enter && sb.Length > 0 && sb.Length <= limiteCaracteres)
+                    {
+                        if (int.TryParse(sb.ToString(), out int numeroConvertido))
+                        {
+                            if (numeroConvertido >= 1 && numeroConvertido <= rangoValido)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write($"\n\nConfirmar el número ");
+                                Console.ResetColor();
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                                Console.Write(numeroConvertido);
+                                Console.ResetColor();
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write(" (Yes/No): ");
+                                Console.ResetColor();
+                                string respuesta = Console.ReadLine().ToLower().Trim();
+
+                                if (respuesta == "yes")
+                                {
+                                    numeroFinal = numeroConvertido;
+                                    numeroConfirmado = true;
+                                    Console.Clear();
+                                    break;
+                                }
+                                else if (respuesta == "no")
+                                {
+                                    Mostrar("Reiniciando número", 1);
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("\nElección inválida");
+                                    Console.ResetColor();
+                                    Mostrar("Reiniciando número", 1);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
+                    {
+                        sb.Remove(sb.Length - 1, 1);
+                        Console.Write("\b \b");
+                    }
+                    if (sb.Length < limiteCaracteres)
+                    {
+                        if (char.IsDigit(teclaInfo.KeyChar))
+                        {
+                            if (teclaInfo.KeyChar == '0' && sb.Length == 0)
+                            {
+                                continue;
+                            }
+
+                            sb.Append(teclaInfo.KeyChar);
+                            Console.Write(teclaInfo.KeyChar);
+                        }
+                    }
+                } while (true);
+            }
+            return numeroFinal;
+        }
+
         internal static int ValidarNumerico<T>(int tamanoRequerido, Action<T> menuMostrar, T parametroMenu, int rangoValido)
         {
             bool numeroConfirmado = false;
