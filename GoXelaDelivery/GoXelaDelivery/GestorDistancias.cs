@@ -12,7 +12,7 @@ namespace GoXelaDelivery
 
         private static readonly double[,] MatrizDistancias = new double[5, 5]
         {
-                               
+
             { 2.0,   9.0,     4.5,   10.0,    6.5 },
             { 9.0,   2.0,    12.0,    7.0,   11.0 },
             { 4.5,  12.0,     2.0,    8.0,   10.5 },
@@ -22,7 +22,7 @@ namespace GoXelaDelivery
 
         public static double ObtenerDistancia(Municipio origen, Municipio destino)
         {
-            
+
             int fila = (int)origen - 1;
             int columna = (int)destino - 1;
 
@@ -30,4 +30,3 @@ namespace GoXelaDelivery
         }
     }
 }
-

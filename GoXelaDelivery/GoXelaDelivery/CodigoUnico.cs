@@ -8,13 +8,13 @@ namespace GoXelaDelivery
 {
     public static class CodigoUnico
     {
-        
+
         private static HashSet<string> baseDeCodigosUnicos = new HashSet<string>();
 
-        
+
         private static Dictionary<string, int> ultimosNumeros = new Dictionary<string, int>();
 
-        
+
         private static readonly object bloqueo = new object();
 
         public static string GenerarCodigoUnico(string prefijo)

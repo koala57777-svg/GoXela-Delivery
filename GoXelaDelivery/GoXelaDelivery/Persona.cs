@@ -9,27 +9,27 @@ namespace GoXelaDelivery
 {
     internal class Persona
     {
-		private string  codigoUnico;
+        private string codigoUnico;
 
-		private  string prefijo ="PER";
+        private string prefijo = "PER";
 
-		private string nombreCompleto;
+        private string nombreCompleto;
 
-		private int numeroTelefono;
+        private int numeroTelefono;
 
-		public Persona(string nuevoNombreCompleto, int nuevoNumeroTelefono)
-		{
-			NombreCompleto = nuevoNombreCompleto;
-			NumeroTelefono = nuevoNumeroTelefono;
-		}
+        public Persona(string nuevoNombreCompleto, int nuevoNumeroTelefono)
+        {
+            NombreCompleto = nuevoNombreCompleto;
+            NumeroTelefono = nuevoNumeroTelefono;
+        }
 
-		internal virtual void MostrarInformacion()
-		{
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.Write("ID: ");
-			Console.ResetColor();
+        internal virtual void MostrarInformacion()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("ID: ");
+            Console.ResetColor();
             Console.Write(CodigoUnico);
-			Console.WriteLine();
+            Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Prefijo: ");
             Console.ResetColor();
@@ -46,54 +46,54 @@ namespace GoXelaDelivery
             Console.Write(NumeroTelefono);
         }
 
-		public int NumeroTelefono
-		{
-			get { return numeroTelefono; }
-			set { numeroTelefono = value; }
-		}
+        public int NumeroTelefono
+        {
+            get { return numeroTelefono; }
+            set { numeroTelefono = value; }
+        }
 
-		public string NombreCompleto
-		{
-			get { return nombreCompleto; }
-			set { nombreCompleto = value; }
-		}
+        public string NombreCompleto
+        {
+            get { return nombreCompleto; }
+            set { nombreCompleto = value; }
+        }
 
-		public string Prefijo
-		{
-			get { return prefijo; }
-			set { prefijo = value; }
-		}
+        public string Prefijo
+        {
+            get { return prefijo; }
+            set { prefijo = value; }
+        }
 
-		public string  CodigoUnico
-		{
-			get { return codigoUnico; }
-			set { codigoUnico = value; }
-		}
-	}
+        public string CodigoUnico
+        {
+            get { return codigoUnico; }
+            set { codigoUnico = value; }
+        }
+    }
 
-	internal class Cliente : Persona
-	{
-		private string correoElectronico;
+    internal class Cliente : Persona
+    {
+        private string correoElectronico;
 
-		private string direccionDestino;
+        private string direccionDestino;
 
-		private Municipio municipioDestino;
+        private Municipio municipioDestino;
 
-		private int solicitudesRealizadas;
+        private int solicitudesRealizadas;
 
-		public Cliente(string nuevoNombreCompleto, int nuevoNumeroTelefono, string nuevoCorreoElectronico, string nuevaDireccionDestino, Municipio nuevoMunicipioDestino) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
-		{
-			Prefijo = "CLI";
-			CorreoElectronico = nuevoCorreoElectronico;
-			DireccionDestino = nuevaDireccionDestino;
-			MunicipioDestino = nuevoMunicipioDestino;
-			SolicitudesRealizadas = 0;
-		}
+        public Cliente(string nuevoNombreCompleto, int nuevoNumeroTelefono, string nuevoCorreoElectronico, string nuevaDireccionDestino, Municipio nuevoMunicipioDestino) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
+        {
+            Prefijo = "CLI";
+            CorreoElectronico = nuevoCorreoElectronico;
+            DireccionDestino = nuevaDireccionDestino;
+            MunicipioDestino = nuevoMunicipioDestino;
+            SolicitudesRealizadas = 0;
+        }
 
-		internal override void MostrarInformacion()
-		{
-			base.MostrarInformacion();
-			Console.WriteLine();
+        internal override void MostrarInformacion()
+        {
+            base.MostrarInformacion();
+            Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Correo Electrónico: ");
             Console.ResetColor();
@@ -105,7 +105,7 @@ namespace GoXelaDelivery
             Console.Write(DireccionDestino);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("Municipio de Destino: " );
+            Console.Write("Municipio de Destino: ");
             Console.ResetColor();
             Console.Write(MunicipioDestino);
             Console.WriteLine();
@@ -115,55 +115,55 @@ namespace GoXelaDelivery
             Console.Write(SolicitudesRealizadas);
         }
 
-		public int SolicitudesRealizadas
-		{
-			get { return solicitudesRealizadas; }
-			set { solicitudesRealizadas = value; }
-		}
+        public int SolicitudesRealizadas
+        {
+            get { return solicitudesRealizadas; }
+            set { solicitudesRealizadas = value; }
+        }
 
-		public Municipio MunicipioDestino
-		{
-			get { return municipioDestino; }
-			set { municipioDestino = value; }
-		}
+        public Municipio MunicipioDestino
+        {
+            get { return municipioDestino; }
+            set { municipioDestino = value; }
+        }
 
-		public string DireccionDestino
-		{
-			get { return direccionDestino; }
-			set { direccionDestino = value; }
-		}
+        public string DireccionDestino
+        {
+            get { return direccionDestino; }
+            set { direccionDestino = value; }
+        }
 
-		public string CorreoElectronico
-		{
-			get { return correoElectronico; }
-			set { correoElectronico = value; }
-		}
-	}
+        public string CorreoElectronico
+        {
+            get { return correoElectronico; }
+            set { correoElectronico = value; }
+        }
+    }
 
-	internal class Repartidor : Persona
-	{
-		private int numeroLicencia;
+    internal class Repartidor : Persona
+    {
+        private int numeroLicencia;
 
-		private TipoLicencia tipoLicencia;
+        private TipoLicencia tipoLicencia;
 
-		private EstadoRepartidor estadoDisponibilidad;
+        private EstadoRepartidor estadoDisponibilidad;
 
-		private int cantidadEntregasRealizadas;
+        private int cantidadEntregasRealizadas;
 
-		private double calificacionTotal;
+        private double calificacionTotal;
 
-		private double calificacionPromedio;
+        private double calificacionPromedio;
 
-		public Repartidor(string nuevoNombreCompleto, int nuevoNumeroTelefono, int nuevoNumeroLicencia, TipoLicencia nuevoTipoLicencia, EstadoRepartidor nuevoEstadoDisponibilidad) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
-		{
+        public Repartidor(string nuevoNombreCompleto, int nuevoNumeroTelefono, int nuevoNumeroLicencia, TipoLicencia nuevoTipoLicencia, EstadoRepartidor nuevoEstadoDisponibilidad) : base(nuevoNombreCompleto, nuevoNumeroTelefono)
+        {
             Prefijo = "REP";
             NumeroLicencia = nuevoNumeroLicencia;
-			TipoLicencia = nuevoTipoLicencia;
-			EstadoDisponibilidad = nuevoEstadoDisponibilidad;
-			CantidadEntregasRealizadas = 0;
-			CalificacionTotal = 0;
-			CalificacionPromedio = 0;
-		}
+            TipoLicencia = nuevoTipoLicencia;
+            EstadoDisponibilidad = nuevoEstadoDisponibilidad;
+            CantidadEntregasRealizadas = 0;
+            CalificacionTotal = 0;
+            CalificacionPromedio = 0;
+        }
 
         internal override void MostrarInformacion()
         {
@@ -201,40 +201,40 @@ namespace GoXelaDelivery
         }
 
         public double CalificacionPromedio
-		{
-			get { return calificacionPromedio; }
-			set { calificacionPromedio = value; }
-		}
+        {
+            get { return calificacionPromedio; }
+            set { calificacionPromedio = value; }
+        }
 
-		public double CalificacionTotal
-		{
-			get { return calificacionTotal; }
-			set { calificacionTotal = value; }
-		}
+        public double CalificacionTotal
+        {
+            get { return calificacionTotal; }
+            set { calificacionTotal = value; }
+        }
 
-		public int CantidadEntregasRealizadas
-		{
-			get { return cantidadEntregasRealizadas; }
-			set { cantidadEntregasRealizadas = value; }
-		}
+        public int CantidadEntregasRealizadas
+        {
+            get { return cantidadEntregasRealizadas; }
+            set { cantidadEntregasRealizadas = value; }
+        }
 
-		public EstadoRepartidor EstadoDisponibilidad
-		{
-			get { return estadoDisponibilidad; }
-			set { estadoDisponibilidad = value; }
-		}
+        public EstadoRepartidor EstadoDisponibilidad
+        {
+            get { return estadoDisponibilidad; }
+            set { estadoDisponibilidad = value; }
+        }
 
-		public TipoLicencia TipoLicencia
-		{
-			get { return tipoLicencia; }
-			set { tipoLicencia = value; }
-		}
+        public TipoLicencia TipoLicencia
+        {
+            get { return tipoLicencia; }
+            set { tipoLicencia = value; }
+        }
 
-		public int NumeroLicencia
-		{
-			get { return numeroLicencia; }
-			set { numeroLicencia = value; }
-		}
+        public int NumeroLicencia
+        {
+            get { return numeroLicencia; }
+            set { numeroLicencia = value; }
+        }
 
-	}
+    }
 }

@@ -9,43 +9,43 @@ namespace GoXelaDelivery
 {
     internal class Paquete
     {
-		private string codigoUnico;
+        private string codigoUnico;
 
-		private string prefijo = "PAQ";
+        private string prefijo = "PAQ";
 
-		private TipoPaquete tipoPaquete;
+        private TipoPaquete tipoPaquete;
 
-		private string descripcion;
+        private string descripcion;
 
-		private double peso;
+        private double peso;
 
-		private double valorDeclarado;
+        private double valorDeclarado;
 
-		private Cliente clientePaquete;
+        private Cliente clientePaquete;
 
-		private string direccionOrigen;
+        private string direccionOrigen;
 
-		private string direccionDestino;
+        private string direccionDestino;
 
-		private EstadoPaquete estadoPaquete;
+        private EstadoPaquete estadoPaquete;
 
-		private Municipio municipioOrigen;
+        private Municipio municipioOrigen;
 
-		private Municipio municipioDestino;
+        private Municipio municipioDestino;
 
-		public Paquete(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen)
-		{
-			TipoPaquete = nuevoTipoPaquete;
-			Descripcion = nuevaDescripcion;
-			Peso = nuevoPeso;
-			ValorDeclarado = nuevoValorDeclarado;
-			ClientePaquete = nuevoClientePaquete;
-			DireccionOrigen = nuevaDireccionOrigen;
-			EstadoPaquete = EstadoPaquete.NoAsignado;
-			MunicipioOrigen = nuevoMunicipioOrigen;
-			DireccionDestino = nuevoClientePaquete.DireccionDestino;
-			MunicipioDestino = nuevoClientePaquete.MunicipioDestino;
-		}
+        public Paquete(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen)
+        {
+            TipoPaquete = nuevoTipoPaquete;
+            Descripcion = nuevaDescripcion;
+            Peso = nuevoPeso;
+            ValorDeclarado = nuevoValorDeclarado;
+            ClientePaquete = nuevoClientePaquete;
+            DireccionOrigen = nuevaDireccionOrigen;
+            EstadoPaquete = EstadoPaquete.NoAsignado;
+            MunicipioOrigen = nuevoMunicipioOrigen;
+            DireccionDestino = nuevoClientePaquete.DireccionDestino;
+            MunicipioDestino = nuevoClientePaquete.MunicipioDestino;
+        }
 
         internal virtual void MostrarInformacion()
         {
@@ -75,97 +75,97 @@ namespace GoXelaDelivery
         }
 
         internal void CambiarEstado(EstadoPaquete nuevoEstadoPaquete)
-		{
-			EstadoPaquete = nuevoEstadoPaquete;
-		}
+        {
+            EstadoPaquete = nuevoEstadoPaquete;
+        }
 
-		internal void CambiarDescripcion(string nuevaDescripcion)
-		{
-			Descripcion = nuevaDescripcion;
-		}
+        internal void CambiarDescripcion(string nuevaDescripcion)
+        {
+            Descripcion = nuevaDescripcion;
+        }
 
-		internal virtual double CalcularCostoTipo(double valorDeclarado, double Peso)
-		{
-			return 0;
-		}
+        internal virtual double CalcularCostoTipo(double valorDeclarado, double Peso)
+        {
+            return 0;
+        }
 
-		public Municipio MunicipioDestino
-		{
-			get { return municipioDestino; }
-			set { municipioDestino = ClientePaquete.MunicipioDestino; }
-		}
+        public Municipio MunicipioDestino
+        {
+            get { return municipioDestino; }
+            set { municipioDestino = ClientePaquete.MunicipioDestino; }
+        }
 
-		public Municipio MunicipioOrigen
-		{
-			get { return municipioOrigen; }
-			set { municipioOrigen = value; }
-		}
+        public Municipio MunicipioOrigen
+        {
+            get { return municipioOrigen; }
+            set { municipioOrigen = value; }
+        }
 
-		public EstadoPaquete EstadoPaquete
-		{
-			get { return estadoPaquete; }
-			set { estadoPaquete = value; }
-		}
+        public EstadoPaquete EstadoPaquete
+        {
+            get { return estadoPaquete; }
+            set { estadoPaquete = value; }
+        }
 
-		public string DireccionDestino
-		{
-			get { return direccionDestino; }
-			set { direccionDestino = ClientePaquete.DireccionDestino; }
-		}
+        public string DireccionDestino
+        {
+            get { return direccionDestino; }
+            set { direccionDestino = ClientePaquete.DireccionDestino; }
+        }
 
-		public string DireccionOrigen
-		{
-			get { return direccionOrigen; }
-			set { direccionOrigen = value; }
-		}
+        public string DireccionOrigen
+        {
+            get { return direccionOrigen; }
+            set { direccionOrigen = value; }
+        }
 
-		public Cliente ClientePaquete
-		{
-			get { return clientePaquete; }
-			set { clientePaquete = value; }
-		}
+        public Cliente ClientePaquete
+        {
+            get { return clientePaquete; }
+            set { clientePaquete = value; }
+        }
 
-		public double ValorDeclarado
-		{
-			get { return valorDeclarado; }
-			set { valorDeclarado = value; }
-		}
+        public double ValorDeclarado
+        {
+            get { return valorDeclarado; }
+            set { valorDeclarado = value; }
+        }
 
-		public double Peso
-		{
-			get { return peso; }
-			set { peso = value; }
-		}
+        public double Peso
+        {
+            get { return peso; }
+            set { peso = value; }
+        }
 
-		public string Descripcion
-		{
-			get { return descripcion; }
-			set { descripcion = value; }
-		}
+        public string Descripcion
+        {
+            get { return descripcion; }
+            set { descripcion = value; }
+        }
 
-		public TipoPaquete TipoPaquete
-		{
-			get { return tipoPaquete; }
-			set { tipoPaquete = value; }
-		}
+        public TipoPaquete TipoPaquete
+        {
+            get { return tipoPaquete; }
+            set { tipoPaquete = value; }
+        }
 
-		public string Prefijo
-		{
-			get { return prefijo; }
-			set { prefijo = value; }
-		}
+        public string Prefijo
+        {
+            get { return prefijo; }
+            set { prefijo = value; }
+        }
 
-		public string CodigoUnico
-		{
-			get { return codigoUnico; }
-			set { codigoUnico = value; }
-		}
-	}
+        public string CodigoUnico
+        {
+            get { return codigoUnico; }
+            set { codigoUnico = value; }
+        }
+    }
 
-	internal class Documento : Paquete
-	{
-		public Documento(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
-		{
+    internal class Documento : Paquete
+    {
+        public Documento(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
+        {
             EstadoPaquete = EstadoPaquete.NoAsignado;
             Prefijo = "DPQ";
         }
@@ -174,10 +174,10 @@ namespace GoXelaDelivery
         {
             return (valorDeclarado * 0.10) + (Peso * 20);
         }
-	}
+    }
 
-	internal class PaqueteEstandar : Paquete
-	{
+    internal class PaqueteEstandar : Paquete
+    {
         public PaqueteEstandar(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
         {
             EstadoPaquete = EstadoPaquete.NoAsignado;
@@ -186,7 +186,7 @@ namespace GoXelaDelivery
 
         internal override double CalcularCostoTipo(double valorDeclarado, double Peso)
         {
-			return (valorDeclarado * 0.00) + (Peso * 20);
+            return (valorDeclarado * 0.00) + (Peso * 20);
         }
     }
 
@@ -204,8 +204,8 @@ namespace GoXelaDelivery
         }
     }
 
-	internal class ProductoRefrigerado : Paquete
-	{
+    internal class ProductoRefrigerado : Paquete
+    {
         public ProductoRefrigerado(TipoPaquete nuevoTipoPaquete, string nuevaDescripcion, double nuevoPeso, double nuevoValorDeclarado, Cliente nuevoClientePaquete, string nuevaDireccionOrigen, Municipio nuevoMunicipioOrigen) : base(nuevoTipoPaquete, nuevaDescripcion, nuevoPeso, nuevoValorDeclarado, nuevoClientePaquete, nuevaDireccionOrigen, nuevoMunicipioOrigen)
         {
             EstadoPaquete = EstadoPaquete.NoAsignado;

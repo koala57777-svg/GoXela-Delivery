@@ -9,189 +9,189 @@ namespace GoXelaDelivery
 {
     internal static class Globales
     {
-		private static int contadorEntregasActivas;
+        private static int contadorEntregasActivas;
 
-		private static int contadorEntregasFinalizadas;
+        private static int contadorEntregasFinalizadas;
 
-		private static int contadorEntregasCanceladas;
+        private static int contadorEntregasCanceladas;
 
-		private static int contadorEntregasConIncidentes;
+        private static int contadorEntregasConIncidentes;
 
-		private static int contadorRepartidoresDisponibles;
+        private static int contadorRepartidoresDisponibles;
 
-		private static List<Repartidor> repartidorConMasEntregas = new List<Repartidor>();
+        private static List<Repartidor> repartidorConMasEntregas = new List<Repartidor>();
 
-		private static int entregasMaximas;
+        private static int entregasMaximas;
 
-		private static Repartidor elRepatidor;
+        private static Repartidor elRepatidor;
 
-		private static int cantidadMaximaUsosVehiculo;
+        private static int cantidadMaximaUsosVehiculo;
 
-		private static List<Vehiculo> vehiculoMasUsado = new List<Vehiculo>();
+        private static List<Vehiculo> vehiculoMasUsado = new List<Vehiculo>();
 
-		private static Vehiculo elVehiculo;
+        private static Vehiculo elVehiculo;
 
-		private static List<List<Vehiculo>> tiposDeVehiculosNoVacios = new List<List<Vehiculo>>();
+        private static List<List<Vehiculo>> tiposDeVehiculosNoVacios = new List<List<Vehiculo>>();
 
-		private static List<Entrega> entregasFinalizadas = new List<Entrega>();
+        private static List<Entrega> entregasFinalizadas = new List<Entrega>();
 
-		private static double mayorCostoDeEntrega;
+        private static double mayorCostoDeEntrega;
 
-		private static List<Entrega> entregaConMayorCosto = new List<Entrega>();
+        private static List<Entrega> entregaConMayorCosto = new List<Entrega>();
 
-		private static Entrega laEntrega;
+        private static Entrega laEntrega;
 
-		private static TipoVehiculoGeneral vehiculoSeleccionado;
+        private static TipoVehiculoGeneral vehiculoSeleccionado;
 
-		private static TipoServicio servicioSeleccionado;
+        private static TipoServicio servicioSeleccionado;
 
-		private static List<Vehiculo> vehiculoCorrecto = new List<Vehiculo>();
+        private static List<Vehiculo> vehiculoCorrecto = new List<Vehiculo>();
 
-		private static List<Vehiculo> listaVehiculosCorrectos = new List<Vehiculo>();
+        private static List<Vehiculo> listaVehiculosCorrectos = new List<Vehiculo>();
 
-		private static List<Repartidor> listaRepartidoresCorrectos = new List<Repartidor>();
+        private static List<Repartidor> listaRepartidoresCorrectos = new List<Repartidor>();
 
-		private static int opcionMenuPrincipal;
+        private static int opcionMenuPrincipal;
 
-		public static int OpcionMenuPrincipal
-		{
-			get { return opcionMenuPrincipal; }
-			set { opcionMenuPrincipal = value; }
-		}
-
-		public static List<Repartidor>  ListaRepartidoresCorrectos
-		{
-			get { return listaRepartidoresCorrectos; }
-			set { listaRepartidoresCorrectos = value; }
-		}
-
-		private static List<Repartidor> repartidorCorrecto;
-
-		public static List<Repartidor>  RepartidorCorrecto
-		{
-			get { return repartidorCorrecto; }
-			set { repartidorCorrecto = value; }
-		}
-
-		public static List<Vehiculo> ListaVehiculosCorrectos
-		{
-			get { return listaVehiculosCorrectos; }
-			set { listaVehiculosCorrectos = value; }
-		}
-
-		public static List<Vehiculo> VehiculoCorrecto
-		{
-			get { return vehiculoCorrecto; }
-			set { vehiculoCorrecto = value; }
-		}
-
-		public static TipoServicio ServicioSeleccionado
-		{
-			get { return servicioSeleccionado; }
-			set { servicioSeleccionado = value; }
-		}
-
-		public static TipoVehiculoGeneral VehiculoSeleccionado
-		{
-			get { return vehiculoSeleccionado; }
-			set { vehiculoSeleccionado = value; }
-		}
-
-		public static Entrega LaEntrega
-		{
-			get { return laEntrega; }
-			set { laEntrega = value; }
-		}
-
-		public static List<Entrega> EntregaConMayorCosto
-		{
-			get { return entregaConMayorCosto; }
-			set { entregaConMayorCosto = value; }
-		}
-
-		public static double MayorCostoDeEntrega
-		{
-			get { return mayorCostoDeEntrega; }
-			set { mayorCostoDeEntrega = value; }
-		}
-
-		public static List<Entrega> EntregasFinalizadas
-		{
-			get { return entregasFinalizadas; }
-			set { entregasFinalizadas = value; }
-		}
-
-		public static List<List<Vehiculo>> TiposDeVehiculosNoVacios
+        public static int OpcionMenuPrincipal
         {
-			get { return tiposDeVehiculosNoVacios; }
-			set { tiposDeVehiculosNoVacios = value; }
-		}
+            get { return opcionMenuPrincipal; }
+            set { opcionMenuPrincipal = value; }
+        }
 
-		public static Vehiculo ElVehiculo
-		{
-			get { return elVehiculo; }
-			set { elVehiculo = value; }
-		}
+        public static List<Repartidor> ListaRepartidoresCorrectos
+        {
+            get { return listaRepartidoresCorrectos; }
+            set { listaRepartidoresCorrectos = value; }
+        }
 
-		public static List<Vehiculo> VehiculoMasUsado 
-		{
-			get { return vehiculoMasUsado; }
-			set { vehiculoMasUsado = value; }
-		}
+        private static List<Repartidor> repartidorCorrecto;
 
-		public static int CantidadMaximaUsosVehiculo
-		{
-			get { return cantidadMaximaUsosVehiculo; }
-			set { cantidadMaximaUsosVehiculo = value; }
-		}
+        public static List<Repartidor> RepartidorCorrecto
+        {
+            get { return repartidorCorrecto; }
+            set { repartidorCorrecto = value; }
+        }
 
-		public static Repartidor ElRepartidor
-		{
-			get { return elRepatidor; }
-			set { elRepatidor = value; }
-		}
+        public static List<Vehiculo> ListaVehiculosCorrectos
+        {
+            get { return listaVehiculosCorrectos; }
+            set { listaVehiculosCorrectos = value; }
+        }
 
-		public static int EntregasMaximas
-		{
-			get { return entregasMaximas; }
-			set { entregasMaximas = value; }
-		}
+        public static List<Vehiculo> VehiculoCorrecto
+        {
+            get { return vehiculoCorrecto; }
+            set { vehiculoCorrecto = value; }
+        }
 
-		public static List<Repartidor> RepartidorConMasEntregas
-		{
-			get { return repartidorConMasEntregas; }
-			set { repartidorConMasEntregas = value; }
-		}
+        public static TipoServicio ServicioSeleccionado
+        {
+            get { return servicioSeleccionado; }
+            set { servicioSeleccionado = value; }
+        }
 
-		public static int ContadorRepartidoresDisponibles
-		{
-			get { return contadorRepartidoresDisponibles; }
-			set { contadorRepartidoresDisponibles = value; }
-		}
+        public static TipoVehiculoGeneral VehiculoSeleccionado
+        {
+            get { return vehiculoSeleccionado; }
+            set { vehiculoSeleccionado = value; }
+        }
 
-		public static int ContadorEntregasConIncidentes
-		{
-			get { return contadorEntregasConIncidentes; }
-			set { contadorEntregasConIncidentes = value; }
-		}
+        public static Entrega LaEntrega
+        {
+            get { return laEntrega; }
+            set { laEntrega = value; }
+        }
 
-		public static int ContadorEntregasCanceladas
-		{
-			get { return contadorEntregasCanceladas; }
-			set { contadorEntregasCanceladas = value; }
-		}
+        public static List<Entrega> EntregaConMayorCosto
+        {
+            get { return entregaConMayorCosto; }
+            set { entregaConMayorCosto = value; }
+        }
 
-		public static int ContadorEntregasFinalizadas
-		{
-			get { return contadorEntregasFinalizadas; }
-			set { contadorEntregasFinalizadas = value; }
-		}
+        public static double MayorCostoDeEntrega
+        {
+            get { return mayorCostoDeEntrega; }
+            set { mayorCostoDeEntrega = value; }
+        }
 
-		public static int ContadorEntregasActivas
-		{
-			get { return contadorEntregasActivas; }
-			set { contadorEntregasActivas = value; }
-		}
+        public static List<Entrega> EntregasFinalizadas
+        {
+            get { return entregasFinalizadas; }
+            set { entregasFinalizadas = value; }
+        }
+
+        public static List<List<Vehiculo>> TiposDeVehiculosNoVacios
+        {
+            get { return tiposDeVehiculosNoVacios; }
+            set { tiposDeVehiculosNoVacios = value; }
+        }
+
+        public static Vehiculo ElVehiculo
+        {
+            get { return elVehiculo; }
+            set { elVehiculo = value; }
+        }
+
+        public static List<Vehiculo> VehiculoMasUsado
+        {
+            get { return vehiculoMasUsado; }
+            set { vehiculoMasUsado = value; }
+        }
+
+        public static int CantidadMaximaUsosVehiculo
+        {
+            get { return cantidadMaximaUsosVehiculo; }
+            set { cantidadMaximaUsosVehiculo = value; }
+        }
+
+        public static Repartidor ElRepartidor
+        {
+            get { return elRepatidor; }
+            set { elRepatidor = value; }
+        }
+
+        public static int EntregasMaximas
+        {
+            get { return entregasMaximas; }
+            set { entregasMaximas = value; }
+        }
+
+        public static List<Repartidor> RepartidorConMasEntregas
+        {
+            get { return repartidorConMasEntregas; }
+            set { repartidorConMasEntregas = value; }
+        }
+
+        public static int ContadorRepartidoresDisponibles
+        {
+            get { return contadorRepartidoresDisponibles; }
+            set { contadorRepartidoresDisponibles = value; }
+        }
+
+        public static int ContadorEntregasConIncidentes
+        {
+            get { return contadorEntregasConIncidentes; }
+            set { contadorEntregasConIncidentes = value; }
+        }
+
+        public static int ContadorEntregasCanceladas
+        {
+            get { return contadorEntregasCanceladas; }
+            set { contadorEntregasCanceladas = value; }
+        }
+
+        public static int ContadorEntregasFinalizadas
+        {
+            get { return contadorEntregasFinalizadas; }
+            set { contadorEntregasFinalizadas = value; }
+        }
+
+        public static int ContadorEntregasActivas
+        {
+            get { return contadorEntregasActivas; }
+            set { contadorEntregasActivas = value; }
+        }
 
         public static void LimpiarConsola()
         {
@@ -205,8 +205,8 @@ namespace GoXelaDelivery
             Console.Clear();
         }
 
-		public static void SalirMenu()
-		{
+        public static void SalirMenu()
+        {
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Gracias por usar el programa :)");
@@ -215,14 +215,14 @@ namespace GoXelaDelivery
             Console.ResetColor();
         }
 
-		public static void ErroOpcionNoValida()
-		{
+        public static void ErroOpcionNoValida()
+        {
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Error opción no válida");
             Console.WriteLine();
             Console.ResetColor();
-			LimpiarConsola();
+            LimpiarConsola();
         }
     }
 }

@@ -72,7 +72,7 @@ namespace GoXelaDelivery
             {
                 int posicionCliente = ValidarNumerico(1, ListaDeClientes, goXelaDelivery, goXelaDelivery.ListaClientes.Count);
                 Console.WriteLine();
-                goXelaDelivery.ListaClientes[posicionCliente-1].MostrarInformacion();
+                goXelaDelivery.ListaClientes[posicionCliente - 1].MostrarInformacion();
                 LimpiarConsola();
                 return;
             }
@@ -122,7 +122,7 @@ namespace GoXelaDelivery
             {
                 int posicionCliente = ValidarNumerico(1, ListaDeClientes, goXelaDelivery, goXelaDelivery.ListaClientes.Count);
                 Console.WriteLine();
-                SubmenuModificacionCliente(goXelaDelivery.ListaClientes[posicionCliente-1]);
+                SubmenuModificacionCliente(goXelaDelivery.ListaClientes[posicionCliente - 1]);
                 LimpiarConsola();
                 return;
             }

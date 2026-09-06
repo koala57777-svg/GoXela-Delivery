@@ -10,59 +10,59 @@ namespace GoXelaDelivery
 {
     internal class Entrega
     {
-		private string codigoUnico;
+        private string codigoUnico;
 
-		private string prefijo = "ENT";
+        private string prefijo = "ENT";
 
-		private Paquete paqueteEntrega;
+        private Paquete paqueteEntrega;
 
-		private Cliente clienteEntrega;
+        private Cliente clienteEntrega;
 
-		private Repartidor repartidorAsignado;
+        private Repartidor repartidorAsignado;
 
-		private Vehiculo vehiculoAsignado;
+        private Vehiculo vehiculoAsignado;
 
-		private TipoVehiculoGeneral vehiculoGeneral;
+        private TipoVehiculoGeneral vehiculoGeneral;
 
-		private DateTime fechaSolicitud;
+        private DateTime fechaSolicitud;
 
-		private string direccionOrigen;
+        private string direccionOrigen;
 
-		private Municipio municipioOrigen;
+        private Municipio municipioOrigen;
 
-		private string direccionDestino;
+        private string direccionDestino;
 
-		private Municipio municipioDestino;
+        private Municipio municipioDestino;
 
-		private double distanciaEstimada;
+        private double distanciaEstimada;
 
-		private TipoServicio tipoServicio;
+        private TipoServicio tipoServicio;
 
-		private double tarifaBase;
+        private double tarifaBase;
 
-		private double recargo;
+        private double recargo;
 
-		private double descuento;
+        private double descuento;
 
-		private List<Incidente> listaIncidentes = new List<Incidente>();
+        private List<Incidente> listaIncidentes = new List<Incidente>();
 
-		private EstadoEntrega estadoEntrega;
+        private EstadoEntrega estadoEntrega;
 
-		private double total;
+        private double total;
 
-		public Entrega(Paquete nuevoPaqueteEntrega, TipoVehiculoGeneral nuevoVehiculoGeneral, double nuevaDistanciaEstimada, TipoServicio nuevoTipoServicio, double nuevaTarifaBase)
-		{
-			EstadoEntrega = EstadoEntrega.Solicitado;
-			PaqueteEntrega = nuevoPaqueteEntrega;
-			VehiculoGeneral = nuevoVehiculoGeneral;
-			DistanciaEstimada = nuevaDistanciaEstimada;
-			TipoServicio = nuevoTipoServicio;
-			TarifaBase = nuevaTarifaBase;
-			listaIncidentes = new List<Incidente>();
-		}
+        public Entrega(Paquete nuevoPaqueteEntrega, TipoVehiculoGeneral nuevoVehiculoGeneral, double nuevaDistanciaEstimada, TipoServicio nuevoTipoServicio, double nuevaTarifaBase)
+        {
+            EstadoEntrega = EstadoEntrega.Solicitado;
+            PaqueteEntrega = nuevoPaqueteEntrega;
+            VehiculoGeneral = nuevoVehiculoGeneral;
+            DistanciaEstimada = nuevaDistanciaEstimada;
+            TipoServicio = nuevoTipoServicio;
+            TarifaBase = nuevaTarifaBase;
+            listaIncidentes = new List<Incidente>();
+        }
 
-		internal void AgregarIncidenteAEntrega(Entrega entregaAAgregarIncidente, Incidente incidenteAAgregar)
-		{
+        internal void AgregarIncidenteAEntrega(Entrega entregaAAgregarIncidente, Incidente incidenteAAgregar)
+        {
             if (incidenteAAgregar != null)
             {
                 string codigoUnico = GoXelaDelivery.CodigoUnico.GenerarCodigoUnico(incidenteAAgregar.Prefijo);
@@ -71,8 +71,8 @@ namespace GoXelaDelivery
             }
         }
 
-		internal void CambiarEstadoIncidente(Incidente incidenteACambiarEstado)
-		{
+        internal void CambiarEstadoIncidente(Incidente incidenteACambiarEstado)
+        {
             if (incidenteACambiarEstado.AccionTomada == null || incidenteACambiarEstado.AccionTomada.Length == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -92,15 +92,15 @@ namespace GoXelaDelivery
             }
         }
 
-		internal void CambiarAccionTomadaIncidente(Incidente incidenteACambiarDescripcion, string nuevaAccionTomada)
-		{
-			incidenteACambiarDescripcion.Descripcion = nuevaAccionTomada;
-		}
-		
-		internal void MostrarInformacion()
-		{
-            if (RepartidorAsignado == null  || VehiculoAsigando == null)
-			{
+        internal void CambiarAccionTomadaIncidente(Incidente incidenteACambiarDescripcion, string nuevaAccionTomada)
+        {
+            incidenteACambiarDescripcion.Descripcion = nuevaAccionTomada;
+        }
+
+        internal void MostrarInformacion()
+        {
+            if (RepartidorAsignado == null || VehiculoAsigando == null)
+            {
                 Console.WriteLine("ID: " + CodigoUnico);
                 Console.WriteLine();
                 Console.WriteLine("Prefijo: " + Prefijo);
@@ -123,8 +123,8 @@ namespace GoXelaDelivery
                 Console.WriteLine();
                 Console.WriteLine("Estado Entrega: " + EstadoEntrega);
             }
-			else
-			{
+            else
+            {
                 Console.WriteLine("ID: " + CodigoUnico);
                 Console.WriteLine();
                 Console.WriteLine("Prefijo: " + Prefijo);
@@ -147,24 +147,24 @@ namespace GoXelaDelivery
                 Console.WriteLine();
                 Console.WriteLine("Estado Entrega: " + EstadoEntrega);
             }
-		}
+        }
 
-		internal void CambiarEstadoEntregaConfirmada()
-		{
-			if (EstadoEntrega == EstadoEntrega.Solicitado)
-			{
+        internal void CambiarEstadoEntregaConfirmada()
+        {
+            if (EstadoEntrega == EstadoEntrega.Solicitado)
+            {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No se puede el estado de la entrega. Confirme la Entrega primero");
                 Console.ResetColor();
                 LimpiarConsola();
                 return;
             }
-			else
-			{
-				if (EstadoEntrega == EstadoEntrega.Reprogramado)
-				{
-					EstadoEntrega = EstadoEntrega.Cofirmado;
-				}
+            else
+            {
+                if (EstadoEntrega == EstadoEntrega.Reprogramado)
+                {
+                    EstadoEntrega = EstadoEntrega.Cofirmado;
+                }
 
                 if (ListaIncidentes != null && ListaIncidentes.Any())
                 {
@@ -197,122 +197,122 @@ namespace GoXelaDelivery
                     return;
                 }
             }
-		}
+        }
 
-		internal void CancelarEntrega()
-		{
-			EstadoEntrega = EstadoEntrega.Cancelada;
+        internal void CancelarEntrega()
+        {
+            EstadoEntrega = EstadoEntrega.Cancelada;
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Se ha Cancelado Correctamente la Entrega.");
             Console.ResetColor();
             LimpiarConsola();
         }
 
-		internal void ReprogramarEntrega()
-		{
-			if (EstadoEntrega != EstadoEntrega.Cofirmado)
-			{
+        internal void ReprogramarEntrega()
+        {
+            if (EstadoEntrega != EstadoEntrega.Cofirmado)
+            {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No se puede Reprogramar la entrega. Debe solo estar en Confirmada para poder hacerlo");
                 Console.ResetColor();
                 LimpiarConsola();
                 return;
             }
-			else
-			{
+            else
+            {
                 EstadoEntrega = EstadoEntrega.Reprogramado;
             }
-		}
+        }
 
-		internal void CalcularTotalEntregaConfirmada(Entrega entregaConfirmada)
-		{
-			if (entregaConfirmada.ClienteEntrega.SolicitudesRealizadas > 10)
-			{
-				if (entregaConfirmada.EstadoEntrega == EstadoEntrega.Reprogramado)
-				{
-					entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando) + 5) - (0.10*entregaConfirmada.tarifaBase);
-				}
-				else
-				{
+        internal void CalcularTotalEntregaConfirmada(Entrega entregaConfirmada)
+        {
+            if (entregaConfirmada.ClienteEntrega.SolicitudesRealizadas > 10)
+            {
+                if (entregaConfirmada.EstadoEntrega == EstadoEntrega.Reprogramado)
+                {
+                    entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando) + 5) - (0.10 * entregaConfirmada.tarifaBase);
+                }
+                else
+                {
                     entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando)) - (0.10 * entregaConfirmada.tarifaBase);
                 }
-			}
-			else if (entregaConfirmada.estadoEntrega == EstadoEntrega.Reprogramado)
-			{
-				entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando) + 5);
+            }
+            else if (entregaConfirmada.estadoEntrega == EstadoEntrega.Reprogramado)
+            {
+                entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando) + 5);
 
             }
-			else
-			{
-				entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando));
+            else
+            {
+                entregaConfirmada.Total = (entregaConfirmada.tarifaBase + entregaConfirmada.VehiculoAsigando.CalcularTarifaEspecialización(entregaConfirmada.VehiculoAsigando));
 
             }
-		}
+        }
 
-		internal double CalcularTarifaServicio()
-		{
-			if (ServicioSeleccionado == TipoServicio.Normal)
-			{
-				return 20;
-			}
-			else if (ServicioSeleccionado == TipoServicio.Prioritario)
-			{
-				return 60;
-			}
-			else
-			{
-				return 110;
-			}
-		}
+        internal double CalcularTarifaServicio()
+        {
+            if (ServicioSeleccionado == TipoServicio.Normal)
+            {
+                return 20;
+            }
+            else if (ServicioSeleccionado == TipoServicio.Prioritario)
+            {
+                return 60;
+            }
+            else
+            {
+                return 110;
+            }
+        }
 
-		internal void SeleccionarVehiculoGeneral(Paquete paqueteEntrega)
-		{
-			if ((280 - paqueteEntrega.Peso) >= 0)
-			{
-				VehiculoSeleccionado = TipoVehiculoGeneral.Bicicleta;
-			}
-			else if ((400 - paqueteEntrega.Peso) >= 0)
-			{
-                VehiculoSeleccionado = TipoVehiculoGeneral.Motocicleta;
-			}
-			else if ((400 - paqueteEntrega.Peso) >= 0)
-			{
+        internal void SeleccionarVehiculoGeneral(Paquete paqueteEntrega)
+        {
+            if ((280 - paqueteEntrega.Peso) >= 0)
+            {
+                VehiculoSeleccionado = TipoVehiculoGeneral.Bicicleta;
+            }
+            else if ((400 - paqueteEntrega.Peso) >= 0)
+            {
                 VehiculoSeleccionado = TipoVehiculoGeneral.Motocicleta;
             }
-			else
-			{
+            else if ((400 - paqueteEntrega.Peso) >= 0)
+            {
+                VehiculoSeleccionado = TipoVehiculoGeneral.Motocicleta;
+            }
+            else
+            {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("El paquete supera el peso de cualquier tipo de vehículo.");
                 Console.ResetColor();
             }
-		}
+        }
 
-		internal double CalcularTarifaVehiculoGeneral(double distanciaRecorrer)
-		{
-			if (VehiculoSeleccionado == TipoVehiculoGeneral.Bicicleta)
-			{
+        internal double CalcularTarifaVehiculoGeneral(double distanciaRecorrer)
+        {
+            if (VehiculoSeleccionado == TipoVehiculoGeneral.Bicicleta)
+            {
                 return (distanciaRecorrer * 0.75);
             }
-			else if (VehiculoSeleccionado == TipoVehiculoGeneral.Motocicleta)
-			{
+            else if (VehiculoSeleccionado == TipoVehiculoGeneral.Motocicleta)
+            {
                 return (distanciaRecorrer * 1.50);
             }
-			else
-			{
+            else
+            {
                 return (distanciaRecorrer * 2.50);
             }
-		}
+        }
 
-		internal double CalcularTarifaEntrega(Paquete paqueteEntrega, double distanciaRecorrer)
-		{
-			SeleccionarVehiculoGeneral(paqueteEntrega);
-			return CalcularTarifaVehiculoGeneral(distanciaRecorrer) + paqueteEntrega.CalcularCostoTipo(paqueteEntrega.ValorDeclarado, paqueteEntrega.Peso) + CalcularTarifaServicio();
-		}
+        internal double CalcularTarifaEntrega(Paquete paqueteEntrega, double distanciaRecorrer)
+        {
+            SeleccionarVehiculoGeneral(paqueteEntrega);
+            return CalcularTarifaVehiculoGeneral(distanciaRecorrer) + paqueteEntrega.CalcularCostoTipo(paqueteEntrega.ValorDeclarado, paqueteEntrega.Peso) + CalcularTarifaServicio();
+        }
 
-		internal void IngresarIncidente(Incidente incidente)
-		{
-			string nuevoCodigo = GoXelaDelivery.CodigoUnico.GenerarCodigoUnico(incidente.Prefijo);
+        internal void IngresarIncidente(Incidente incidente)
+        {
+            string nuevoCodigo = GoXelaDelivery.CodigoUnico.GenerarCodigoUnico(incidente.Prefijo);
             incidente.CodigoUnico = nuevoCodigo;
             listaIncidentes.Add(incidente);
         }
@@ -324,117 +324,117 @@ namespace GoXelaDelivery
         }
 
         public EstadoEntrega EstadoEntrega
-		{
-			get { return estadoEntrega; }
-			set { estadoEntrega = value; }
-		}
+        {
+            get { return estadoEntrega; }
+            set { estadoEntrega = value; }
+        }
 
-		public List<Incidente> ListaIncidentes
-		{
-			get { return listaIncidentes; }
-			set { listaIncidentes = value; }
-		}
+        public List<Incidente> ListaIncidentes
+        {
+            get { return listaIncidentes; }
+            set { listaIncidentes = value; }
+        }
 
-		public double Descuento
-		{
-			get { return descuento; }
-			set { descuento = value; }
-		}
+        public double Descuento
+        {
+            get { return descuento; }
+            set { descuento = value; }
+        }
 
-		public double Recargo
-		{
-			get { return recargo; }
-			set { recargo = value; }
-		}
+        public double Recargo
+        {
+            get { return recargo; }
+            set { recargo = value; }
+        }
 
-		public double TarifaBase
-		{
-			get { return tarifaBase; }
-			set { tarifaBase = value; }
-		}
+        public double TarifaBase
+        {
+            get { return tarifaBase; }
+            set { tarifaBase = value; }
+        }
 
-		public TipoServicio TipoServicio
-		{
-			get { return tipoServicio; }
-			set { tipoServicio = value; }
-		}
+        public TipoServicio TipoServicio
+        {
+            get { return tipoServicio; }
+            set { tipoServicio = value; }
+        }
 
-		public double DistanciaEstimada
-		{
-			get { return distanciaEstimada; }
-			set { distanciaEstimada = value; }
-		}
+        public double DistanciaEstimada
+        {
+            get { return distanciaEstimada; }
+            set { distanciaEstimada = value; }
+        }
 
-		public Municipio MunicipioDestino
-		{
-			get { return municipioDestino; }
-			set { municipioDestino = PaqueteEntrega.MunicipioDestino; }
-		}
+        public Municipio MunicipioDestino
+        {
+            get { return municipioDestino; }
+            set { municipioDestino = PaqueteEntrega.MunicipioDestino; }
+        }
 
-		public string DireccionDestino
-		{
-			get { return direccionDestino; }
-			set { direccionDestino = PaqueteEntrega.DireccionDestino; }
-		}
+        public string DireccionDestino
+        {
+            get { return direccionDestino; }
+            set { direccionDestino = PaqueteEntrega.DireccionDestino; }
+        }
 
-		public Municipio MunicipioOrigen
-		{
-			get { return municipioOrigen; }
-			set { municipioOrigen = PaqueteEntrega.MunicipioOrigen; }
-		}
+        public Municipio MunicipioOrigen
+        {
+            get { return municipioOrigen; }
+            set { municipioOrigen = PaqueteEntrega.MunicipioOrigen; }
+        }
 
-		public string DireccionOrigen
-		{
-			get { return direccionOrigen; }
-			set { direccionOrigen = PaqueteEntrega.DireccionOrigen; }
-		}
+        public string DireccionOrigen
+        {
+            get { return direccionOrigen; }
+            set { direccionOrigen = PaqueteEntrega.DireccionOrigen; }
+        }
 
-		public DateTime FechaSolicitud
-		{
-			get { return fechaSolicitud; }
-			set { fechaSolicitud = DateTime.Now; }
-		}
+        public DateTime FechaSolicitud
+        {
+            get { return fechaSolicitud; }
+            set { fechaSolicitud = DateTime.Now; }
+        }
 
-		public TipoVehiculoGeneral VehiculoGeneral
-		{
-			get { return vehiculoGeneral; }
-			set { vehiculoGeneral = value; }
-		}
-		 
-		public Vehiculo VehiculoAsigando
-		{
-			get { return vehiculoAsignado; }
-			set { vehiculoAsignado = value; }
-		}
+        public TipoVehiculoGeneral VehiculoGeneral
+        {
+            get { return vehiculoGeneral; }
+            set { vehiculoGeneral = value; }
+        }
 
-		public Repartidor RepartidorAsignado
-		{
-			get { return repartidorAsignado; }
-			set { repartidorAsignado = value; }
-		}
+        public Vehiculo VehiculoAsigando
+        {
+            get { return vehiculoAsignado; }
+            set { vehiculoAsignado = value; }
+        }
 
-		public Cliente ClienteEntrega
-		{
-			get { return clienteEntrega; }
-			set { clienteEntrega = PaqueteEntrega.ClientePaquete; }
-		}
+        public Repartidor RepartidorAsignado
+        {
+            get { return repartidorAsignado; }
+            set { repartidorAsignado = value; }
+        }
 
-		public Paquete PaqueteEntrega
-		{
-			get { return paqueteEntrega; }
-			set { paqueteEntrega = value; }
-		}
+        public Cliente ClienteEntrega
+        {
+            get { return clienteEntrega; }
+            set { clienteEntrega = PaqueteEntrega.ClientePaquete; }
+        }
 
-		public string Prefijo
-		{
-			get { return prefijo; }
-			set { prefijo = value; }
-		}
+        public Paquete PaqueteEntrega
+        {
+            get { return paqueteEntrega; }
+            set { paqueteEntrega = value; }
+        }
 
-		public string CodigoUnico
-		{
-			get { return codigoUnico; }
-			set { codigoUnico = value; }
-		}
-	}
+        public string Prefijo
+        {
+            get { return prefijo; }
+            set { prefijo = value; }
+        }
+
+        public string CodigoUnico
+        {
+            get { return codigoUnico; }
+            set { codigoUnico = value; }
+        }
+    }
 }

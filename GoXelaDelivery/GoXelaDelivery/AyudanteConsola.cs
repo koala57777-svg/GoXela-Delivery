@@ -937,7 +937,7 @@ namespace GoXelaDelivery
         }
         internal static void Mostrar(string textoMostrar, int duracionSegundos)
         {
-            
+
             int ciclosTotales = duracionSegundos * 4;
 
             for (int i = 0; i < ciclosTotales; i++)
@@ -954,7 +954,7 @@ namespace GoXelaDelivery
 
 
                 Thread.Sleep(250);
-                
+
             }
             Console.ResetColor();
 
@@ -1595,7 +1595,7 @@ namespace GoXelaDelivery
                 {
                     ConsoleKeyInfo teclaInfo = Console.ReadKey(intercept: true);
 
-                    
+
                     if (teclaInfo.Key == ConsoleKey.Enter && sb.Length == tamanoRequerido)
                     {
                         if (double.TryParse(sb.ToString(), out double numeroConvertido))
@@ -1642,7 +1642,7 @@ namespace GoXelaDelivery
                     if (teclaInfo.Key == ConsoleKey.Backspace && sb.Length > 0)
                     {
                         if (sb.Length == 2)
-                        { 
+                        {
                             sb.Remove(sb.Length - 1, 1);
                             Console.Write("\b \b");
                         }

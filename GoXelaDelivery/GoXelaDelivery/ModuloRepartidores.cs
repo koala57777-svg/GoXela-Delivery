@@ -103,7 +103,7 @@ namespace GoXelaDelivery
         }
         public static void ModificarEstadoFueraDeServicio(Repartidor repartidor)
         {
-            if(repartidor.EstadoDisponibilidad != EstadoRepartidor.FueraDeServicio)
+            if (repartidor.EstadoDisponibilidad != EstadoRepartidor.FueraDeServicio)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"El estado del repartidor es: {repartidor.EstadoDisponibilidad}.\n\nNo es necesario modificarlo.");
@@ -211,7 +211,7 @@ namespace GoXelaDelivery
             TipoLicencia tipoLicenciaRepartidor = (TipoLicencia)numeroTipoLicenciaElegida;
             int numeroEstadoRepartidorElegida = ValidarNumerico(1, MenuEstadoDisponibilidad, Enum.GetNames(typeof(EstadoRepartidor)).Length);
             EstadoRepartidor estadoRepartidor = (EstadoRepartidor)numeroEstadoRepartidorElegida;
-            Repartidor repartidor = new Repartidor(nombreCompletoRepartidor,numeroTelefonoRepartidor, numeroLicenciaRepartidor,tipoLicenciaRepartidor, estadoRepartidor);
+            Repartidor repartidor = new Repartidor(nombreCompletoRepartidor, numeroTelefonoRepartidor, numeroLicenciaRepartidor, tipoLicenciaRepartidor, estadoRepartidor);
             goXelaDelivery.IngresarRepartidor(repartidor);
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;

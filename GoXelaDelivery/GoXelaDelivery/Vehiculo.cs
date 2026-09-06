@@ -98,7 +98,7 @@ namespace GoXelaDelivery
             {
                 return 100;
             }
-            else 
+            else
             {
                 return 175;
             }
@@ -200,7 +200,7 @@ namespace GoXelaDelivery
             {
                 return 100;
             }
-            else 
+            else
             {
                 return 175;
             }
@@ -236,7 +236,7 @@ namespace GoXelaDelivery
             {
                 return 100;
             }
-            else 
+            else
             {
                 return 175;
             }
@@ -272,7 +272,7 @@ namespace GoXelaDelivery
             {
                 return 100;
             }
-            else 
+            else
             {
                 return 175;
             }
