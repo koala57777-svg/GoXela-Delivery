@@ -47,7 +47,7 @@ namespace GoXelaDelivery
             Console.WriteLine();
             Console.WriteLine("Acción Tomada: " + AccionTomada);
             Console.WriteLine();
-            Console.WriteLine("Entrega Relacionada: " + EntregaRelacionada);
+            Console.WriteLine("Entrega Relacionada: " + EntregaRelacionada.CodigoUnico);
             Console.WriteLine();
             Console.WriteLine("Fecha del Incidente: "+ FechaIncidente);
 		}
