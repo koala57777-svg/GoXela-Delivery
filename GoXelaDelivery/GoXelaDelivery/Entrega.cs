@@ -105,9 +105,9 @@ namespace GoXelaDelivery
             Console.WriteLine();
             Console.WriteLine("Paquete de la Entrega: " + PaqueteEntrega.CodigoUnico);
             Console.WriteLine();
-            Console.WriteLine("Repartidor Asignado: " + RepartidorAsignado);
+            Console.WriteLine("Repartidor Asignado: " + RepartidorAsignado.NombreCompleto);
             Console.WriteLine();
-            Console.WriteLine("Vehículo Asignado: " + VehiculoAsigando);
+            Console.WriteLine("Vehículo Asignado: " + VehiculoAsigando.CodigoUnico);
             Console.WriteLine();
             Console.WriteLine("Vehículo General: " + VehiculoGeneral.ObtenerDescripcion());
             Console.WriteLine();
@@ -118,6 +118,8 @@ namespace GoXelaDelivery
             Console.WriteLine("Tarifa Base de la Entrega : Q" + TarifaBase);
             Console.WriteLine();
             Console.WriteLine("Total de la Entrega (Pueden aplicar Recargos y Descuentos): Q" + Total);
+            Console.WriteLine();
+            Console.WriteLine("Estado Entrega: " + EstadoEntrega);
 		}
 
 		internal void CambiarEstadoEntregaConfirmada()
