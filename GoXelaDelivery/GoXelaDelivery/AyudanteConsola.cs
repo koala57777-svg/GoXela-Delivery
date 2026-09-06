@@ -18,11 +18,11 @@ namespace GoXelaDelivery
     {
         public static void ConfirmarEntrega(Entrega entregaAConfirmar, Delivery goXelaDelivey)
         {
-            if (entregaAConfirmar.EstadoEntrega == EstadoEntrega.Cofirmado)
+            if (entregaAConfirmar.EstadoEntrega == EstadoEntrega.Cofirmado || entregaAConfirmar.EstadoEntrega == EstadoEntrega.Entregada || entregaAConfirmar.EstadoEntrega == EstadoEntrega.Cancelada)
             {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("La Entrega ya está Confirmada.");
+                Console.WriteLine("La Entrega ya está Confirmada, o ya está Entregada, o está Cancelada");
                 Console.ResetColor();
                 LimpiarConsola();
                 return;

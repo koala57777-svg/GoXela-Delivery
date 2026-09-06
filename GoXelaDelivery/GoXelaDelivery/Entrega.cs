@@ -151,21 +151,20 @@ namespace GoXelaDelivery
 
         internal void CambiarEstadoEntregaConfirmada()
         {
-            if (EstadoEntrega == EstadoEntrega.Solicitado)
+            if (EstadoEntrega == EstadoEntrega.Reprogramado)
+            {
+                EstadoEntrega = EstadoEntrega.Cofirmado;
+            }
+            if (EstadoEntrega == EstadoEntrega.Solicitado || EstadoEntrega == EstadoEntrega.Entregada || EstadoEntrega == EstadoEntrega.Cancelada)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("No se puede el estado de la entrega. Confirme la Entrega primero");
+                Console.WriteLine("La Entrega ya está entregada, o aún no esta confirmada, o está Cancelada");
                 Console.ResetColor();
                 LimpiarConsola();
                 return;
             }
             else
             {
-                if (EstadoEntrega == EstadoEntrega.Reprogramado)
-                {
-                    EstadoEntrega = EstadoEntrega.Cofirmado;
-                }
-
                 if (ListaIncidentes != null && ListaIncidentes.Any())
                 {
                     bool todosResueltos = ListaIncidentes.All(incidente => incidente.EstadoIncidente == EstadoIncidencia.Resuelta);
@@ -221,6 +220,10 @@ namespace GoXelaDelivery
             else
             {
                 EstadoEntrega = EstadoEntrega.Reprogramado;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("La Entrega fue Reprogramada con éxito.");
+                Console.ResetColor();
+                LimpiarConsola();
             }
         }
 
