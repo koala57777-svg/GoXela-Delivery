@@ -99,27 +99,54 @@ namespace GoXelaDelivery
 		
 		internal void MostrarInformacion()
 		{
-            Console.WriteLine("ID: " + CodigoUnico);
-            Console.WriteLine();
-            Console.WriteLine("Prefijo: " + Prefijo);
-            Console.WriteLine();
-            Console.WriteLine("Paquete de la Entrega: " + PaqueteEntrega.CodigoUnico);
-            Console.WriteLine();
-            Console.WriteLine("Repartidor Asignado: " + RepartidorAsignado.NombreCompleto);
-            Console.WriteLine();
-            Console.WriteLine("Vehículo Asignado: " + VehiculoAsigando.CodigoUnico);
-            Console.WriteLine();
-            Console.WriteLine("Vehículo General: " + VehiculoGeneral.ObtenerDescripcion());
-            Console.WriteLine();
-            Console.WriteLine("Distancia Estimada (Km): " + DistanciaEstimada);
-            Console.WriteLine();
-            Console.WriteLine("Tipo de Servicio: " + TipoServicio);
-            Console.WriteLine();
-            Console.WriteLine("Tarifa Base de la Entrega : Q" + TarifaBase);
-            Console.WriteLine();
-            Console.WriteLine("Total de la Entrega (Pueden aplicar Recargos y Descuentos): Q" + Total);
-            Console.WriteLine();
-            Console.WriteLine("Estado Entrega: " + EstadoEntrega);
+            if (RepartidorAsignado == null  || VehiculoAsigando == null)
+			{
+                Console.WriteLine("ID: " + CodigoUnico);
+                Console.WriteLine();
+                Console.WriteLine("Prefijo: " + Prefijo);
+                Console.WriteLine();
+                Console.WriteLine("Paquete de la Entrega: " + PaqueteEntrega.CodigoUnico);
+                Console.WriteLine();
+                Console.WriteLine("Repartidor Asignado: Ninguno");
+                Console.WriteLine();
+                Console.WriteLine("Vehículo Asignado: Ninguno");
+                Console.WriteLine();
+                Console.WriteLine("Vehículo General: " + VehiculoGeneral.ObtenerDescripcion());
+                Console.WriteLine();
+                Console.WriteLine("Distancia Estimada (Km): " + DistanciaEstimada);
+                Console.WriteLine();
+                Console.WriteLine("Tipo de Servicio: " + TipoServicio);
+                Console.WriteLine();
+                Console.WriteLine("Tarifa Base de la Entrega : Q" + TarifaBase);
+                Console.WriteLine();
+                Console.WriteLine("Total de la Entrega (Pueden aplicar Recargos y Descuentos): Q" + Total);
+                Console.WriteLine();
+                Console.WriteLine("Estado Entrega: " + EstadoEntrega);
+            }
+			else
+			{
+                Console.WriteLine("ID: " + CodigoUnico);
+                Console.WriteLine();
+                Console.WriteLine("Prefijo: " + Prefijo);
+                Console.WriteLine();
+                Console.WriteLine("Paquete de la Entrega: " + PaqueteEntrega.CodigoUnico);
+                Console.WriteLine();
+                Console.WriteLine("Repartidor Asignado: " + RepartidorAsignado.NombreCompleto);
+                Console.WriteLine();
+                Console.WriteLine("Vehículo Asignado: " + VehiculoAsigando.CodigoUnico);
+                Console.WriteLine();
+                Console.WriteLine("Vehículo General: " + VehiculoGeneral.ObtenerDescripcion());
+                Console.WriteLine();
+                Console.WriteLine("Distancia Estimada (Km): " + DistanciaEstimada);
+                Console.WriteLine();
+                Console.WriteLine("Tipo de Servicio: " + TipoServicio);
+                Console.WriteLine();
+                Console.WriteLine("Tarifa Base de la Entrega : Q" + TarifaBase);
+                Console.WriteLine();
+                Console.WriteLine("Total de la Entrega (Pueden aplicar Recargos y Descuentos): Q" + Total);
+                Console.WriteLine();
+                Console.WriteLine("Estado Entrega: " + EstadoEntrega);
+            }
 		}
 
 		internal void CambiarEstadoEntregaConfirmada()
