@@ -22,7 +22,7 @@ namespace GoXelaDelivery
             {
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine($"No se puede Confirmar la Entrega en este estado ({entregaAConfirmar.EstadoEntrega}), solo en se puede en Solicitado, o ya está Cancelada");
+                Console.WriteLine($"No se puede Confirmar la Entrega en este estado ({entregaAConfirmar.EstadoEntrega}), solo en se puede en Solicitado.");
                 Console.ResetColor();
                 LimpiarConsola();
                 return;

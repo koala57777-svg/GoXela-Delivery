@@ -203,7 +203,7 @@ namespace GoXelaDelivery
             if (EstadoEntrega != EstadoEntrega.Solicitado)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"No se puede Cancelar la Entrega en este Estado ({EstadoEntrega}), solo en Solicitado, o ya está Cancelada.");
+                Console.WriteLine($"No se puede Cancelar la Entrega en este Estado ({EstadoEntrega}), solo en Solicitado.");
                 Console.ResetColor();
                 LimpiarConsola();
             }
