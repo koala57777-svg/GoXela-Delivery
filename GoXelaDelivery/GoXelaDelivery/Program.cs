@@ -11,7 +11,6 @@ namespace GoXelaDelivery
         static void Main(string[] args)
         {
             Delivery GoXelaDelivery = new Delivery();
-            InicializadorDatos.CargarDatosPrueba(GoXelaDelivery);
             OpcionMenuPrincipal = 0;
             do
             {
