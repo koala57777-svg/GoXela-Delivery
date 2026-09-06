@@ -121,7 +121,7 @@ namespace GoXelaDelivery
                 Console.WriteLine();
                 Console.WriteLine("Total de la Entrega (Pueden aplicar Recargos y Descuentos): Q" + Total);
                 Console.WriteLine();
-                Console.WriteLine("Estado Entrega: " + EstadoEntrega);
+                Console.WriteLine("Estado Entrega: " + EstadoEntrega.ObtenerDescripcion());
             }
             else
             {
@@ -145,7 +145,7 @@ namespace GoXelaDelivery
                 Console.WriteLine();
                 Console.WriteLine("Total de la Entrega (Pueden aplicar Recargos y Descuentos): Q" + Total);
                 Console.WriteLine();
-                Console.WriteLine("Estado Entrega: " + EstadoEntrega);
+                Console.WriteLine("Estado Entrega: " + EstadoEntrega.ObtenerDescripcion());
             }
         }
 
