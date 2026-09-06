@@ -50,7 +50,7 @@ namespace GoXelaDelivery
 
 		private double total;
 
-		public Entrega(Paquete nuevoPaqueteEntrega, TipoVehiculoGeneral nuevoVehiculoGeneral, double nuevaDistanciaEstimada, TipoServicio nuevoTipoServicio, double nuevaTarifaBase, Cliente clienteEntrega)
+		public Entrega(Paquete nuevoPaqueteEntrega, TipoVehiculoGeneral nuevoVehiculoGeneral, double nuevaDistanciaEstimada, TipoServicio nuevoTipoServicio, double nuevaTarifaBase)
 		{
 			EstadoEntrega = EstadoEntrega.Solicitado;
 			PaqueteEntrega = nuevoPaqueteEntrega;
@@ -59,7 +59,6 @@ namespace GoXelaDelivery
 			TipoServicio = nuevoTipoServicio;
 			TarifaBase = nuevaTarifaBase;
 			listaIncidentes = new List<Incidente>();
-			ClienteEntrega = clienteEntrega;
 		}
 
 		internal void AgregarIncidenteAEntrega(Entrega entregaAAgregarIncidente, Incidente incidenteAAgregar)
