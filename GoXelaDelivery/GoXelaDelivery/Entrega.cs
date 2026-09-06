@@ -206,7 +206,6 @@ namespace GoXelaDelivery
             Console.WriteLine($"Se ha Cancelado Correctamente la Entrega.");
             Console.ResetColor();
             LimpiarConsola();
-            return;
         }
 
 		internal void ReprogramarEntrega()
