@@ -124,8 +124,7 @@ namespace GoXelaDelivery
                 if (goXelaDelivey.ListaVehiculos[2].Count == 0 || goXelaDelivey.ListaVehiculos[2] == null)
                 {
                     LimpiarConsola();
-                    VehiculoCorrecto.Clear();
-                    return VehiculoCorrecto;
+                    return new List<Vehiculo>();
                 }
                 else
                 {
@@ -155,8 +154,7 @@ namespace GoXelaDelivery
             {
                 if (goXelaDelivey.ListaVehiculos[0].Count == 0 || goXelaDelivey.ListaVehiculos[0] == null)
                 {
-                    VehiculoCorrecto.Clear();
-                    return VehiculoCorrecto;
+                    return new List<Vehiculo>();
                 }
                 else
                 {
@@ -186,8 +184,7 @@ namespace GoXelaDelivery
             {
                 if (goXelaDelivey.ListaVehiculos[1].Count == 0 || goXelaDelivey.ListaVehiculos[1] == null)
                 {
-                    VehiculoCorrecto.Clear();
-                    return VehiculoCorrecto;
+                    return new List<Vehiculo>();
                 }
                 else
                 {
