@@ -46,27 +46,55 @@ namespace GoXelaDelivery
 
         internal void MostarInformacion()
         {
-            Console.WriteLine("ID: " + CodigoUnico);
-            Console.WriteLine();
-            Console.WriteLine("Prefijo: " + Prefijo);
-            Console.WriteLine();
-            Console.WriteLine("Placa: " + Placa);
-            Console.WriteLine();
-            Console.WriteLine("Marca: " + Marca);
-            Console.WriteLine();
-            Console.WriteLine("Modelo: " + Modelo);
-            Console.WriteLine();
-            Console.WriteLine("Capacidad Máxima de Carga: " + CapacidadMaxima);
-            Console.WriteLine();
-            Console.WriteLine("Estado del Vehículo: " + EstadoVehiculo.ObtenerDescripcion());
-            Console.WriteLine();
-            Console.WriteLine("Entregas Realizadas: " + EntregasRealizadas);
-            Console.WriteLine();
-            Console.WriteLine("Tipo de Vehículo: " + TipoVehiculo.ObtenerDescripcion());
-            Console.WriteLine();
-            Console.WriteLine("Repartidor Asignado: " + RepartidorAsignado.CodigoUnico);
-            Console.WriteLine();
-            Console.WriteLine("Especialización del Vehículo: " + Especializacion.ObtenerDescripcion());
+            if (RepartidorAsignado == null)
+            {
+                Console.WriteLine("ID: " + CodigoUnico);
+                Console.WriteLine();
+                Console.WriteLine("Prefijo: " + Prefijo);
+                Console.WriteLine();
+                Console.WriteLine("Placa: " + Placa);
+                Console.WriteLine();
+                Console.WriteLine("Marca: " + Marca);
+                Console.WriteLine();
+                Console.WriteLine("Modelo: " + Modelo);
+                Console.WriteLine();
+                Console.WriteLine("Capacidad Máxima de Carga: " + CapacidadMaxima);
+                Console.WriteLine();
+                Console.WriteLine("Estado del Vehículo: " + EstadoVehiculo.ObtenerDescripcion());
+                Console.WriteLine();
+                Console.WriteLine("Entregas Realizadas: " + EntregasRealizadas);
+                Console.WriteLine();
+                Console.WriteLine("Tipo de Vehículo: " + TipoVehiculo.ObtenerDescripcion());
+                Console.WriteLine();
+                Console.WriteLine("Repartidor Asignado: Ninguno");
+                Console.WriteLine();
+                Console.WriteLine("Especialización del Vehículo: " + Especializacion.ObtenerDescripcion());
+            }
+            else
+            {
+                Console.WriteLine("ID: " + CodigoUnico);
+                Console.WriteLine();
+                Console.WriteLine("Prefijo: " + Prefijo);
+                Console.WriteLine();
+                Console.WriteLine("Placa: " + Placa);
+                Console.WriteLine();
+                Console.WriteLine("Marca: " + Marca);
+                Console.WriteLine();
+                Console.WriteLine("Modelo: " + Modelo);
+                Console.WriteLine();
+                Console.WriteLine("Capacidad Máxima de Carga: " + CapacidadMaxima);
+                Console.WriteLine();
+                Console.WriteLine("Estado del Vehículo: " + EstadoVehiculo.ObtenerDescripcion());
+                Console.WriteLine();
+                Console.WriteLine("Entregas Realizadas: " + EntregasRealizadas);
+                Console.WriteLine();
+                Console.WriteLine("Tipo de Vehículo: " + TipoVehiculo.ObtenerDescripcion());
+                Console.WriteLine();
+                Console.WriteLine("Repartidor Asignado: " + RepartidorAsignado.CodigoUnico);
+                Console.WriteLine();
+                Console.WriteLine("Especialización del Vehículo: " + Especializacion.ObtenerDescripcion());
+            }
+           
         }
 
         internal void ModificarEstado(EstadoVehiculo nuevoEstadoVehiculo)
