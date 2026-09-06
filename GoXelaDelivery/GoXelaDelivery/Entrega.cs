@@ -326,7 +326,7 @@ namespace GoXelaDelivery
         public EstadoEntrega EstadoEntrega
 		{
 			get { return estadoEntrega; }
-			set { estadoEntrega = EstadoEntrega.Solicitado; }
+			set { estadoEntrega = value; }
 		}
 
 		public List<Incidente> ListaIncidentes
