@@ -287,7 +287,7 @@ namespace GoXelaDelivery
             }
             else
             {
-                ContadorEntregasCanceladas = 0;
+                ContadorEntregasConIncidentes = 0;
                 foreach (Entrega entrega in ListaEntregas)
                 {
                     if (entrega.ListaIncidentes.Count > 0)
