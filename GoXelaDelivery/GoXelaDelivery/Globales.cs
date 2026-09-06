@@ -31,7 +31,7 @@ namespace GoXelaDelivery
 
 		private static Vehiculo elVehiculo;
 
-		private static List<List<Vehiculo>> tiposDeVehiculosNoVacios new List<List<Vehiculo>>();
+		private static List<List<Vehiculo>> tiposDeVehiculosNoVacios = new List<List<Vehiculo>>();
 
 		private static List<Entrega> entregasFinalizadas = new List<Entrega>();
 
