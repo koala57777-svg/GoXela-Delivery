@@ -64,7 +64,7 @@ namespace GoXelaDelivery
             Console.WriteLine();
             Console.WriteLine("Tipo de Vehículo: " + TipoVehiculo.ObtenerDescripcion());
             Console.WriteLine();
-            Console.WriteLine("Repartidor Asignado: " + RepartidorAsignado);
+            Console.WriteLine("Repartidor Asignado: " + RepartidorAsignado.CodigoUnico);
             Console.WriteLine();
             Console.WriteLine("Especialización del Vehículo: " + Especializacion.ObtenerDescripcion());
         }
